@@ -1,0 +1,22 @@
+{
+    "name": "quanqinle-blog",
+    "title": "QuanQinle Blog",
+    "version": "1.0.0",
+    "homepage": "http://quanqinle.github.io",
+    "author": "QuanQinle",
+    "devDependencies": {
+        "grunt": "^1.1.0",
+        "grunt-banner": "~0.2.3",
+        "grunt-contrib-less": "^2.0.0",
+        "grunt-contrib-uglify": "^4.0.1",
+        "grunt-contrib-watch": "^1.1.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/QuanQinle/quanqinle.github.io"
+    },
+    "scripts": {
+        "preview": "cd _site; python -m SimpleHTTPServer 8020",
+        "watch": "grunt watch & npm run preview & jekyll serve -w;"
+    }
+}
