@@ -1,15 +1,15 @@
 {
     "name": "quanqinle-blog",
     "title": "QuanQinle Blog",
-    "author": "QuanQinle",
-    "version": "1.0.0",
+    "author": "Quan Qinle <quanqinle@gmail.com>",
+    "version": "1.8.2",
     "homepage": "http://quanqinle.github.io",
 
     "repository": {
         "type": "git",
-        "url": "https://github.com/QuanQinle/quanqinle.github.io"
+        "url": "https://github.com/quanqinle/quanqinle.github.io"
     },
-    "bugs": "https://github.com/QuanQinle/quanqinle.github.io/issues",
+    "bugs": "https://github.com/quanqinle/quanqinle.github.io/issues",
     "devDependencies": {
         "grunt": "^1.1.0",
         "grunt-banner": "~0.2.3",

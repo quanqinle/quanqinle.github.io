@@ -4,9 +4,9 @@ SEOTitle: 权芹乐的博客 | QuanQinle Blog
 header-img: img/home-bg.jpg
 email: quanqinle@163.com
 description: "这里是 权芹乐 的个人博客，时间需要留下走过的痕迹。"
-keyword: "权芹乐, QuanQinle, 计算机"
-#url: "http://huangxuan.me"              # your host, for absolute URL
-#baseurl: "/huxblog-boilerplate"         # for example, '/blog' if your blog hosted on 'host/blog'
+keyword: "权芹乐, QuanQinle, 计算机, 编程, 测试"
+url: "https://quanqinle.github.io"      # your host, for absolute URL
+baseurl: ""         # for example, '/blog' if your blog hosted on 'host/blog'
 
 # Publish posts or collection documents with a future date.
 future: true
@@ -59,7 +59,7 @@ kramdown:
 
 
 # Disqus settings
-disqus_username: hux
+disqus_username: quan
 
 # Netease settings
 netease_comment: false
@@ -71,14 +71,14 @@ netease_comment: false
 # ba_track_id: [your track id]
 
 # Google Analytics
-ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
-ga_domain: huangxuan.me
+ga_track_id: 'UA-27037731-2            # Format: UA-xxxxxx-xx
+ga_domain: quanqinle.github.io
 
 
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "写写代码，做做设计，看看产品。世界那么大，多玩玩看看。"
+sidebar-about-description: "没有什么能够阻挡，我对自由的向往。"
 sidebar-avatar: /img/avatar.png      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
