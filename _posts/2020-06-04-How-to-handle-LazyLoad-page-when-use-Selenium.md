@@ -5,6 +5,7 @@ subtitle:   "记录一次抓取网站漫画图片的历程"
 date:       2020-06-04 00:00:00
 author:     "QuanQinle"
 header-img: "img/in-post/selenium-lazyload/selenium-lazyload-01.jpg"
+catalog:    true
 tags:
     - Selenium
     - 自动化测试
@@ -49,7 +50,7 @@ Python编码部分不复杂，编程主要的工作其实在分析网页结构�
 
 标题的CSS Selector语法是 `span.title-comicHeading` 。
 
-![imag](img/in-post/selenium-lazyload/selenium-lazyload-02.jpg)
+![imag](/img/in-post/selenium-lazyload/selenium-lazyload-02.jpg)
 
 3. 每话中图片资源地址
 
@@ -57,7 +58,7 @@ Python编码部分不复杂，编程主要的工作其实在分析网页结构�
 
 定位img列表的CSS Selector语法是 `ul#comicContain li img` 。
 
-![imag](img/in-post/selenium-lazyload/selenium-lazyload-03.jpg)
+![imag](/img/in-post/selenium-lazyload/selenium-lazyload-03.jpg)
 
 ## 失败了……
 
@@ -65,16 +66,16 @@ Python编码部分不复杂，编程主要的工作其实在分析网页结构�
 
 有点小确幸，多谢佛祖保佑，脚本运行通过，没有报错。
 
-![imag](img/in-post/selenium-lazyload/selenium-lazyload-04.jpg)
+![imag](/img/in-post/selenium-lazyload/selenium-lazyload-04.jpg)
 
 打开本地磁盘，查看保存的图片。
 糟糕，除了前面几张图，后面全部都是一模一样的小图片，以我的多年工作经验来分析——哎呀妈，这些都是占位图啊！
 
-![imag](img/in-post/selenium-lazyload/selenium-lazyload-05.jpg)
+![imag](/img/in-post/selenium-lazyload/selenium-lazyload-05.jpg)
 
 打开网页验证下自己的猜想。
 
-![imag](img/in-post/selenium-lazyload/selenium-lazyload-07.jpg)
+![imag](/img/in-post/selenium-lazyload/selenium-lazyload-07.jpg)
 
 确实像猜想的那样，当我没有浏览到处于页面下方的图片时，那里只有占位图，当页面向下滚动快要到达占位图时，img标签的src会被替换成真实的资源url，然后页面才加载图片。
 
@@ -96,11 +97,11 @@ Python编码部分不复杂，编程主要的工作其实在分析网页结构�
 
 第1版上我需要增加页面滚动的逻辑，按之前的经验需要加入JavaScript执行器的代码，可用的方式大致有以下几种：
 
-![imag](img/in-post/selenium-lazyload/selenium-lazyload-08.jpg)
+![imag](/img/in-post/selenium-lazyload/selenium-lazyload-08.jpg)
 
 不多说了，直接上代码吧
 
-![imag](img/in-post/selenium-lazyload/selenium-lazyload-09.jpg)
+![imag](/img/in-post/selenium-lazyload/selenium-lazyload-09.jpg)
 
 需要注意的是，为了效率考虑，实际运行抓取图片时，我使用了“无界面的浏览器”，即代码段 `options.addArguments("headless");` 。
 
@@ -115,6 +116,6 @@ Python编码部分不复杂，编程主要的工作其实在分析网页结构�
 
 一段时间后……
 
-![imag](img/in-post/selenium-lazyload/selenium-lazyload-10.jpg)
+![imag](/img/in-post/selenium-lazyload/selenium-lazyload-10.jpg)
 
 看漫画喽
