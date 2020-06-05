@@ -1,4 +1,3 @@
-
 ---
 layout:     post
 title:      "Selenium | 编写爬虫抓取网页图片遭遇懒加载"
@@ -8,9 +7,9 @@ author:     "QuanQinle"
 header-img: "img/in-post/selenium-lazyload/selenium-lazyload-01.jpg"
 tags:
     - Selenium
-	- 自动化测试
-	- 网页抓取
-	- 爬虫
+    - 自动化测试
+    - 网页抓取
+    - 爬虫
 ---
 
 > 缘起：
