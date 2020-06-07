@@ -2,7 +2,7 @@
 layout:     post
 title:      "Selenium | 编写爬虫抓取网页图片遭遇懒加载"
 subtitle:   "记录一次抓取网站漫画图片的历程"
-date:       2020-06-04 00:00:00
+date:       2020-06-04 08:00:09
 author:     "QuanQinle"
 header-img: "img/in-post/selenium-lazyload/selenium-lazyload-01.jpg"
 catalog:    true
@@ -34,7 +34,7 @@ Python编码部分不复杂，编程主要的工作其实在分析网页结构�
 
 为了下载漫画，我们分析网页需要搞清楚3部分有用的内容。
 
-1. 动漫每话的网页地址
+### 1.动漫每话的网页地址
 
 经过分析，我发现这个网站在组织每话的url时，规则非常简单且规整。比如，第1话是`www.fuckgfw.com/onepiece/0001`，那么，第188话就是`www.fuckgfw.com/onepiece/0188`，以此类推。
 
@@ -44,7 +44,7 @@ Python编码部分不复杂，编程主要的工作其实在分析网页结构�
 > 
 > 本文仅是技术分享，为了避免有人阅读本文后拿人家的网站做测试，本文隐去抓取的网站域名。这事儿咱一个人干也就干了，可不好传播~~
 
-2. 每话的题目
+### 2.每话的题目
 
 页面顶部就有漫画每话的题目，在页面源码中搜索后可以确认 `span标签的class属性值title-comicHeading` 在页面中是唯一的，我们就用它来定位元素，然后获取元素上的文本。
 
@@ -52,7 +52,7 @@ Python编码部分不复杂，编程主要的工作其实在分析网页结构�
 
 ![imag](/img/in-post/selenium-lazyload/selenium-lazyload-02.jpg)
 
-3. 每话中图片资源地址
+### 3.每话中图片资源地址
 
 每话都有数量不等的漫画图片，页面识别后找到可以确保唯一性的图片元素定位方法，所有的图片都在标签 ul > li 列表中，所以，我们可以获取图片img列表，然后遍历img列表，逐个下载即可。
 
@@ -101,7 +101,159 @@ Python编码部分不复杂，编程主要的工作其实在分析网页结构�
 
 不多说了，直接上代码吧
 
-![imag](/img/in-post/selenium-lazyload/selenium-lazyload-09.jpg)
+```java
+package com.uitest;
+
+import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+/**
+ * 下载 海贼王 漫画
+ * 
+ * @author quanqinle
+ *
+ */
+public class DownloadOnePiece {
+
+	public static void main(String[] args) throws Exception {
+		download();
+	}
+
+	public static void download() throws Exception {
+
+		int firstChap  = 001;
+		int newestChap = 947;
+		String baseUrl = "https://I.cannot.tell.the.real.url/post/10%03d/";
+		String baseDir = "D:\\OnePiece\\%03d\\";
+		String baseFile = "D:\\OnePiece\\%03d\\%03d-%03d.jpg";
+		String chapterName = ""; // 第2话 戴草帽的路飞
+
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("headless");
+		WebDriver driver = new ChromeDriver(options);
+		driver.get("https://I.cannot.tell.the.real.url");
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		List<WebElement> imgList = null;
+		for (int idxChap = firstChap; idxChap <= newestChap; idxChap++) {
+			driver.get(String.format(baseUrl, idxChap));
+			Thread.sleep(2 * 1000);
+
+			chapterName = driver.findElement(By.cssSelector("span.title-comicHeading")).getText();
+			toLog(String.format("# [%03d] %s", idxChap, chapterName));
+
+			createFolder(String.format(baseDir, idxChap));
+			imgList = driver.findElements(By.cssSelector("ul#comicContain li img"));
+			int imgIndex = 1;
+			for (WebElement img : imgList) {
+				if (img.getAttribute("id").contains("adBottom") 
+						|| img.getAttribute("id").contains("adTop")
+				    || img.getAttribute("src").contains("006xpM3Tgy1feta1hkppuj30m8076wgh.jpg")) {
+					// 漫画中间竟然穿插了广告图！
+					continue;
+				}
+
+				/**
+				 * 因为页面是懒加载，需滚动页面
+				 */
+				js.executeScript("arguments[0].scrollIntoView();", img);
+				Thread.sleep(300);
+
+				String srcUrl = img.getAttribute("src");
+				if (srcUrl.contains("pixel.gif")) {
+					toLog(String.format("fail to load img [%03d - %03d]", idxChap, imgIndex++));
+					continue;
+				}
+
+				String destFile = String.format(baseFile, idxChap, idxChap, imgIndex);
+
+				toLog(String.format("下载[%03d]：%s", imgIndex, srcUrl));
+				imgIndex++;
+				downloadFile(srcUrl, destFile);
+			} // 图片循环 end
+
+		} // 页面循环 end
+
+		driver.quit();
+	}
+
+	/**
+	 * 下载指定资源到目标文件
+	 * 
+	 * @param url
+	 * @param destFile
+	 * @return
+	 * @throws Exception
+	 */
+	private static boolean downloadFile(String url, String destFile) throws Exception {
+		try {
+			InputStream in = new URL(url).openStream();
+			Files.copy(in, Paths.get(destFile));
+		} catch (FileAlreadyExistsException e) {
+			toLog("文件已存在：" + destFile);
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * 创建文件夹
+	 *
+	 * @param folderName 文件夹名称
+	 */
+	private static void createFolder(String folderName) {
+		File dirFile = new File(folderName);
+		boolean bFile = dirFile.exists();
+		if (bFile == false) {
+			bFile = dirFile.mkdirs();
+		}
+		if (bFile == true) {
+			toLog("Create folder successfully! -- " + folderName);
+		} else {
+			toLog("Create folder error! -- " + folderName);
+		}
+	}
+
+	/**
+	 * 写日志
+	 */
+	public static void toLog(String newline) {
+		try {
+			List<String> lines = Arrays.asList(newline);
+			Path file = Paths.get("D:\\onepiece.log");
+			System.out.println(newline);
+			Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}
+```
 
 需要注意的是，为了效率考虑，实际运行抓取图片时，我使用了“无界面的浏览器”，即代码段 `options.addArguments("headless");` 。
 
