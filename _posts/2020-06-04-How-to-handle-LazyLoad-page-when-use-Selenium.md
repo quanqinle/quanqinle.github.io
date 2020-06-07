@@ -132,125 +132,125 @@ import org.openqa.selenium.chrome.ChromeOptions;
  */
 public class DownloadOnePiece {
 
-	public static void main(String[] args) throws Exception {
-		download();
-	}
+    public static void main(String[] args) throws Exception {
+        download();
+    }
 
-	public static void download() throws Exception {
+    public static void download() throws Exception {
 
-		int firstChap  = 001;
-		int newestChap = 947;
-		String baseUrl = "https://I.cannot.tell.the.real.url/post/10%03d/";
-		String baseDir = "D:\\OnePiece\\%03d\\";
-		String baseFile = "D:\\OnePiece\\%03d\\%03d-%03d.jpg";
-		String chapterName = ""; // 第2话 戴草帽的路飞
+        int firstChap  = 001;
+        int newestChap = 947;
+        String baseUrl = "https://I.cannot.tell.the.real.url/post/10%03d/";
+        String baseDir = "D:\\OnePiece\\%03d\\";
+        String baseFile = "D:\\OnePiece\\%03d\\%03d-%03d.jpg";
+        String chapterName = ""; // 第2话 戴草帽的路飞
 
-		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("headless");
-		WebDriver driver = new ChromeDriver(options);
-		driver.get("https://I.cannot.tell.the.real.url");
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless");
+        WebDriver driver = new ChromeDriver(options);
+        driver.get("https://I.cannot.tell.the.real.url");
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
 
-		List<WebElement> imgList = null;
-		for (int idxChap = firstChap; idxChap <= newestChap; idxChap++) {
-			driver.get(String.format(baseUrl, idxChap));
-			Thread.sleep(2 * 1000);
+        List<WebElement> imgList = null;
+        for (int idxChap = firstChap; idxChap <= newestChap; idxChap++) {
+            driver.get(String.format(baseUrl, idxChap));
+            Thread.sleep(2 * 1000);
 
-			chapterName = driver.findElement(By.cssSelector("span.title-comicHeading")).getText();
-			toLog(String.format("# [%03d] %s", idxChap, chapterName));
+            chapterName = driver.findElement(By.cssSelector("span.title-comicHeading")).getText();
+            toLog(String.format("# [%03d] %s", idxChap, chapterName));
 
-			createFolder(String.format(baseDir, idxChap));
-			imgList = driver.findElements(By.cssSelector("ul#comicContain li img"));
-			int imgIndex = 1;
-			for (WebElement img : imgList) {
-				if (img.getAttribute("id").contains("adBottom") 
-						|| img.getAttribute("id").contains("adTop")
-				    || img.getAttribute("src").contains("006xpM3Tgy1feta1hkppuj30m8076wgh.jpg")) {
-					// 漫画中间竟然穿插了广告图！
-					continue;
-				}
+            createFolder(String.format(baseDir, idxChap));
+            imgList = driver.findElements(By.cssSelector("ul#comicContain li img"));
+            int imgIndex = 1;
+            for (WebElement img : imgList) {
+                if (img.getAttribute("id").contains("adBottom") 
+                        || img.getAttribute("id").contains("adTop")
+                    || img.getAttribute("src").contains("006xpM3Tgy1feta1hkppuj30m8076wgh.jpg")) {
+                    // 漫画中间竟然穿插了广告图！
+                    continue;
+                }
 
-				/**
-				 * 因为页面是懒加载，需滚动页面
-				 */
-				js.executeScript("arguments[0].scrollIntoView();", img);
-				Thread.sleep(300);
+                /**
+                 * 因为页面是懒加载，需滚动页面
+                 */
+                js.executeScript("arguments[0].scrollIntoView();", img);
+                Thread.sleep(300);
 
-				String srcUrl = img.getAttribute("src");
-				if (srcUrl.contains("pixel.gif")) {
-					toLog(String.format("fail to load img [%03d - %03d]", idxChap, imgIndex++));
-					continue;
-				}
+                String srcUrl = img.getAttribute("src");
+                if (srcUrl.contains("pixel.gif")) {
+                    toLog(String.format("fail to load img [%03d - %03d]", idxChap, imgIndex++));
+                    continue;
+                }
 
-				String destFile = String.format(baseFile, idxChap, idxChap, imgIndex);
+                String destFile = String.format(baseFile, idxChap, idxChap, imgIndex);
 
-				toLog(String.format("下载[%03d]：%s", imgIndex, srcUrl));
-				imgIndex++;
-				downloadFile(srcUrl, destFile);
-			} // 图片循环 end
+                toLog(String.format("下载[%03d]：%s", imgIndex, srcUrl));
+                imgIndex++;
+                downloadFile(srcUrl, destFile);
+            } // 图片循环 end
 
-		} // 页面循环 end
+        } // 页面循环 end
 
-		driver.quit();
-	}
+        driver.quit();
+    }
 
-	/**
-	 * 下载指定资源到目标文件
-	 * 
-	 * @param url
-	 * @param destFile
-	 * @return
-	 * @throws Exception
-	 */
-	private static boolean downloadFile(String url, String destFile) throws Exception {
-		try {
-			InputStream in = new URL(url).openStream();
-			Files.copy(in, Paths.get(destFile));
-		} catch (FileAlreadyExistsException e) {
-			toLog("文件已存在：" + destFile);
-			return false;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
+    /**
+     * 下载指定资源到目标文件
+     * 
+     * @param url
+     * @param destFile
+     * @return
+     * @throws Exception
+     */
+    private static boolean downloadFile(String url, String destFile) throws Exception {
+        try {
+            InputStream in = new URL(url).openStream();
+            Files.copy(in, Paths.get(destFile));
+        } catch (FileAlreadyExistsException e) {
+            toLog("文件已存在：" + destFile);
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
-	/**
-	 * 创建文件夹
-	 *
-	 * @param folderName 文件夹名称
-	 */
-	private static void createFolder(String folderName) {
-		File dirFile = new File(folderName);
-		boolean bFile = dirFile.exists();
-		if (bFile == false) {
-			bFile = dirFile.mkdirs();
-		}
-		if (bFile == true) {
-			toLog("Create folder successfully! -- " + folderName);
-		} else {
-			toLog("Create folder error! -- " + folderName);
-		}
-	}
+    /**
+     * 创建文件夹
+     *
+     * @param folderName 文件夹名称
+     */
+    private static void createFolder(String folderName) {
+        File dirFile = new File(folderName);
+        boolean bFile = dirFile.exists();
+        if (bFile == false) {
+            bFile = dirFile.mkdirs();
+        }
+        if (bFile == true) {
+            toLog("Create folder successfully! -- " + folderName);
+        } else {
+            toLog("Create folder error! -- " + folderName);
+        }
+    }
 
-	/**
-	 * 写日志
-	 */
-	public static void toLog(String newline) {
-		try {
-			List<String> lines = Arrays.asList(newline);
-			Path file = Paths.get("D:\\onepiece.log");
-			System.out.println(newline);
-			Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    /**
+     * 写日志
+     */
+    public static void toLog(String newline) {
+        try {
+            List<String> lines = Arrays.asList(newline);
+            Path file = Paths.get("D:\\onepiece.log");
+            System.out.println(newline);
+            Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
 ```
