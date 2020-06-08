@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Selenium | 自动登录脚本如何绕过二维码、校验码等安全校验"
-subtitle:   "我们很难通过登陆过程中的仿自动化校验，但是换种思路还是可以解决这个问题的！"
+subtitle:   "我们很难通过登陆过程中的防自动化校验，但是换种思路还是可以解决这个问题的！"
 date:       2020-06-06 08:08:08
 author:     "QuanQinle"
 header-img: "img/post-bg.jpg"
@@ -19,9 +19,9 @@ tags:
 
 # 我们自己项目中的安全校验
 
-如果这种校验出现在我们自己的测试项目中，正如我在视频《Web UI自动化测试：Selenium入门》中所说，建议你和研发人员沟通，在test版本上去除它们，只保留用户和密码即可。
+如果这种校验出现在我们自己的测试项目中，正如我在视频《Web UI自动化测试：Selenium入门》中所说，建议你和研发人员沟通，**在test版本上去除它们，只保留用户和密码即可**。
 
-解决问题的方法有很多，换一种思路，一切豁然开朗。把“登录过程中二维码验证”从自动化测试用例集中移出，放到手工测试用例集，技术难题就这么轻松愉快的解决了，码农再也不用为了苦思冥想、挠头掉发担心了。
+解决问题的方法有很多，换一种思路，一切豁然开朗。把“登录过程中二维码/短信验证”**从自动化测试用例集中移出，放到手工测试用例集**，技术难题就这么轻松愉快的解决了，码农再也不用为了苦思冥想、挠头掉发担心了。
 
 各位看客，山不过来我就过去~~
 
@@ -65,7 +65,7 @@ tags:
 ## 3、将Cookie添加到WebDriver
 
 上一步中得到的Cookie字符串还需要经过处理，因为它是很多Cookie以分号为分隔符拼接之后的内容，我们需要逆向操作：
-1. 先以“`分号；`”为分隔符获取Cookie列表，
+1. 先以“分号`;`”为分隔符获取Cookie列表，
 2. 列表中的元素都含有=号，=左侧是Cookie的name，=右侧是Cookie的value，用name和value构造Cookie，
 3. 最后传给WebDriver。
 
@@ -78,7 +78,33 @@ tags:
 闲话少叙，我们开始编码吧。
 
 先解析我们得到的原始Cookie字符串，
-![imag](/img/in-post/selenium-login-cookie/05.jpg)
+```java
+import org.openqa.selenium.Cookie;
+
+/**
+ * 将cookie字符串拆解到list中
+ * @param rawCookie 原始Cookie字符串
+ * @return Cookie列表
+ */
+public List<Cookie> parseRawCookie(String rawCookie) {
+  List<Cookie> cookies = new ArrayList<>();
+
+  String[] rawCookieParams = rawCookie.split(";");
+
+  for (String cookieParam : rawCookieParams) {
+    String[] rawCookieNameAndValue = cookieParam.split("=");
+    if (2 != rawCookieNameAndValue.length) {
+      log.error("Invalid cookie: missing name and value.");
+      continue;
+    }
+    String cookieName = rawCookieNameAndValue[0].trim();
+    String cookieValue = rawCookieNameAndValue[1].trim();
+    Cookie cookie = new Cookie(cookieName, cookieValue);
+    cookies.add(cookie);
+  }
+  return cookies;
+}
+```
 
 将上一步得到的Cookie列表添加给WebDriver，这一步需要放在所有需要权限验证的步骤之前。  
 我们可以先添加Cookie，然后刷新页面，这样我们打开的网页就是登陆状态了。
