@@ -5,6 +5,7 @@ subtitle:   "我们很难通过登陆过程中的防自动化校验，但是换�
 date:       2020-06-06 08:08:08
 author:     "QuanQinle"
 header-img: "img/post-bg.jpg"
+multilingual: false
 catalog:    true
 tags:
     - Selenium

@@ -21,7 +21,6 @@ twitter_username:    quanqinle
 #linkedin_username:  firstname-lastname-idxxxx
 
 
-
 # Build settings
 # from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
 highlighter: rouge
@@ -33,13 +32,11 @@ anchorjs: true                          # if you want to customize anchor. check
 #timezone: CN  
 
 
-
 # Gems
 # from PR#40, to support local preview for Jekyll 3.0
 # make sure you have this gem installed
 # `$ gem install jekyll-paginate`
 plugins: [jekyll-paginate]
-
 
 
 # Markdown settings
@@ -57,13 +54,11 @@ kramdown:
       start_line: 1
 
 
-
 # Disqus settings
 disqus_username: quan
 
 # Netease settings
 netease_comment: false
-
 
 
 # Analytics settings
@@ -75,12 +70,10 @@ ga_track_id: 'UA-27037731-2'            # Format: UA-xxxxxx-xx
 ga_domain: quanqinle.github.io
 
 
-
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "没有什么能够阻挡，我对自由的向往。"
 sidebar-avatar: /img/avatar.png      # use absolute URL, seeing it's used in both `/` and `/about/`
-
 
 
 # Featured Tags
@@ -88,16 +81,13 @@ featured-tags: true                     # whether or not using Feature-Tags
 featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
 
 
-
 # Progressive Web Apps
 chrome-tab-theme-color: "#000000"
 service-worker: true
 
 
-
 # MathJax rendering for layout:page (e.g. post preview)
 page-mathjax: false
-
 
 
 # Friends
@@ -105,6 +95,9 @@ friends: [
     {
         title: "Hux Blog",
         href: "http://huangxuan.me"
+    },{
+        title: "Jekyll",
+        href: "https://jekyllrb.com/"
     },{
         title: "It helps SEO",
         href: "#"
