@@ -1,5 +1,5 @@
 # Site settings
-title: QuanQinle Blog
+title: Quan Qinle
 SEOTitle: 权芹乐的博客 | QuanQinle Blog
 header-img: img/home-bg.jpg
 email: quanqinle@163.com
@@ -92,14 +92,17 @@ page-mathjax: false
 
 # Friends
 friends: [
-    {
-        title: "Hux Blog",
-        href: "http://huangxuan.me"
-    },{
-        title: "Jekyll",
-        href: "https://jekyllrb.com/"
-    },{
-        title: "It helps SEO",
-        href: "#"
-    }
+  {
+    title: "Hux Blog",
+    href: "http://huangxuan.me"
+  },{
+    title: "Jekyll",
+    href: "https://jekyllrb.com/"
+  },{
+    title: "porkbun",
+    href: "https://porkbun.com/"
+  },{
+    title: "It helps SEO",
+    href: "#"
+  }
 ]

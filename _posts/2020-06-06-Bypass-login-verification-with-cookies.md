@@ -1,22 +1,23 @@
 ---
-layout:     post
-title:      "Selenium | 自动登录脚本如何绕过二维码、校验码等安全校验"
-subtitle:   "我们很难通过登陆过程中的防自动化校验，但是换种思路还是可以解决这个问题的！"
-date:       2020-06-06 08:08:08
-author:     "QuanQinle"
-header-img: "img/post-bg.jpg"
-multilingual: false
-catalog:    true
+layout:      post
+title:       "Selenium | 自动登录脚本如何绕过二维码、校验码等安全校验"
+subtitle:    "我们很难通过登陆过程中的防自动化校验，但是换种思路还是可以解决这个问题的！"
+date:        2020-06-06 08:08:08
+updated:     2020-06-09 09:09:09
+author:      "Quan Qinle"
+header-img:  "img/post-bg.jpg"
+multilingual: true
+catalog:      true
 tags:
     - Selenium
     - 自动化测试
     - 接口测试
 ---
 
-做Web UI自动化测试的朋友，基本上都会遇到用户登录操作，然而基于安全性考虑，登录过程中除了输入用户名和密码，往往还会有防止自动化的复杂校验。比如，
+做Web UI自动化测试的朋友，基本上都会遇到用户登录操作，然而基于安全性考虑，登录过程除了要求输入用户名和密码，往往还会存在为了防止自动化登陆而设置的更加复杂的校验。比如，
 ![imag](/img/in-post/selenium-login-cookie/01.jpg)
 
-既然这些校验的存在就是为了防止robot、对抗自动化，那么，它们自然就是自动化登陆所面临的难题了。如果知道了这一点，你仍去试着用Selenium或其他技术进行破解，那么，在这样做之前，建议你先掂量掂量自己的技术实力吧。
+既然这些校验的存在就是为了对抗robot、防止自动化登陆，那么，它们自然就成了自动化登陆所面临的难题了。如果知道了这一点，你仍去试着用Selenium或其他技术进行破解，那么，在这样做之前，建议你先掂量掂量自己的技术实力吧。
 
 # 我们自己项目中的安全校验
 
@@ -115,7 +116,7 @@ public List<Cookie> parseRawCookie(String rawCookie) {
 
 # API补充说明
 
-在这个解决方案中，我们主要用到了两个接口，他们还有一些相关接口，如有需要，请自行查阅。
+在这个解决方案中，我们主要用到了两个接口，它们还有一些相关接口，如有需要，请自行查阅。
 
 ## 1、添加Cookie
 
