@@ -16,7 +16,7 @@ tags:
 
 + 开始时，考虑了`namecheap`、`namesilo`、`godaddy`
 + 网上搜索比较后，优先`namesilo`
-+ 最终通过比价，选择`porkbun`。域名初级、低端玩家，==便宜==就是吸引力。
++ 最终通过比价，选择`porkbun`。对于初级、低端域名玩家，*便宜*就是吸引力。
 
 > 域名服务商价格比较工具：[www.domcomp.com](https://www.domcomp.com/)
 
@@ -58,8 +58,8 @@ tags:
 1. 登陆`cloudflare`，添加自己的域名
 
 2. `cloudflare`将自动扫描 DNS 记录
-    + ==黄色云朵==表示该解析通过 CDN 访问（隐藏网站真实 IP 地址，保护原站安全。）
-    + ==灰色云朵==表示不通过 CDN 访问（相当于只使用 cloudflare 的 DNS 功能）
+    + **黄色云朵**表示该解析通过 CDN 访问（隐藏网站真实 IP 地址，保护原站安全。）
+    + **灰色云朵**表示不通过 CDN 访问（相当于只使用 cloudflare 的 DNS 功能）
     + 点击云朵可以切换状态。
     + 手工添加缺失的记录
 
