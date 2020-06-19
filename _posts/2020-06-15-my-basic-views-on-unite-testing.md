@@ -4,7 +4,7 @@ title:        "我对自动化测试的基本观点"
 subtitle:     "自动测试应该怎么做？谈谈我的一点看法"
 date:         2020-06-15
 author:       "权芹乐"
-header-img:   "img/post-bg-beach2.jpg"
+header-img:   "img/post-bg-beach2.webp"
 catalog:      true
 tags:
     - Automated Testing
@@ -57,6 +57,6 @@ tags:
 # 我的做法
 
 * 遵守“金字塔”理论，UI层用例做薄，UT用例做厚
-* MVC后端项目分层测试，每层的用例对其下层调用时尽量打桩，即，mock它的下层、mock它所调用的函数
+* MVC后端项目分层测试，每层的用例对其下层调用时尽量打桩，即，mock它的下层、mock它所调用的函数，达到隔离所测类、实现只测当前类方法的目的
 * 单元测试尽量不依赖数据库、外部服务、网络等等
 * 以上3条只是尽量做到，视实际情况允许存在特例
