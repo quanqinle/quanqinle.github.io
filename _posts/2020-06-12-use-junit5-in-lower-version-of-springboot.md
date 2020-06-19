@@ -4,7 +4,7 @@ title:        "Junit | 在Spring Boot2低版本中使用Junit 5"
 subtitle:     "Spring Boot 2.2.0开始支持Junit 5，之前的版本需要手动引入依赖"
 date:         2020-06-12
 author:       "Quan Qinle"
-header-img:   "img/post-bg-beach1.jpg"
+header-img:   "img/post-bg-beach1.webp"
 multilingual: false
 catalog:      true
 tags:

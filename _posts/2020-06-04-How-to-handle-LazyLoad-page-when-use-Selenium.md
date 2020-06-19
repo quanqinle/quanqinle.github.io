@@ -5,7 +5,7 @@ subtitle:    "记录一次抓取网站漫画图片的历程"
 date:        2020-06-04 08:00:09
 updated:     2020-06-04 08:00:09
 author:      "Quan Qinle"
-header-img:  "img/in-post/selenium-lazyload/selenium-lazyload-01.jpg"
+header-img:  "img/in-post/selenium-lazyload/selenium-lazyload-01.webp"
 multilingual: false
 catalog:      true
 tags:

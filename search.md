@@ -12,7 +12,7 @@ css: "/css/search.css"
   <h2>Search blog.quanqinle.com</h2>
 
   <div id="google-custom-search">
-    <script async src="https://cse.google.com/cse.js?  cx=012311153976342605815:cnyprzh0o9a"></script>
+    <script async src="https://cse.google.com/cse.js?cx=012311153976342605815:cnyprzh0o9a"></script>
     <div class="gcse-search"></div>
   </div>
 
