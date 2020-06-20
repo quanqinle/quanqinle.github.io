@@ -5,7 +5,7 @@ subtitle:    "我们很难通过登陆过程中的防自动化校验，但是换
 date:        2020-06-06 08:08:08
 updated:     2020-06-09 09:09:09
 author:      "Quan Qinle"
-header-img:  "img/post-bg.jpg"
+header-img:  "img/post-bg"
 multilingual: false
 catalog:      true
 tags:
@@ -15,7 +15,7 @@ tags:
 ---
 
 做Web UI自动化测试的朋友，基本上都会遇到用户登录操作，然而基于安全性考虑，登录过程除了要求输入用户名和密码，往往还会存在为了防止自动化登陆而设置的更加复杂的校验。比如，
-![imag](/img/in-post/selenium-login-cookie/01.jpg)
+![imag](/img/in-post/selenium-login-cookie/01)
 
 既然这些校验的存在就是为了对抗robot、防止自动化登陆，那么，它们自然就成了自动化登陆所面临的难题了。如果知道了这一点，你仍去试着用Selenium或其他技术进行破解，那么，在这样做之前，建议你先掂量掂量自己的技术实力吧。
 
@@ -53,7 +53,7 @@ tags:
 ## 1、人工登录所需网站
 
 这一步就不演示了，可别泄露了我的密码。
-![imag](/img/in-post/selenium-login-cookie/02.jpg)
+![imag](/img/in-post/selenium-login-cookie/02)
 
 ## 2、提取页面请求头中的Cookie
 
@@ -62,7 +62,7 @@ tags:
 2. 刷新页面，捕获请求
 3. 在左侧请求列表中切换几次，找到`Request Headers`中`Cookie`有值的请求
 4. Cookie字段后面的一长串字符串，就是我们需要的
-![imag](/img/in-post/selenium-login-cookie/03.jpg)
+![imag](/img/in-post/selenium-login-cookie/03)
 
 ## 3、将Cookie添加到WebDriver
 
@@ -73,7 +73,7 @@ tags:
 
 为了验证我们分析的 **“Cookie字符串是以分号分隔、Cookie的name和value在=两侧”**，我们仍回到“开发者工具”，切换到Cookies卡片下，查看Cookie列表完整信息：
 
-![imag](/img/in-post/selenium-login-cookie/04.jpg)
+![imag](/img/in-post/selenium-login-cookie/04)
 
 # 编码
 
@@ -110,7 +110,7 @@ public List<Cookie> parseRawCookie(String rawCookie) {
 
 将上一步得到的Cookie列表添加给WebDriver，这一步需要放在所有需要权限验证的步骤之前。  
 我们可以先添加Cookie，然后刷新页面，这样我们打开的网页就是登陆状态了。
-![imag](/img/in-post/selenium-login-cookie/06.png)
+![imag](/img/in-post/selenium-login-cookie/06)
 
 编码演示到这里就够用了，大家不妨试试。
 

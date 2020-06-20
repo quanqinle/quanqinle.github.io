@@ -52,7 +52,7 @@ Python编码部分不复杂，编程主要的工作其实在分析网页结构�
 
 标题的CSS Selector语法是 `span.title-comicHeading` 。
 
-![imag](/img/in-post/selenium-lazyload/selenium-lazyload-02.jpg)
+![imag](/img/in-post/selenium-lazyload/selenium-lazyload-02)
 
 ### 3.每话中图片资源地址
 
@@ -60,7 +60,7 @@ Python编码部分不复杂，编程主要的工作其实在分析网页结构�
 
 定位img列表的CSS Selector语法是 `ul#comicContain li img` 。
 
-![imag](/img/in-post/selenium-lazyload/selenium-lazyload-03.jpg)
+![imag](/img/in-post/selenium-lazyload/selenium-lazyload-03)
 
 ## 失败了……
 
@@ -68,16 +68,16 @@ Python编码部分不复杂，编程主要的工作其实在分析网页结构�
 
 有点小确幸，多谢佛祖保佑，脚本运行通过，没有报错。
 
-![imag](/img/in-post/selenium-lazyload/selenium-lazyload-04.jpg)
+![imag](/img/in-post/selenium-lazyload/selenium-lazyload-04)
 
 打开本地磁盘，查看保存的图片。
 糟糕，除了前面几张图，后面全部都是一模一样的小图片，以我的多年工作经验来分析——哎呀妈，这些都是占位图啊！
 
-![imag](/img/in-post/selenium-lazyload/selenium-lazyload-05.jpg)
+![imag](/img/in-post/selenium-lazyload/selenium-lazyload-05)
 
 打开网页验证下自己的猜想。
 
-![imag](/img/in-post/selenium-lazyload/selenium-lazyload-07.jpg)
+![imag](/img/in-post/selenium-lazyload/selenium-lazyload-07)
 
 确实像猜想的那样，当我没有浏览到处于页面下方的图片时，那里只有占位图，当页面向下滚动快要到达占位图时，img标签的src会被替换成真实的资源url，然后页面才加载图片。
 
@@ -99,7 +99,7 @@ Python编码部分不复杂，编程主要的工作其实在分析网页结构�
 
 第1版上我需要增加页面滚动的逻辑，按之前的经验需要加入JavaScript执行器的代码，可用的方式大致有以下几种：
 
-![imag](/img/in-post/selenium-lazyload/selenium-lazyload-08.jpg)
+![imag](/img/in-post/selenium-lazyload/selenium-lazyload-08)
 
 不多说了，直接上代码吧
 
@@ -144,7 +144,7 @@ public class DownloadOnePiece {
         int newestChap = 947;
         String baseUrl = "https://I.cannot.tell.the.real.url/post/10%03d/";
         String baseDir = "D:\\OnePiece\\%03d\\";
-        String baseFile = "D:\\OnePiece\\%03d\\%03d-%03d.jpg";
+        String baseFile = "D:\\OnePiece\\%03d\\%03d-%03d";
         String chapterName = ""; // 第2话 戴草帽的路飞
 
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
@@ -171,7 +171,7 @@ public class DownloadOnePiece {
             for (WebElement img : imgList) {
                 if (img.getAttribute("id").contains("adBottom") 
                         || img.getAttribute("id").contains("adTop")
-                    || img.getAttribute("src").contains("006xpM3Tgy1feta1hkppuj30m8076wgh.jpg")) {
+                    || img.getAttribute("src").contains("006xpM3Tgy1feta1hkppuj30m8076wgh")) {
                     // 漫画中间竟然穿插了广告图！
                     continue;
                 }
@@ -270,6 +270,6 @@ public class DownloadOnePiece {
 
 一段时间后……
 
-![imag](/img/in-post/selenium-lazyload/selenium-lazyload-10.jpg)
+![imag](/img/in-post/selenium-lazyload/selenium-lazyload-10)
 
 看漫画喽
