@@ -2,7 +2,7 @@
 layout:       post
 title:        "UT | Controller层单元测试"
 subtitle:     "Spring Boot 2.2.0开始支持Junit 5，之前的版本需要手动引入依赖"
-date:         2020-06-18
+date:         2020-06-22
 author:       "权芹乐"
 header-img:   "img/post-bg-beach2.webp"
 catalog:      true
@@ -14,6 +14,8 @@ tags:
     - Unit Testing
     - 单元测试
 ---
+
+单元测试一般分为四个步骤：setup、exercise、verify、teardown。用上面的代码举例，setup 阶段，我们创建了 mock 对象，并且设置了 queryForInt 的行为；exercise 阶段调用了测试函数；verify 阶段做了两件事情：1. 确认 queryForInt 函数被正确调用，2. count() 返回值符合预期；teardown 阶段一般用来清理和释放资源，我们这里不需要，直接跳过了。
 
 [toc]
 
