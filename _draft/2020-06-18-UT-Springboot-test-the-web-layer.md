@@ -35,7 +35,7 @@ start the application up and listen for a connection like it would do in product
 ```Java
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
-@RunWith(SpringRunner.class) // junit 4
+// @RunWith(SpringRunner.class) // needed if junit 4
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class HttpRequestTest {
 
@@ -61,19 +61,29 @@ Another useful approach is to not start the server at all, but test only the lay
 另一种有用的方法是根本不启动服务器，而是只测试其下的层，Spring在这一层处理传入的HTTP请求并将其传递给控制器。这样，几乎使用了整个堆栈，代码调用的方式与处理实际HTTP请求的方式完全相同，但是不需要启动服务器。
 
 ```Java
-@RunWith(SpringRunner.class)
+import org.junit.jupiter.api.Test;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ApplicationTest {
-
+class MockMvcExampleTests {
+  
   @Autowired
-  private MockMvc mockMvc;
+  private MockMvc mvc;
 
   @Test
-  public void shouldReturnDefaultMessage() throws Exception {
-    mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
-        .andExpect(content().string(containsString("Hello World")));
+  void exampleTest() throws Exception {
+    mvc.perform(get("/")).andExpect(status().isOk()).andExpect(content().string("Hello World"));
   }
+
 }
 ```
 
@@ -89,7 +99,6 @@ In this test, the full Spring application context is started, but without the se
 在这个测试中，启动了完整的Spring应用程序上下文，但是没有服务器。我们可以使用@WebMvcTest将测试范围缩小到web层。
 如果应用含有多个controller，可以使用@WebMvcTest(homecontroler.class)来只实例化一个控制器。
 ```Java
-@RunWith(SpringRunner.class)
 @WebMvcTest(GreetingController.class)
 public class WebMockTest {
 
@@ -102,8 +111,9 @@ public class WebMockTest {
   @Test
   public void greetingShouldReturnMessageFromService() throws Exception {
     when(service.greet()).thenReturn("Hello Mock");
+
     mockMvc.perform(get("/greeting"))
-        .accept(MediaType.APPLICATION_JSON_UTF8))
+        .accept(MediaType.APPLICATION_JSON_UTF8)
         .andDo(print()) // 添加 ResultHandler 结果处理器，比如调试时打印结果到控制台，更多处理器可查阅
         .andExpect(status().isOk()) // 添加 ResultMatcher 验证规则，验证请求结果是否正确
         .andExpect(content().string(containsString("Hello Mock")));
