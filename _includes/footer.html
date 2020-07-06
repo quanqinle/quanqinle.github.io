@@ -39,6 +39,9 @@
 <!-- Custom Theme JavaScript -->
 <script src="{{ "/js/hux-blog.min.js " | prepend: site.baseurl }}"></script>
 
+<!-- Simple Jekyll Search -->
+<script src="{{ "/js/simple-jekyll-search.min.js" | prepend: site.baseurl }}"></script>
+
 <!-- Service Worker -->
 {% if site.service-worker %}
 <script src="{{ "/js/snackbar.js " | prepend: site.baseurl }}"></script>
@@ -87,7 +90,7 @@
 
     $(document).ready(function () {
         var $chart = document.querySelector("#chart");
-        $chart.onload = function(){
+        $chart.onload = function () {
             resizeIframe($chart)
         }
         window.addEventListener("resize", () => {
@@ -161,7 +164,7 @@
 
 
 <!-- Side Catalog -->
-{% if page.catalog %}
+{% unless page.no-catalog %}
 <script type="text/javascript">
     function generateCatalog(selector) {
 
@@ -219,7 +222,7 @@
         });
     });
 </script>
-{% endif %}
+{% endunless %}
 
 
 <!-- Multi-Lingual -->
@@ -259,7 +262,7 @@
             $en.classList.remove("active");
         }
         // interop with catalog 
-        if ("{{ page.catalog }}") generateCatalog(".catalog-body");
+        generateCatalog(".catalog-body");
     }
 
     // handle select change
