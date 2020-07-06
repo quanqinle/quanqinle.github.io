@@ -53,10 +53,6 @@ kramdown:
       line_numbers: true
       start_line: 1
 
-# List of links in the navigation bar
-# 注：参考daattali.github.io
-nav-search: "search"
-
 # Disqus settings
 disqus_username: quan
 
