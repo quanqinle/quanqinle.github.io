@@ -7,9 +7,8 @@ updated:      2020-08-06
 author:       "权芹乐"
 catalog:      true
 tags:
-    - Linux
-    - Shell
-    - Script
+    - k8s
+    - kubernetes
 ---
 
 [toc]
@@ -39,13 +38,13 @@ my-app-7c8fb75b76-spm8n    2/2     Running   0          45m   a.b.c.d   k8s-node
 当pod上有多个container时，需要明确查看哪个。
 
 查找container的方式有两个，
-1. 在应用部署的对应yml文件中找到containers->name
-2. 在pod详情中招Container:
+1. 在应用部署的对应yaml文件中找到containers->name
+2. 在pod详情中找Container:
 ```
 kubectl describe pod my-app-7c8fb75b76-spm8n -n=test
 ```
 
-缺省这步的话，查看日志可能会遇到下面的提示：
+如果缺省这步的话，查看日志可能会遇到下面的提示：
 ```
 [root@k8s-master ~]# kubectl logs -f my-app-7c8fb75b76-spm8n -n test --tail=500 --v=1
 Error from server (BadRequest): a container name must be specified for pod my-app-7c8fb75b76-spm8n, choose one of: [my-app filebeat]
@@ -56,7 +55,7 @@ Error from server (BadRequest): a container name must be specified for pod my-ap
 kubectl logs -f my-app-7c8fb75b76-spm8n -c partner-kpi -n test --tail=500 --v=1
 ```
 * `-c partner-kpi`: container容器
-* `--tail=500`: 显示最新500行。可以换成`--since=1h`，也很实用
-* `--v=1`: 日志基本1
+* `--tail=500`: 显示最新500行。可以换成`--since=1h`，这个也很实用
+* `--v=1`: 日志级别1
 
 另外，k8s的命令中=号可以省略。

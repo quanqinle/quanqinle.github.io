@@ -3,11 +3,10 @@ layout:     post
 title:      "Welcome to QuanQinle Blog"
 subtitle:   "build my github blog"
 date:       2020-05-27 12:00:00
+updated:    2020-05-27 12:00:00
 author:     "QuanQinle"
 header-img: "img/post-bg-2015.webp"
 catalog:    true
-tags:
-    - 生活
 ---
 
 
