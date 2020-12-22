@@ -57,6 +57,7 @@ tags:
 在笔记本上打开存储卡，在boot目录下
 * 开启ssh访问：新建空文件`ssh`
 * 配置热点连接：新建`wpa_supplicant.conf`文件，内容如下
+
 ```txt
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
