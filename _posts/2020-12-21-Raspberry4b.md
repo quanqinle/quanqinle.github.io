@@ -5,7 +5,7 @@ subtitle:     "新购8G内存版本的树莓派4b，安装、配置过程记录"
 date:         2020-12-21
 updated:      2020-12-21
 author:       "权芹乐"
-header-img:   "img/in-post/raspberry-pi-4b.webp"
+header-img:   "img/in-post/raspberry-pi-4b.png"
 catalog:      true
 tags:
     - Raspberry 4b
