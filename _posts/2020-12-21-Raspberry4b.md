@@ -3,7 +3,7 @@ layout:       post
 title:        "Raspberry | 树莓派4b系统安装、配置"
 subtitle:     "新购8G内存版本的树莓派4b，安装、配置过程记录"
 date:         2020-12-21
-updated:      2020-12-21
+updated:      2020-12-23
 author:       "权芹乐"
 header-img:   "img/in-post/raspberry-pi-4b.png"
 catalog:      true
@@ -16,7 +16,7 @@ tags:
 
 # 购买树莓派的原因
 
-* 家里没有NAS，访问那几块移动硬盘不方便
+* 家里没有NAS，想随时访问那几块闲置的移动硬盘不方便
 * 给小米电视额外增加一个输入源
 * 希望从外网访问家里的网络
 * 通过树莓派下载视频到移动硬盘
@@ -25,16 +25,18 @@ tags:
 
 * 2020年产 Raspberry 4b，内存4G
 * 32G TF存储卡
-* 配置过程中，树莓派不外接 键盘、鼠标、显示器
+* 安装系统、配置过程中，树莓派不外接 键盘、鼠标、显示器
 * 存储卡插入笔记本
 * 树莓派连接笔记本提供的无线热点
-* 在笔记本上ssh连接树莓派完成安装配置操作
+* 在笔记本上，ssh连接树莓派完成安装配置操作
 
 # 选择系统
 
 网上看了一些文章说，4G内存的树莓派运行64位系统完全没问题，所以，我选择了64位系统。
 
-先是尝试安装了`Ubuntu 64位LST版`，过程很不顺利，放弃了。
+先是尝试安装了`Ubuntu 64位LST版`（[安装包]），过程很不顺利，放弃了。
+
+[安装包]:https://ubuntu.com/download/raspberry-pi
 
 最终安装的`官方64位版OS`。
 
@@ -42,13 +44,13 @@ tags:
 
 [1]:https://downloads.raspberrypi.org/raspios_arm64/images/
 
-# 烧录OS
+# 写入OS
 
-官方提供的烧录OS工具 [Raspberry Pi Imager][2] 非常简单、易用，但是，对于我来说不适用，原因是其一它没有提供官方的64位系统，其二使用这种方法的话，我没有找到可以配置连接无线热点的方法。
+官方提供的烧录OS工具 [Raspberry Pi Imager][2] 非常简单、易用，但是，对于我来说不适用，原因是其一它没有提供官方的64位系统，其二使用这种方法的话，我没有找到在不外接键盘、鼠标情况下，访问系统的方法。
 
 [2]:https://www.raspberrypi.org/software/
 
-我使用的工具是[Win32DiskImager][3]，将zip写入存储卡。
+我使用的工具是[Win32DiskImager][3]，将系统zip写入存储卡。
 
 [3]:https://www.raspberrypi.org/documentation/installation/installing-images/windows.md
 
