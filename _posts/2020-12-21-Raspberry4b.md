@@ -3,7 +3,7 @@ layout:       post
 title:        "Raspberry | 树莓派4b系统安装、配置"
 subtitle:     "新购8G内存版本的树莓派4b，安装、配置过程记录"
 date:         2020-12-21
-updated:      2020-12-23
+updated:      2020-12-29
 author:       "权芹乐"
 header-img:   "img/in-post/raspberry-pi-4b.png"
 catalog:      true
@@ -121,7 +121,7 @@ trusted-host=
     pypi.tuna.tsinghua.edu.cn
 ```
 
-# 配置：开启VNC、设置分辨率等等
+# 配置：开启VNC、设置分辨率，等
 
 ```
 sudo raspi-config
@@ -137,23 +137,17 @@ sudo raspi-config
 至此，树莓派配置完毕，重启后就可以vnc访问了，也可以连到电视上了。
 
 # 【可选】安装aria
+安装如下内容：
++ aria
++ AriaNg：前端web管理界面，推荐使用[All in One包](https://github.com/mayswind/AriaNg/releases)
 
-```
-sudo apt install aria2
-```
+开始时，使用`sudo apt install aria2`，自己修改配置，可惜下载速度不理想。然后，改用了git上的一个热门项目[“Aria2一键安装管理脚本（增强版）”](https://github.com/P3TERX/aria2.sh)
 
-由于需要通过SFTP、SMB来管理下载的文件，设置aria2以低权限用户aria运行，否则所有文件只能以root身份修改。
-```
-sudo groupadd -r aria # 添加用户组aria
-sudo useradd -r -g aria -s /usr/sbin/nologin -c "Aria 2" aria # 添加用户aria
-```
+安装成功后，重现运行脚本，完成如下配置：
++ 选择`修改 配置`，再`修改 Aria2 下载目录`
++ 开启`自动更新 BT-Tracker`
 
-创建aria2的各项文件：
-```
-sudo mkdir -p /home/aria/aria2 # 创建工作目录
-sudo touch /home/aria/aria2/aria2.session # 创建aria2进度文件
-sudo touch /home/aria/aria2/aria2.log # 创建aria2日志文件
-sudo touch /home/aria/aria2/aria2.config # 创建aria2配置文件
-
-sudo chown aria:aria /home/aria/* # 将工作目录下的文件移交给aria用户
-```
+此时，打开AriaNg网页，`Aria2 状态`一直显示“连接中”，并且，错误弹窗提示：认证失败!
+> 解决办法
+> 1. 打开配置文件`/root/.aria2c/aria2.conf`，找到`rpc-secret=`复制其内容
+> 2. 在web中，打开`AriaNg 设置——RPC (localhost:6800)`，粘贴“Aria2 RPC 密钥”。该页面的url示例，形如，http://loclhost/AriaNg/index.html#!/settings/ariang
