@@ -3,7 +3,7 @@ layout:       post
 title:        "Excel | 使用EasyExcel读取excel"
 subtitle:     "自定义监听、转换器等，完成常用的excel读取"
 date:         2021-02-07
-updated:      2021-02-07
+updated:      2021-02-08
 author:       "权芹乐"
 header-img:   "img/home-bg.webp"
 catalog:      true
@@ -52,7 +52,7 @@ tags:
 
 # 极简读Excel示例
 
-1. 数据类`DemoBizExcelRow.java`，存储excel一行的数据
+## 1. 数据类`DemoBizExcelRow.java`，存储excel一行的数据
 ```java
 @Data // 使用lombok，或自己实现get/set
 public class DemoBizExcelRow {
@@ -62,7 +62,7 @@ public class DemoBizExcelRow {
 }
 ```
 
-2. 自定义数据行监听类`DemoDataListener.java`，逐行解析数据
+## 2. 自定义数据行监听类`DemoDataListener.java`，逐行解析数据
 
 如果想要获得解析结果集的话，可以像下面这样通过构造函数传参来接收。如果要在监听类里完成DB存储操作，可以参考官方示例`DemoDataListener.java`。
 ```java
@@ -101,7 +101,7 @@ public class DemoDataListener extends AnalysisEventListener<DemoBizExcelRow> {
 }
 ```
 
-3. 使用
+## 3. 使用
 ```java
 String file = "D:\\Demo.xlsx";
 List<DemoExcelRow> list = new ArrayList<DemoExcelRow>();
