@@ -1,9 +1,9 @@
 ---
 layout:       post
-title:        "Excel | 使用EasyExcel读取excel"
+title:        "Java | 使用EasyExcel读取excel"
 subtitle:     "自定义监听、转换器等，完成常用的excel读取"
 date:         2021-02-07
-updated:      2021-02-08
+updated:      2021-02-18
 author:       "权芹乐"
 header-img:   "img/home-bg.webp"
 catalog:      true
@@ -580,5 +580,45 @@ try {
 ```
 解读：
 + `EasyExcel`默认提供了解析单元格的监听（即上面提到的`ModelBuildEventListener.java`），如果要使用自定义的单元格解析监听，要先去掉默认`useDefaultListener(false)`，再注册自己的`registerReadListener(new ReadAllCellDataThrowExceptionLastListener())`
-+ 在使用自定义单元格解析监听情况下，不能通过`EasyExcel.read()`传入自定义的行解析监听，只能通过`registerReadListener()`注册，并且，（这一点很重要）==要放在注册自定义单元格监听之后==。
++ 在使用自定义单元格解析监听情况下，不能通过`EasyExcel.read()`传入自定义的行解析监听，只能通过`registerReadListener()`注册，并且，（这一点很重要）**要放在注册自定义单元格监听之后**。
 
+# 补充
+
+## 格式转换
+### 日期
+```java
+@ExcelProperty("开始时间")
+@DateTimeFormat("yyyy-MM-dd")
+private Date startTime;
+```
+* 2020/1/2 --> 1577894400000（即，2020-01-02）
+* 你好 --> throw new Exception()
+* // 转换失败时，会抛异常
+
+```java
+@ExcelProperty("结束时间")
+@DateTimeFormat("yyyy-MM-dd")
+private String endTime;
+```
+* 2019/2/5 --> 2019-02-05
+* 你好 --> 你好
+* // 转换失败时，保持原值，不会抛异常
+
+### 数值
+```java
+@ExcelProperty("存钱")
+@NumberFormat("#.##")
+private Double deposit;
+```
+* 1.2345 --> 1.23
+* 你好 --> throw new Exception()
+* // 转换失败时，会异常
+
+```java
+@ExcelProperty("取钱")
+@NumberFormat("#.##")
+private String withdraw;
+```
+* 1.2345 --> 1.23
+* 你好 --> 你好
+* // 转换失败时，保持原值，不会异常
