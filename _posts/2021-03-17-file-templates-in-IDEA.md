@@ -20,13 +20,27 @@ tags:
 
 # 介绍
 
-在Spring Boot项目中，每当新增一个entity/module对象时，如`UserPO.java`，大多时候接下来还要创建对应的repository、service、service implement、controller等，一套模板类做下来，慢慢的重复劳动。
+在Spring Boot项目中，每当新增一个entity/module对象时，如`UserPO.java`，大多时候接下来还要创建对应的repository、service、service implement、controller等，并且最开始类的内容也是相似，一套模板类做下来，慢慢的重复劳动。
 
-于是，想着是否存在“一键”创建多个类的功能，在`Settings`中一番翻找，在`File and Code Templates`中找到了解决办法。本文就是介绍通过文件模板批量创建文件的步骤。
+于是，想着是否存在根据类模板“一键”创建多个类文件的功能，在`Settings`中一番翻找，在`File and Code Templates`中找到了解决办法。本文就是介绍通过文件模板批量创建文件的步骤。
 
-# 设置
+# 期望+最终效果演示
 
-在进入正文前，先说下我的项目常用的目录结构，以下的配置也是在这个结构前提下的。
+> 结果即需求
+
+先演示一下最终实现的效果，也就是最初的需求
+1. 在包根目录下，右键——>`New`——>选择新设置的模板，
+   ![right click](/img/in-post/file-templates-in-IDEA/right-click-new-entity.webp)
+2. 输入entity名，如`User`，首字母大写
+   ![input entity](/img/in-post/file-templates-in-IDEA/input-entity.webp)
+3. 生成的如下文件：
+   + entity/po : `User.java`
+   + dao : `UserRepository.java`
+   + service : `UserService.java`
+   + service/impl : `UserServiceImpl.java`
+   + controller : `UserController.java`
+
+对应的项目结构如下，下文的配置也是以这个结构为前提的。
 ```
 src/main/java
 └── com.github.quanqinle
@@ -45,15 +59,9 @@ src/main/java
             └── UserController.java
 ```
 
-完成配置后，期望能实现这样的效果：  
-在包根目录下，右键——>`New`——>选择新设置的模板——>输入entity名，如`User`，将自动在固定目录下创建如下文件：
-+ entity/po : `User.java`
-+ dao : `UserRepository.java`
-+ service : `UserService.java`
-+ service/impl : `UserServiceImpl.java`
-+ controller : `UserController.java`
+# 设置
 
-最终的配置，就像下图中的(1)所示：
+先放一张最终的配置，就像下图中的(1)所示：
 
 ![final settings](/img/in-post/file-templates-in-IDEA/final-settings.webp)
 <center style="color:#C0C0C0;">图1</center> 
@@ -65,7 +73,8 @@ src/main/java
 + Extension：默认的java
 + File Name：文件路径和文件名（不用加.java后缀），`./entity/po/${Subject}`
 + 输入模板内容，如下：
-```
+
+```java
 #set($SubjectOfLowerFirst = ${Subject.substring(0,1).toLowerCase()} + $Subject.substring(1))
 #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME}.entity.po;#end
 
@@ -101,7 +110,8 @@ public class ${Subject} {
 + File Name：文件路径和文件名（不用加.java后缀），`./dao/${Subject}Repository`
 + Extension：默认的java
 + 输入模板内容，如下：
-```
+
+```java
 #set($SubjectOfLowerFirst = ${Subject.substring(0,1).toLowerCase()} + $Subject.substring(1))
 #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME}.dao;#end
 
@@ -121,7 +131,8 @@ public interface ${Subject}Repository extends JpaRepository<${Subject}, Long> {
 + File Name：文件路径和文件名（不用加.java后缀），`./service/${Subject}Service`
 + Extension：默认的java
 + 输入模板内容，如下：
-```
+
+```java
 #set($SubjectOfLowerFirst = ${Subject.substring(0,1).toLowerCase()} + $Subject.substring(1))
 #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME}.service;#end
 
@@ -168,6 +179,7 @@ public interface ${Subject}Service {
 + File Name：文件路径和文件名（不用加.java后缀），`./service/impl/${Subject}ServiceImpl`
 + Extension：默认的java
 + 输入模板内容，如下：
+
 ```
 #set($SubjectOfLowerFirst = ${Subject.substring(0,1).toLowerCase()} + $Subject.substring(1))
 #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME}.service.impl;#end
@@ -230,6 +242,7 @@ public class ${Subject}ServiceImpl implements ${Subject}Service {
 + File Name：文件路径和文件名（不用加.java后缀），`./controller/${Subject}Controller`
 + Extension：默认的java
 + 输入模板内容，如下：
+
 ```
 #set($SubjectOfLowerFirst = ${Subject.substring(0,1).toLowerCase()} + $Subject.substring(1))
 #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME}.controller;#end
@@ -280,11 +293,3 @@ public class ${Subject}Controller {
 ```
 
 保存配置。
-
-# 使用
-
-1. 右键点击包根目录
-   ![right click](/img/in-post/file-templates-in-IDEA/right-click-new-entity.webp)
-2. 输入entity名称，首字母大写
-   ![input entity](/img/in-post/file-templates-in-IDEA/input-entity.webp)
-3. 生成的文件，见前面提到的“目录结构”
