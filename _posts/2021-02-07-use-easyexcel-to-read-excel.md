@@ -14,14 +14,14 @@ tags:
 
 [toc]
 
-# EasyExcel ?
+# EasyExcel ？
 
 以前我都是用`Apache poi`解析Excel，但我不喜欢自己处理模型转换、数值类型转换，而且poi处理大excel时内存高。后来听说了阿里开源的EasyExcel，决定试用下。
 
 官方如此自我介绍：
-> 快速、简单避免OOM的java处理Excel工具
+> 快速、简单避免OOM的Java处理Excel工具
 > 
-> EasyExcel是一个基于Java的简单、省内存的读写Excel的开源项目。在尽可能节约内存的情况下支持读写百M的Excel。 github地址:https://github.com/alibaba/easyexcel
+> EasyExcel是一个基于Java的简单、省内存的读写Excel的开源项目。在尽可能节约内存的情况下支持读写百M的Excel。 github地址：https://github.com/alibaba/easyexcel
 
 # 引入依赖
 我的maven pom文件如下
@@ -621,4 +621,4 @@ private String withdraw;
 ```
 * 1.2345 --> 1.23
 * 你好 --> 你好
-* // 转换失败时，保持原值，不会异常
+* // 转换失败时，保持原值，不会抛异常
