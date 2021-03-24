@@ -1,0 +1,29 @@
+sudo: false
+language: node_js
+node_js:
+  - stable # use nodejs v10 LTS
+
+cache: npm
+branches:
+  only:
+    - hexo # store source code of hexo blog in hexo branch
+script:
+  - hexo generate # generate static files
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GH_TOKEN
+  keep-history: true
+  target_branch: master # generate static files to master
+  on:
+    branch: hexo
+  local-dir: public
+
+# configure notifications (email, IRC, campfire etc)
+# please update this section to your needs!
+# https://docs.travis-ci.com/user/notifications/
+notifications:
+  email:
+    - quanqinle@gmail.com
+  on_success: change
+  on_failure: always
