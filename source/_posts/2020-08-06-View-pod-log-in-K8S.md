@@ -11,14 +11,14 @@ tags:
     - kubernetes
 ---
 
-[toc]
-
 自从应用的部署从tomcat转移到kubernetes之后，再也不能像下面这样一句命令查看日志了：
 ```
 tail -f /usr/local/tomcat6/logs/catalina.out
 ```
 
 在我记住k8s操作步骤之前，暂时记录下来以备忘。
+
+<!-- more -->
 
 ## 1. 找到pod
 ```

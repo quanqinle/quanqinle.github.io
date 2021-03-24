@@ -18,6 +18,8 @@ tags:
 
 下文是`Spring Boot 2`版本低于`2.2.0.RELEASE`时的配置方法。
 
+<!-- more -->
+
 我的环境：
 + Java 8+
 + Maven 3

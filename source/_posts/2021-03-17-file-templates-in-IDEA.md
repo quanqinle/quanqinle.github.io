@@ -13,8 +13,6 @@ tags:
     - Spring Boot
 ---
 
-[toc]
-
 # 环境
 + IntelliJ IDEA Community 2020.3.3
 
@@ -23,6 +21,7 @@ tags:
 在Spring Boot项目中，每当新增一个entity/module对象时，如`UserPO.java`，大多时候接下来还要创建对应的repository、service、service implement、controller等，并且最开始类的内容也是相似，一套模板类做下来，慢慢的重复劳动。
 
 于是，想着是否存在根据类模板“一键”创建多个类文件的功能，在`Settings`中一番翻找，在`File and Code Templates`中找到了解决办法。本文就是介绍通过文件模板批量创建文件的步骤。
+<!-- more -->
 
 # 期望+最终效果演示
 

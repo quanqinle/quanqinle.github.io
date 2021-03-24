@@ -11,8 +11,6 @@ tags:
     - Automated Testing
 ---
 
-[toc]
-
 # 什么是自动化测试？
 不想说话
 

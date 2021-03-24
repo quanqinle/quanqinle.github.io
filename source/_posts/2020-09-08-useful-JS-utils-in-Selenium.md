@@ -11,12 +11,12 @@ tags:
     - JavaScript
 ---
 
-[toc]
-
 # JavascriptExecutor
 Javascript脚本执行器。
 
 `arguments[i]`是js脚本传参的占位符，i从0开始。
+
+<!-- more -->
 
 # 页面滚动
 
