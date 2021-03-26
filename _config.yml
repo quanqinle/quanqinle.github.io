@@ -113,7 +113,7 @@ deploy:
 # Local Search -- add: quanql
 ## Dependencies: https://github.com/theme-next/hexo-generator-searchdb
 search:
-  path: search.xml
+  path: search.json
   field: post
   content: true
   format: html
