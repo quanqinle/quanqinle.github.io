@@ -7,6 +7,8 @@ updated:      2021-03-17
 author:       "权芹乐"
 header-img:   "img/home-bg.webp"
 catalog:      true
+categories:
+    - Code
 tags:
     - Java
     - IDEA

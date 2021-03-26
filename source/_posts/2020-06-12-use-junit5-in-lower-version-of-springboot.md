@@ -8,6 +8,8 @@ author:       "Quan Qinle"
 header-img:   "img/post-bg-beach1.webp"
 multilingual: false
 catalog:      true
+categories:
+    - Code
 tags:
     - Junit
     - Spring Boot

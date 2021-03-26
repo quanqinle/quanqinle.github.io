@@ -8,6 +8,8 @@ author:      "Quan Qinle"
 header-img:  "img/in-post/selenium-lazyload/selenium-lazyload-01.webp"
 multilingual: false
 catalog:      true
+categories:
+    - Code
 tags:
     - Selenium
     - Automated Testing

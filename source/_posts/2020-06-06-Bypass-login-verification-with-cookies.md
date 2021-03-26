@@ -8,6 +8,8 @@ author:      "Quan Qinle"
 header-img:  "img/post-bg.webp"
 multilingual: false
 catalog:      true
+categories:
+    - Code
 tags:
     - Selenium
     - Automated Testing
