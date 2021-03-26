@@ -266,11 +266,11 @@ tag_icon: false
 reward_settings:
   # If true, reward will be displayed in every article by default.
   enable: true
-  animation: true
+  animation: false
   #comment: Donate comment here.
 
 reward:
-  wechatpay: /images/wechatpay.webp
+  #wechatpay: /images/wechatpay.webp
   alipay: /images/alipay.webp
   paypal: /images/paypal.webp
   #bitcoin: /images/bitcoin.png
