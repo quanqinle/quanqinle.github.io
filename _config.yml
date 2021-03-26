@@ -109,3 +109,12 @@ deploy:
   type: git
   repo: https://github.com/quanqinle/quanqinle.github.io
   branch: master
+
+# Local Search -- add: quanql
+## Dependencies: https://github.com/theme-next/hexo-generator-searchdb
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
+  limit: 100

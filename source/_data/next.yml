@@ -40,8 +40,8 @@ custom_file_path:
 # ---------------------------------------------------------------
 
 favicon:
-  small: /images/favicon-16x16-next.png
-  medium: /images/favicon-32x32-next.png
+  small: /images/favicon-16x16.png
+  medium: /images/favicon-32x32.ico
   apple_touch_icon: /images/apple-touch-icon-next.png
   safari_pinned_tab: /images/logo.svg
   #android_manifest: /images/manifest.json
@@ -88,7 +88,8 @@ footer:
 creative_commons:
   license: by-nc-sa
   sidebar: false
-  post: false
+  # 默认显示版权信息
+  post: true
   language:
 
 
@@ -128,7 +129,8 @@ menu:
 # Enable / Disable menu icons / item badges.
 menu_settings:
   icons: true
-  badges: false
+  # 显示统计信息
+  badges: true
 
 
 # ---------------------------------------------------------------
@@ -239,7 +241,9 @@ excerpt_description: true
 read_more_btn: true
 
 # Post meta display settings
+## 首页文章属性
 post_meta:
+  # 设为true 可以一行显示，文章的所有属性
   item_text: true
   created_at: true
   updated_at:
@@ -739,7 +743,7 @@ algolia_search:
 # Local Search
 # Dependencies: https://github.com/theme-next/hexo-generator-searchdb
 local_search:
-  enable: auto
+  enable: true
   # If auto, trigger search by changing input.
   # If manual, trigger search by pressing enter key or search button.
   trigger: auto
@@ -788,8 +792,8 @@ note:
   #  - modern    bs-callout new (v2-v3) alert style.
   #  - flat      flat callout style with background, like on Mozilla or StackOverflow.
   #  - disabled  disable all CSS styles import of note tag.
-  style: simple
-  icons: false
+  style: modern
+  icons: true
   # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).
   # Offset also applied to label tag variables. This option can work with disabled note tag.
   light_bg_offset: 0
