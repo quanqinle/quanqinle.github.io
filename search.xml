@@ -139,73 +139,6 @@ goto first step (or shut off burner when done)
 ]]></content>
   </entry>
   <entry>
-    <title>Selenium | 自动登录脚本如何绕过二维码、校验码等安全校验</title>
-    <url>/2020/06/06/Bypass-login-verification-with-cookies/</url>
-    <content><![CDATA[<p>做Web UI自动化测试的朋友，基本上都会遇到用户登录操作，然而基于安全性考虑，登录过程除了要求输入用户名和密码，往往还会存在为了防止自动化登陆而设置的更加复杂的校验。比如，<br><img src="/img/in-post/selenium-login-cookie/01.webp" alt="imag"></p>
-<p>既然这些校验的存在就是为了对抗robot、防止自动化登陆，那么，它们自然就成了自动化登陆所面临的难题了。如果知道了这一点，你仍去试着用Selenium或其他技术进行破解，那么，在这样做之前，建议你先掂量掂量自己的技术实力吧。</p>
-<span id="more"></span>
-
-<h1 id="我们自己项目中的安全校验"><a href="#我们自己项目中的安全校验" class="headerlink" title="我们自己项目中的安全校验"></a>我们自己项目中的安全校验</h1><p>如果这种校验出现在我们自己的测试项目中，正如我在视频《Web UI自动化测试：Selenium入门》中所说，建议你和研发人员沟通，<strong>在test版本上去除它们，只保留用户和密码即可</strong>。</p>
-<p>解决问题的方法有很多，换一种思路，一切豁然开朗。把“登录过程中二维码/短信验证”<strong>从自动化测试用例集中移出，放到手工测试用例集</strong>，技术难题就这么轻松愉快的解决了，码农再也不用为了苦思冥想、挠头掉发担心了。</p>
-<p>各位看客，山不过来我就过去~~</p>
-<h1 id="第三方网站中的安全校验"><a href="#第三方网站中的安全校验" class="headerlink" title="第三方网站中的安全校验"></a>第三方网站中的安全校验</h1><p>可是……如果你是在对第三方网站编写网页爬虫，或者编写一些自动化脚本，遇到防自动化登录校验，又该怎么办呢？现在可没有网站程序员帮你临时去掉这个功能模块了。</p>
-<p>这种情况，正是本文需要讲解的内容。</p>
-<h1 id="半自动化方案"><a href="#半自动化方案" class="headerlink" title="半自动化方案"></a>半自动化方案</h1><p>我的解决方案是这样的：</p>
-<ol>
-<li>人工登录所需网站。</li>
-<li>提取页面请求头中的Cookie。</li>
-<li>将Cookie添加到WebDriver。</li>
-</ol>
-<p>前两步很简单，应该是从业人员的基本功，不过多赘述，但下文也会演示。重点在第3步，我不确定Selenium是否提供了这样的API，幸运的是，最终在官方docs中找到所需的方法。</p>
-<p>也许你已经发现了，经过这个方案的处理，我们的自动化变得不纯粹了，它变成了半自动化，因为获取请求Cookie的过程是人工的。Anyway，我的自动化脚本至少又可以运行起来了，加入一点点人工介入也是值得的。</p>
-<p>另外一点不方便的是，Cookie中的登录信息都是有有效期的，无论这个网站登录时效使用的是Cookie还是Session，我们不可避免的都需要每隔一段时间重新手工登录网站，获取最新的Cookie，并在我们的代码中进行替换。</p>
-<h1 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h1><p>下面我们以头条公众号后台为例演示整个过程。</p>
-<h2 id="1、人工登录所需网站"><a href="#1、人工登录所需网站" class="headerlink" title="1、人工登录所需网站"></a>1、人工登录所需网站</h2><p>这一步就不演示了，可别泄露了我的密码。<br><img src="/img/in-post/selenium-login-cookie/02.webp" alt="imag"></p>
-<h2 id="2、提取页面请求头中的Cookie"><a href="#2、提取页面请求头中的Cookie" class="headerlink" title="2、提取页面请求头中的Cookie"></a>2、提取页面请求头中的Cookie</h2><p>操作步骤：</p>
-<ol>
-<li>点击<kbd>F12</kbd>，打开“开发者工具”</li>
-<li>刷新页面，捕获请求</li>
-<li>在左侧请求列表中切换几次，找到<code>Request Headers</code>中<code>Cookie</code>有值的请求</li>
-<li>Cookie字段后面的一长串字符串，就是我们需要的<br><img src="/img/in-post/selenium-login-cookie/03.webp" alt="imag"></li>
-</ol>
-<h2 id="3、将Cookie添加到WebDriver"><a href="#3、将Cookie添加到WebDriver" class="headerlink" title="3、将Cookie添加到WebDriver"></a>3、将Cookie添加到WebDriver</h2><p>上一步中得到的Cookie字符串还需要经过处理，因为它是很多Cookie以分号为分隔符拼接之后的内容，我们需要逆向操作：</p>
-<ol>
-<li>先以“分号<code>;</code>”为分隔符获取Cookie列表，</li>
-<li>列表中的元素都含有=号，=左侧是Cookie的name，=右侧是Cookie的value，用name和value构造Cookie，</li>
-<li>最后传给WebDriver。</li>
-</ol>
-<p>为了验证我们分析的 <strong>“Cookie字符串是以分号分隔、Cookie的name和value在=两侧”</strong>，我们仍回到“开发者工具”，切换到Cookies卡片下，查看Cookie列表完整信息：</p>
-<p><img src="/img/in-post/selenium-login-cookie/04.webp" alt="imag"></p>
-<h1 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h1><p>闲话少叙，我们开始编码吧。</p>
-<p>先解析我们得到的原始Cookie字符串，</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.openqa.selenium.Cookie;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 将cookie字符串拆解到list中</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> rawCookie 原始Cookie字符串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> Cookie列表</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Cookie&gt; <span class="title">parseRawCookie</span><span class="params">(String rawCookie)</span> </span>&#123;</span><br><span class="line">  List&lt;Cookie&gt; cookies = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">  String[] rawCookieParams = rawCookie.split(<span class="string">&quot;;&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (String cookieParam : rawCookieParams) &#123;</span><br><span class="line">    String[] rawCookieNameAndValue = cookieParam.split(<span class="string">&quot;=&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="number">2</span> != rawCookieNameAndValue.length) &#123;</span><br><span class="line">      log.error(<span class="string">&quot;Invalid cookie: missing name and value.&quot;</span>);</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    String cookieName = rawCookieNameAndValue[<span class="number">0</span>].trim();</span><br><span class="line">    String cookieValue = rawCookieNameAndValue[<span class="number">1</span>].trim();</span><br><span class="line">    Cookie cookie = <span class="keyword">new</span> Cookie(cookieName, cookieValue);</span><br><span class="line">    cookies.add(cookie);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> cookies;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>将上一步得到的Cookie列表添加给WebDriver，这一步需要放在所有需要权限验证的步骤之前。<br>我们可以先添加Cookie，然后刷新页面，这样我们打开的网页就是登陆状态了。<br><img src="/img/in-post/selenium-login-cookie/06.webp" alt="imag"></p>
-<p>编码演示到这里就够用了，大家不妨试试。</p>
-<h1 id="API补充说明"><a href="#API补充说明" class="headerlink" title="API补充说明"></a>API补充说明</h1><p>在这个解决方案中，我们主要用到了两个接口，它们还有一些相关接口，如有需要，请自行查阅。</p>
-<h2 id="1、添加Cookie"><a href="#1、添加Cookie" class="headerlink" title="1、添加Cookie"></a>1、添加Cookie</h2><p><code>void addCookie(Cookie cookie) // Add a specific cookie.</code></p>
-<ul>
-<li>所属接口：<br><code>org.openqa.selenium.WebDriver.Options</code></li>
-<li>相关方法：<br><code>java.util.Set&lt;Cookie&gt; getCookies()</code>、<code>deleteCookie(Cookie cookie)</code> 等等。</li>
-</ul>
-<h2 id="2、构造Cookie"><a href="#2、构造Cookie" class="headerlink" title="2、构造Cookie"></a>2、构造Cookie</h2><p><code>Cookie(java.lang.String name, java.lang.String value)</code></p>
-<ul>
-<li>所属接口：<br><code>org.openqa.selenium.Cookie</code></li>
-<li>相关方法：<br><code>Cookie(java.lang.String name, java.lang.String value, java.lang.String domain, java.lang.String path, java.util.Date expiry, boolean isSecure, boolean isHttpOnly)</code> 等等</li>
-</ul>
-<p>官方docs地址，如下：<br><a href="https://seleniumhq.github.io/selenium/docs/api/java/">https://seleniumhq.github.io/selenium/docs/api/java/</a></p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-      <tags>
-        <tag>Selenium</tag>
-        <tag>Automated Testing</tag>
-        <tag>Interface Testing</tag>
-        <tag>API Testing</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Selenium | 编写爬虫抓取网页图片遭遇懒加载</title>
     <url>/2020/06/04/How-to-handle-LazyLoad-page-when-use-Selenium/</url>
     <content><![CDATA[<blockquote>
@@ -228,17 +161,17 @@ goto first step (or shut off burner when done)
 </blockquote>
 <h3 id="2-每话的题目"><a href="#2-每话的题目" class="headerlink" title="2.每话的题目"></a>2.每话的题目</h3><p>页面顶部就有漫画每话的题目，在页面源码中搜索后可以确认 <code>span标签的class属性值title-comicHeading</code> 在页面中是唯一的，我们就用它来定位元素，然后获取元素上的文本。</p>
 <p>标题的CSS Selector语法是 <code>span.title-comicHeading</code> 。</p>
-<p><img src="/img/in-post/selenium-lazyload/selenium-lazyload-02.webp" alt="imag"></p>
+<p><img src="/images/in-post/selenium-lazyload/selenium-lazyload-02.webp" alt="imag"></p>
 <h3 id="3-每话中图片资源地址"><a href="#3-每话中图片资源地址" class="headerlink" title="3.每话中图片资源地址"></a>3.每话中图片资源地址</h3><p>每话都有数量不等的漫画图片，页面识别后找到可以确保唯一性的图片元素定位方法，所有的图片都在标签 ul &gt; li 列表中，所以，我们可以获取图片img列表，然后遍历img列表，逐个下载即可。</p>
 <p>定位img列表的CSS Selector语法是 <code>ul#comicContain li img</code> 。</p>
-<p><img src="/img/in-post/selenium-lazyload/selenium-lazyload-03.webp" alt="imag"></p>
+<p><img src="/images/in-post/selenium-lazyload/selenium-lazyload-03.webp" alt="imag"></p>
 <h2 id="失败了……"><a href="#失败了……" class="headerlink" title="失败了……"></a>失败了……</h2><p>将以上的元素定位写入代码，修改后，先缩小话的for循化范围成从第1话开始到第2话结束，调试运行py。</p>
 <p>有点小确幸，多谢佛祖保佑，脚本运行通过，没有报错。</p>
-<p><img src="/img/in-post/selenium-lazyload/selenium-lazyload-04.webp" alt="imag"></p>
+<p><img src="/images/in-post/selenium-lazyload/selenium-lazyload-04.webp" alt="imag"></p>
 <p>打开本地磁盘，查看保存的图片。<br>糟糕，除了前面几张图，后面全部都是一模一样的小图片，以我的多年工作经验来分析——哎呀妈，这些都是占位图啊！</p>
-<p><img src="/img/in-post/selenium-lazyload/selenium-lazyload-05.webp" alt="imag"></p>
+<p><img src="/images/in-post/selenium-lazyload/selenium-lazyload-05.webp" alt="imag"></p>
 <p>打开网页验证下自己的猜想。</p>
-<p><img src="/img/in-post/selenium-lazyload/selenium-lazyload-07.webp" alt="imag"></p>
+<p><img src="/images/in-post/selenium-lazyload/selenium-lazyload-07.webp" alt="imag"></p>
 <p>确实像猜想的那样，当我没有浏览到处于页面下方的图片时，那里只有占位图，当页面向下滚动快要到达占位图时，img标签的src会被替换成真实的资源url，然后页面才加载图片。</p>
 <h2 id="如何处理懒加载页面？"><a href="#如何处理懒加载页面？" class="headerlink" title="如何处理懒加载页面？"></a>如何处理懒加载页面？</h2><p>那么，问题就显而易见了，这个页面使用了“懒加载（lazy load）”，也叫做“延迟加载”。不过，想想又觉得理所应当，像这样包含大量大图的页面，不延迟加载才是怪事。</p>
 <blockquote>
@@ -249,7 +182,7 @@ goto first step (or shut off burner when done)
 <p>既然要用Selenium，那么，我还是换回Java来实现这次的需求吧，谁让咱是 Java + Selenium老手呢（见历史文章），转而去整Python + Selenium的话，又要重新学习，我可不想重复造轮子。</p>
 <h1 id="Java实现爬虫，第2版"><a href="#Java实现爬虫，第2版" class="headerlink" title="Java实现爬虫，第2版"></a>Java实现爬虫，第2版</h1><p>很久前，我就已经在github上开源了一个UITest框架，借助Selenium和Appium，地址是 <a href="https://github.com/quanqinle/WebAndAppUITesting">WebAndAppUITesting</a> 。这么小的需求没必要使用这套框架，从工程里借鉴一些代码即可。</p>
 <p>第1版上我需要增加页面滚动的逻辑，按之前的经验需要加入JavaScript执行器的代码，可用的方式大致有以下几种：</p>
-<p><img src="/img/in-post/selenium-lazyload/selenium-lazyload-08.webp" alt="imag"></p>
+<p><img src="/images/in-post/selenium-lazyload/selenium-lazyload-08.webp" alt="imag"></p>
 <p>不多说了，直接上代码吧</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.uitest;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.Charset;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.FileAlreadyExistsException;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Files;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Path;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Paths;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.StandardOpenOption;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.openqa.selenium.By;</span><br><span class="line"><span class="keyword">import</span> org.openqa.selenium.JavascriptExecutor;</span><br><span class="line"><span class="keyword">import</span> org.openqa.selenium.WebDriver;</span><br><span class="line"><span class="keyword">import</span> org.openqa.selenium.WebElement;</span><br><span class="line"><span class="keyword">import</span> org.openqa.selenium.chrome.ChromeDriver;</span><br><span class="line"><span class="keyword">import</span> org.openqa.selenium.chrome.ChromeOptions;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 下载 海贼王 漫画</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> quanqinle</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DownloadOnePiece</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        download();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">download</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> firstChap  = <span class="number">001</span>;</span><br><span class="line">        <span class="keyword">int</span> newestChap = <span class="number">947</span>;</span><br><span class="line">        String baseUrl = <span class="string">&quot;https://I.cannot.tell.the.real.url/post/10%03d/&quot;</span>;</span><br><span class="line">        String baseDir = <span class="string">&quot;D:\\OnePiece\\%03d\\&quot;</span>;</span><br><span class="line">        String baseFile = <span class="string">&quot;D:\\OnePiece\\%03d\\%03d-%03d.jpg&quot;</span>;</span><br><span class="line">        String chapterName = <span class="string">&quot;&quot;</span>; <span class="comment">// 第2话 戴草帽的路飞</span></span><br><span class="line"></span><br><span class="line">        System.setProperty(<span class="string">&quot;webdriver.chrome.driver&quot;</span>, <span class="string">&quot;C:\\chromedriver.exe&quot;</span>);</span><br><span class="line">        ChromeOptions options = <span class="keyword">new</span> ChromeOptions();</span><br><span class="line">        options.addArguments(<span class="string">&quot;headless&quot;</span>);</span><br><span class="line">        WebDriver driver = <span class="keyword">new</span> ChromeDriver(options);</span><br><span class="line">        driver.get(<span class="string">&quot;https://I.cannot.tell.you.the.real.url&quot;</span>);</span><br><span class="line">        driver.manage().window().maximize();</span><br><span class="line">        driver.manage().timeouts().implicitlyWait(<span class="number">5</span>, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">        JavascriptExecutor js = (JavascriptExecutor) driver;</span><br><span class="line"></span><br><span class="line">        List&lt;WebElement&gt; imgList = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> idxChap = firstChap; idxChap &lt;= newestChap; idxChap++) &#123;</span><br><span class="line">            driver.get(String.format(baseUrl, idxChap));</span><br><span class="line">            Thread.sleep(<span class="number">2</span> * <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">            chapterName = driver.findElement(By.cssSelector(<span class="string">&quot;span.title-comicHeading&quot;</span>)).getText();</span><br><span class="line">            toLog(String.format(<span class="string">&quot;# [%03d] %s&quot;</span>, idxChap, chapterName));</span><br><span class="line"></span><br><span class="line">            createFolder(String.format(baseDir, idxChap));</span><br><span class="line">            imgList = driver.findElements(By.cssSelector(<span class="string">&quot;ul#comicContain li img&quot;</span>));</span><br><span class="line">            <span class="keyword">int</span> imgIndex = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (WebElement img : imgList) &#123;</span><br><span class="line">                <span class="keyword">if</span> (img.getAttribute(<span class="string">&quot;id&quot;</span>).contains(<span class="string">&quot;adBottom&quot;</span>) </span><br><span class="line">                        || img.getAttribute(<span class="string">&quot;id&quot;</span>).contains(<span class="string">&quot;adTop&quot;</span>)</span><br><span class="line">                    || img.getAttribute(<span class="string">&quot;src&quot;</span>).contains(<span class="string">&quot;006xpM3Tgy1feta1hkppuj30m8076wgh.jpg&quot;</span>)) &#123;</span><br><span class="line">                    <span class="comment">// 漫画中间竟然穿插了广告图！</span></span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">/**</span></span><br><span class="line"><span class="comment">                 * 因为页面是懒加载，需滚动页面</span></span><br><span class="line"><span class="comment">                 */</span></span><br><span class="line">                js.executeScript(<span class="string">&quot;arguments[0].scrollIntoView();&quot;</span>, img);</span><br><span class="line">                Thread.sleep(<span class="number">300</span>);</span><br><span class="line"></span><br><span class="line">                String srcUrl = img.getAttribute(<span class="string">&quot;src&quot;</span>);</span><br><span class="line">                <span class="keyword">if</span> (srcUrl.contains(<span class="string">&quot;pixel.gif&quot;</span>)) &#123;</span><br><span class="line">                    toLog(String.format(<span class="string">&quot;fail to load img [%03d - %03d]&quot;</span>, idxChap, imgIndex++));</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                String destFile = String.format(baseFile, idxChap, idxChap, imgIndex);</span><br><span class="line"></span><br><span class="line">                toLog(String.format(<span class="string">&quot;下载[%03d]：%s&quot;</span>, imgIndex, srcUrl));</span><br><span class="line">                imgIndex++;</span><br><span class="line">                downloadFile(srcUrl, destFile);</span><br><span class="line">            &#125; <span class="comment">// 图片循环 end</span></span><br><span class="line"></span><br><span class="line">        &#125; <span class="comment">// 页面循环 end</span></span><br><span class="line"></span><br><span class="line">        driver.quit();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 下载指定资源到目标文件</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> url</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> destFile</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">downloadFile</span><span class="params">(String url, String destFile)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            InputStream in = <span class="keyword">new</span> URL(url).openStream();</span><br><span class="line">            Files.copy(in, Paths.get(destFile));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileAlreadyExistsException e) &#123;</span><br><span class="line">            toLog(<span class="string">&quot;文件已存在：&quot;</span> + destFile);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建文件夹</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> folderName 文件夹名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">createFolder</span><span class="params">(String folderName)</span> </span>&#123;</span><br><span class="line">        File dirFile = <span class="keyword">new</span> File(folderName);</span><br><span class="line">        <span class="keyword">boolean</span> bFile = dirFile.exists();</span><br><span class="line">        <span class="keyword">if</span> (bFile == <span class="keyword">false</span>) &#123;</span><br><span class="line">            bFile = dirFile.mkdirs();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (bFile == <span class="keyword">true</span>) &#123;</span><br><span class="line">            toLog(<span class="string">&quot;Create folder successfully! -- &quot;</span> + folderName);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            toLog(<span class="string">&quot;Create folder error! -- &quot;</span> + folderName);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 写日志</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">toLog</span><span class="params">(String newline)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            List&lt;String&gt; lines = Arrays.asList(newline);</span><br><span class="line">            Path file = Paths.get(<span class="string">&quot;D:\\onepiece.log&quot;</span>);</span><br><span class="line">            System.out.println(newline);</span><br><span class="line">            Files.write(file, lines, Charset.forName(<span class="string">&quot;UTF-8&quot;</span>), StandardOpenOption.CREATE, StandardOpenOption.APPEND);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -258,7 +191,7 @@ goto first step (or shut off burner when done)
 <p>另外提一句，我当前使用的chrome和driver在headless模式下出现了bug，变量chapterName总是空字符串，而有界面时，没有这个问题。</p>
 <h2 id="再次运行代码"><a href="#再次运行代码" class="headerlink" title="再次运行代码"></a>再次运行代码</h2><p>再次运行代码，这次世界清静了，程序正常运行没报错，图片也正常下载了。只是代码执行比较慢，因为，为了保障页面加载、图片抓取的成功率，加了一些sleep等待。好在使用headless模式运行，把它收起在后台默默执行，也不影响我做别的事情。</p>
 <p>一段时间后……</p>
-<p><img src="/img/in-post/selenium-lazyload/selenium-lazyload-10.webp" alt="imag"></p>
+<p><img src="/images/in-post/selenium-lazyload/selenium-lazyload-10.webp" alt="imag"></p>
 <p>看漫画喽</p>
 ]]></content>
       <categories>
@@ -268,6 +201,73 @@ goto first step (or shut off burner when done)
         <tag>Selenium</tag>
         <tag>Automated Testing</tag>
         <tag>Web Crawling</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Selenium | 自动登录脚本如何绕过二维码、校验码等安全校验</title>
+    <url>/2020/06/06/Bypass-login-verification-with-cookies/</url>
+    <content><![CDATA[<p>做Web UI自动化测试的朋友，基本上都会遇到用户登录操作，然而基于安全性考虑，登录过程除了要求输入用户名和密码，往往还会存在为了防止自动化登陆而设置的更加复杂的校验。比如，<br><img src="/images/in-post/selenium-login-cookie/01.webp" alt="imag"></p>
+<p>既然这些校验的存在就是为了对抗robot、防止自动化登陆，那么，它们自然就成了自动化登陆所面临的难题了。如果知道了这一点，你仍去试着用Selenium或其他技术进行破解，那么，在这样做之前，建议你先掂量掂量自己的技术实力吧。</p>
+<span id="more"></span>
+
+<h1 id="我们自己项目中的安全校验"><a href="#我们自己项目中的安全校验" class="headerlink" title="我们自己项目中的安全校验"></a>我们自己项目中的安全校验</h1><p>如果这种校验出现在我们自己的测试项目中，正如我在视频《Web UI自动化测试：Selenium入门》中所说，建议你和研发人员沟通，<strong>在test版本上去除它们，只保留用户和密码即可</strong>。</p>
+<p>解决问题的方法有很多，换一种思路，一切豁然开朗。把“登录过程中二维码/短信验证”<strong>从自动化测试用例集中移出，放到手工测试用例集</strong>，技术难题就这么轻松愉快的解决了，码农再也不用为了苦思冥想、挠头掉发担心了。</p>
+<p>各位看客，山不过来我就过去~~</p>
+<h1 id="第三方网站中的安全校验"><a href="#第三方网站中的安全校验" class="headerlink" title="第三方网站中的安全校验"></a>第三方网站中的安全校验</h1><p>可是……如果你是在对第三方网站编写网页爬虫，或者编写一些自动化脚本，遇到防自动化登录校验，又该怎么办呢？现在可没有网站程序员帮你临时去掉这个功能模块了。</p>
+<p>这种情况，正是本文需要讲解的内容。</p>
+<h1 id="半自动化方案"><a href="#半自动化方案" class="headerlink" title="半自动化方案"></a>半自动化方案</h1><p>我的解决方案是这样的：</p>
+<ol>
+<li>人工登录所需网站。</li>
+<li>提取页面请求头中的Cookie。</li>
+<li>将Cookie添加到WebDriver。</li>
+</ol>
+<p>前两步很简单，应该是从业人员的基本功，不过多赘述，但下文也会演示。重点在第3步，我不确定Selenium是否提供了这样的API，幸运的是，最终在官方docs中找到所需的方法。</p>
+<p>也许你已经发现了，经过这个方案的处理，我们的自动化变得不纯粹了，它变成了半自动化，因为获取请求Cookie的过程是人工的。Anyway，我的自动化脚本至少又可以运行起来了，加入一点点人工介入也是值得的。</p>
+<p>另外一点不方便的是，Cookie中的登录信息都是有有效期的，无论这个网站登录时效使用的是Cookie还是Session，我们不可避免的都需要每隔一段时间重新手工登录网站，获取最新的Cookie，并在我们的代码中进行替换。</p>
+<h1 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h1><p>下面我们以头条公众号后台为例演示整个过程。</p>
+<h2 id="1、人工登录所需网站"><a href="#1、人工登录所需网站" class="headerlink" title="1、人工登录所需网站"></a>1、人工登录所需网站</h2><p>这一步就不演示了，可别泄露了我的密码。<br><img src="/images/in-post/selenium-login-cookie/02.webp" alt="imag"></p>
+<h2 id="2、提取页面请求头中的Cookie"><a href="#2、提取页面请求头中的Cookie" class="headerlink" title="2、提取页面请求头中的Cookie"></a>2、提取页面请求头中的Cookie</h2><p>操作步骤：</p>
+<ol>
+<li>点击<kbd>F12</kbd>，打开“开发者工具”</li>
+<li>刷新页面，捕获请求</li>
+<li>在左侧请求列表中切换几次，找到<code>Request Headers</code>中<code>Cookie</code>有值的请求</li>
+<li>Cookie字段后面的一长串字符串，就是我们需要的<br><img src="/images/in-post/selenium-login-cookie/03.webp" alt="imag"></li>
+</ol>
+<h2 id="3、将Cookie添加到WebDriver"><a href="#3、将Cookie添加到WebDriver" class="headerlink" title="3、将Cookie添加到WebDriver"></a>3、将Cookie添加到WebDriver</h2><p>上一步中得到的Cookie字符串还需要经过处理，因为它是很多Cookie以分号为分隔符拼接之后的内容，我们需要逆向操作：</p>
+<ol>
+<li>先以“分号<code>;</code>”为分隔符获取Cookie列表，</li>
+<li>列表中的元素都含有=号，=左侧是Cookie的name，=右侧是Cookie的value，用name和value构造Cookie，</li>
+<li>最后传给WebDriver。</li>
+</ol>
+<p>为了验证我们分析的 <strong>“Cookie字符串是以分号分隔、Cookie的name和value在=两侧”</strong>，我们仍回到“开发者工具”，切换到Cookies卡片下，查看Cookie列表完整信息：</p>
+<p><img src="/images/in-post/selenium-login-cookie/04.webp" alt="imag"></p>
+<h1 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h1><p>闲话少叙，我们开始编码吧。</p>
+<p>先解析我们得到的原始Cookie字符串，</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.openqa.selenium.Cookie;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 将cookie字符串拆解到list中</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> rawCookie 原始Cookie字符串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> Cookie列表</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Cookie&gt; <span class="title">parseRawCookie</span><span class="params">(String rawCookie)</span> </span>&#123;</span><br><span class="line">  List&lt;Cookie&gt; cookies = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">  String[] rawCookieParams = rawCookie.split(<span class="string">&quot;;&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (String cookieParam : rawCookieParams) &#123;</span><br><span class="line">    String[] rawCookieNameAndValue = cookieParam.split(<span class="string">&quot;=&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="number">2</span> != rawCookieNameAndValue.length) &#123;</span><br><span class="line">      log.error(<span class="string">&quot;Invalid cookie: missing name and value.&quot;</span>);</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    String cookieName = rawCookieNameAndValue[<span class="number">0</span>].trim();</span><br><span class="line">    String cookieValue = rawCookieNameAndValue[<span class="number">1</span>].trim();</span><br><span class="line">    Cookie cookie = <span class="keyword">new</span> Cookie(cookieName, cookieValue);</span><br><span class="line">    cookies.add(cookie);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> cookies;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将上一步得到的Cookie列表添加给WebDriver，这一步需要放在所有需要权限验证的步骤之前。<br>我们可以先添加Cookie，然后刷新页面，这样我们打开的网页就是登陆状态了。<br><img src="/images/in-post/selenium-login-cookie/06.webp" alt="imag"></p>
+<p>编码演示到这里就够用了，大家不妨试试。</p>
+<h1 id="API补充说明"><a href="#API补充说明" class="headerlink" title="API补充说明"></a>API补充说明</h1><p>在这个解决方案中，我们主要用到了两个接口，它们还有一些相关接口，如有需要，请自行查阅。</p>
+<h2 id="1、添加Cookie"><a href="#1、添加Cookie" class="headerlink" title="1、添加Cookie"></a>1、添加Cookie</h2><p><code>void addCookie(Cookie cookie) // Add a specific cookie.</code></p>
+<ul>
+<li>所属接口：<br><code>org.openqa.selenium.WebDriver.Options</code></li>
+<li>相关方法：<br><code>java.util.Set&lt;Cookie&gt; getCookies()</code>、<code>deleteCookie(Cookie cookie)</code> 等等。</li>
+</ul>
+<h2 id="2、构造Cookie"><a href="#2、构造Cookie" class="headerlink" title="2、构造Cookie"></a>2、构造Cookie</h2><p><code>Cookie(java.lang.String name, java.lang.String value)</code></p>
+<ul>
+<li>所属接口：<br><code>org.openqa.selenium.Cookie</code></li>
+<li>相关方法：<br><code>Cookie(java.lang.String name, java.lang.String value, java.lang.String domain, java.lang.String path, java.util.Date expiry, boolean isSecure, boolean isHttpOnly)</code> 等等</li>
+</ul>
+<p>官方docs地址，如下：<br><a href="https://seleniumhq.github.io/selenium/docs/api/java/">https://seleniumhq.github.io/selenium/docs/api/java/</a></p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+      <tags>
+        <tag>Selenium</tag>
+        <tag>Automated Testing</tag>
+        <tag>Interface Testing</tag>
+        <tag>API Testing</tag>
       </tags>
   </entry>
   <entry>
@@ -737,6 +737,34 @@ goto first step (or shut off burner when done)
       </tags>
   </entry>
   <entry>
+    <title>Selenium | 借助JavaScript实现一些不易处理的操作</title>
+    <url>/2020/09/07/useful-JS-utils-in-Selenium/</url>
+    <content><![CDATA[<h1 id="JavascriptExecutor"><a href="#JavascriptExecutor" class="headerlink" title="JavascriptExecutor"></a>JavascriptExecutor</h1><p>Javascript脚本执行器。</p>
+<p><code>arguments[i]</code>是js脚本传参的占位符，i从0开始。</p>
+<span id="more"></span>
+
+<h1 id="页面滚动"><a href="#页面滚动" class="headerlink" title="页面滚动"></a>页面滚动</h1><p>jse方式滚动页面的几种方式：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">JavascriptExecutor jse = (JavascriptExecutor)driver;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 滚动到某元素（tips：适用于元素不可见或被遮挡）</span></span><br><span class="line">jse.executeScript(<span class="string">&quot;arguments[0].scrollIntoView();&quot;</span>, element);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 向下滚动</span></span><br><span class="line">jse.executeScript(<span class="string">&quot;window.scrollBy(0, 500)&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">jse.executeScript(<span class="string">&quot;scroll(0, 500);&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 滚动到底部</span></span><br><span class="line">jse.executeScript(<span class="string">&quot;window.scrollTo(0, document.body.scrollHeight)&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 动态元素的高度</span></span><br><span class="line"><span class="keyword">double</span> ImageHeight = eachtile.getSize().getHeight();</span><br><span class="line"><span class="keyword">double</span> f = <span class="number">1.04</span>*ImageHeight;</span><br><span class="line">((JavascriptExecutor)driver).executeScript(<span class="string">&quot;window.scrollBy(0,arguments[0]);&quot;</span>, -f);</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="元素内取值"><a href="#元素内取值" class="headerlink" title="元素内取值"></a>元素内取值</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;item-price&quot;&gt;700 Yuan&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class&#x3D;&quot;item-price&quot;&gt;</span><br><span class="line">  &lt;span&gt;500 Yuan&lt;&#x2F;span&gt;</span><br><span class="line">  400 Yuan</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>div可能有span也可能没有，但要不取出span中的文本，即，期望得到700 Yuan和400 Yuan</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">WebElement element = driver.findElement(By.xpath(<span class="string">&quot;//div[contains(@class, &#x27;item-price&#x27;)]&quot;</span>));</span><br><span class="line"></span><br><span class="line">JavascriptExecutor jse = (JavascriptExecutor)driver;</span><br><span class="line">jse.executeScript(<span class="string">&quot;return arguments[0].lastChild.textContent;&quot;</span>, element);</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="list超长，点击其中“不可见”的选项"><a href="#list超长，点击其中“不可见”的选项" class="headerlink" title="list超长，点击其中“不可见”的选项"></a>list超长，点击其中“不可见”的选项</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selectListByJS</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    JavascriptExecutor js = (JavascriptExecutor) driver;</span><br><span class="line">    String css;</span><br><span class="line">    css = <span class="string">&quot;document.querySelectorAll(&#x27;.select-menu&#x27;)[0].querySelector(&#x27;.select-option:nth-child(24)&#x27;).click();&quot;</span>;</span><br><span class="line">    js.executeScript(css);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改属性，使可见。</span></span><br><span class="line"><span class="comment">// tip：还没验证过</span></span><br><span class="line">String strJs = <span class="string">&quot;document.getElementsByClassName(&#x27;arguments[0]&#x27;).style.height=&#x27;auto&#x27;; document.getElementsByClassName(&#x27;arguments[0]&#x27;).style.visibility=&#x27;visible&#x27;;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="点击元素"><a href="#点击元素" class="headerlink" title="点击元素"></a>点击元素</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 通过JavaScript实现点击元素。</span></span><br><span class="line"><span class="comment"> * tips：适用于click()失效时</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> element</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clickByJS</span><span class="params">(WebElement element)</span> </span>&#123;</span><br><span class="line">	JavascriptExecutor jse = (JavascriptExecutor)driver;</span><br><span class="line">	jse.executeScript(<span class="string">&quot;arguments[0].click()&quot;</span>, element);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><p><a href="https://www.guru99.com/execute-javascript-selenium-webdriver.html">https://www.guru99.com/execute-javascript-selenium-webdriver.html</a></p>
+]]></content>
+      <tags>
+        <tag>Selenium</tag>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Raspberry | 树莓派4b系统安装、配置</title>
     <url>/2020/12/20/Raspberry4b/</url>
     <content><![CDATA[<h1 id="购买树莓派的原因"><a href="#购买树莓派的原因" class="headerlink" title="购买树莓派的原因"></a>购买树莓派的原因</h1><ul>
@@ -811,34 +839,6 @@ goto first step (or shut off burner when done)
       <tags>
         <tag>Raspberry 4b</tag>
         <tag>树莓派</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Selenium | 借助JavaScript实现一些不易处理的操作</title>
-    <url>/2020/09/07/useful-JS-utils-in-Selenium/</url>
-    <content><![CDATA[<h1 id="JavascriptExecutor"><a href="#JavascriptExecutor" class="headerlink" title="JavascriptExecutor"></a>JavascriptExecutor</h1><p>Javascript脚本执行器。</p>
-<p><code>arguments[i]</code>是js脚本传参的占位符，i从0开始。</p>
-<span id="more"></span>
-
-<h1 id="页面滚动"><a href="#页面滚动" class="headerlink" title="页面滚动"></a>页面滚动</h1><p>jse方式滚动页面的几种方式：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">JavascriptExecutor jse = (JavascriptExecutor)driver;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 滚动到某元素（tips：适用于元素不可见或被遮挡）</span></span><br><span class="line">jse.executeScript(<span class="string">&quot;arguments[0].scrollIntoView();&quot;</span>, element);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 向下滚动</span></span><br><span class="line">jse.executeScript(<span class="string">&quot;window.scrollBy(0, 500)&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">jse.executeScript(<span class="string">&quot;scroll(0, 500);&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 滚动到底部</span></span><br><span class="line">jse.executeScript(<span class="string">&quot;window.scrollTo(0, document.body.scrollHeight)&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 动态元素的高度</span></span><br><span class="line"><span class="keyword">double</span> ImageHeight = eachtile.getSize().getHeight();</span><br><span class="line"><span class="keyword">double</span> f = <span class="number">1.04</span>*ImageHeight;</span><br><span class="line">((JavascriptExecutor)driver).executeScript(<span class="string">&quot;window.scrollBy(0,arguments[0]);&quot;</span>, -f);</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="元素内取值"><a href="#元素内取值" class="headerlink" title="元素内取值"></a>元素内取值</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;item-price&quot;&gt;700 Yuan&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class&#x3D;&quot;item-price&quot;&gt;</span><br><span class="line">  &lt;span&gt;500 Yuan&lt;&#x2F;span&gt;</span><br><span class="line">  400 Yuan</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>div可能有span也可能没有，但要不取出span中的文本，即，期望得到700 Yuan和400 Yuan</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">WebElement element = driver.findElement(By.xpath(<span class="string">&quot;//div[contains(@class, &#x27;item-price&#x27;)]&quot;</span>));</span><br><span class="line"></span><br><span class="line">JavascriptExecutor jse = (JavascriptExecutor)driver;</span><br><span class="line">jse.executeScript(<span class="string">&quot;return arguments[0].lastChild.textContent;&quot;</span>, element);</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="list超长，点击其中“不可见”的选项"><a href="#list超长，点击其中“不可见”的选项" class="headerlink" title="list超长，点击其中“不可见”的选项"></a>list超长，点击其中“不可见”的选项</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selectListByJS</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    JavascriptExecutor js = (JavascriptExecutor) driver;</span><br><span class="line">    String css;</span><br><span class="line">    css = <span class="string">&quot;document.querySelectorAll(&#x27;.select-menu&#x27;)[0].querySelector(&#x27;.select-option:nth-child(24)&#x27;).click();&quot;</span>;</span><br><span class="line">    js.executeScript(css);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改属性，使可见。</span></span><br><span class="line"><span class="comment">// tip：还没验证过</span></span><br><span class="line">String strJs = <span class="string">&quot;document.getElementsByClassName(&#x27;arguments[0]&#x27;).style.height=&#x27;auto&#x27;; document.getElementsByClassName(&#x27;arguments[0]&#x27;).style.visibility=&#x27;visible&#x27;;&quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<h1 id="点击元素"><a href="#点击元素" class="headerlink" title="点击元素"></a>点击元素</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 通过JavaScript实现点击元素。</span></span><br><span class="line"><span class="comment"> * tips：适用于click()失效时</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> element</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clickByJS</span><span class="params">(WebElement element)</span> </span>&#123;</span><br><span class="line">	JavascriptExecutor jse = (JavascriptExecutor)driver;</span><br><span class="line">	jse.executeScript(<span class="string">&quot;arguments[0].click()&quot;</span>, element);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><p><a href="https://www.guru99.com/execute-javascript-selenium-webdriver.html">https://www.guru99.com/execute-javascript-selenium-webdriver.html</a></p>
-]]></content>
-      <tags>
-        <tag>Selenium</tag>
-        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -952,8 +952,8 @@ goto first step (or shut off burner when done)
 </blockquote>
 <p>先演示一下最终实现的效果，也就是最初的需求</p>
 <ol>
-<li>在包根目录下，右键——&gt;<code>New</code>——&gt;选择新设置的模板，<br><img src="/img/in-post/file-templates-in-IDEA/right-click-new-entity.webp" alt="right click"></li>
-<li>输入entity名，如<code>User</code>，首字母大写<br><img src="/img/in-post/file-templates-in-IDEA/input-entity.webp" alt="input entity"></li>
+<li>在包根目录下，右键——&gt;<code>New</code>——&gt;选择新设置的模板，<br><img src="/images/in-post/file-templates-in-IDEA/right-click-new-entity.webp" alt="right click"></li>
+<li>输入entity名，如<code>User</code>，首字母大写<br><img src="/images/in-post/file-templates-in-IDEA/input-entity.webp" alt="input entity"></li>
 <li>生成的如下文件：<ul>
 <li>entity/po : <code>User.java</code></li>
 <li>dao : <code>UserRepository.java</code></li>
@@ -967,7 +967,7 @@ goto first step (or shut off burner when done)
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">src&#x2F;main&#x2F;java</span><br><span class="line">└── com.github.quanqinle</span><br><span class="line">        ├── Application.java</span><br><span class="line">        ├── entity</span><br><span class="line">        │   ├── po</span><br><span class="line">        │   │   └── User.java</span><br><span class="line">        │   └── vo</span><br><span class="line">        ├── dao</span><br><span class="line">        │   └── UserRepository.java</span><br><span class="line">        ├── service</span><br><span class="line">        │   ├── impl</span><br><span class="line">        │   │   └── UserServiceImpl.java</span><br><span class="line">        │   └── UserService.java</span><br><span class="line">        └── controller</span><br><span class="line">            └── UserController.java</span><br></pre></td></tr></table></figure>
 
 <h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><p>先放一张最终的配置，就像下图中的(1)所示：</p>
-<p><img src="/img/in-post/file-templates-in-IDEA/final-settings.webp" alt="final settings"></p>
+<p><img src="/images/in-post/file-templates-in-IDEA/final-settings.webp" alt="final settings"></p>
 <center style="color:#C0C0C0;">图1</center> 
 
 <h2 id="配置po模板"><a href="#配置po模板" class="headerlink" title="配置po模板"></a>配置po模板</h2><p>打开<code>Settings</code>窗口，找到<code>Editor</code>——&gt;<code>File and Code templates</code>，在<code>Files</code>分类下，点击<kbd>Create Template</kbd>，即图1的按钮(2)</p>

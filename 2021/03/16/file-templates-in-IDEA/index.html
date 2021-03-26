@@ -27,9 +27,9 @@
 <meta property="og:site_name" content="Quan Qinle">
 <meta property="og:description" content="环境 IntelliJ IDEA Community 2020.3.3  介绍在Spring Boot项目中，每当新增一个entity&#x2F;module对象时，如UserPO.java，大多时候接下来还要创建对应的repository、service、service implement、controller等，并且最开始类的内容也是相似，一套模板类做下来，慢慢的重复劳动。 于是，想着是否存在根据类模板">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://quanqinle.github.io/img/in-post/file-templates-in-IDEA/right-click-new-entity.webp">
-<meta property="og:image" content="https://quanqinle.github.io/img/in-post/file-templates-in-IDEA/input-entity.webp">
-<meta property="og:image" content="https://quanqinle.github.io/img/in-post/file-templates-in-IDEA/final-settings.webp">
+<meta property="og:image" content="https://quanqinle.github.io/images/in-post/file-templates-in-IDEA/right-click-new-entity.webp">
+<meta property="og:image" content="https://quanqinle.github.io/images/in-post/file-templates-in-IDEA/input-entity.webp">
+<meta property="og:image" content="https://quanqinle.github.io/images/in-post/file-templates-in-IDEA/final-settings.webp">
 <meta property="article:published_time" content="2021-03-16T16:00:00.000Z">
 <meta property="article:modified_time" content="2021-03-16T16:00:00.000Z">
 <meta property="article:author" content="权芹乐">
@@ -37,7 +37,7 @@
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="IDEA">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://quanqinle.github.io/img/in-post/file-templates-in-IDEA/right-click-new-entity.webp">
+<meta name="twitter:image" content="https://quanqinle.github.io/images/in-post/file-templates-in-IDEA/right-click-new-entity.webp">
 
 <link rel="canonical" href="https://quanqinle.github.io/2021/03/16/file-templates-in-IDEA/">
 
@@ -115,7 +115,6 @@
       <h1 class="site-title">Quan Qinle</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">权芹乐的博客 | QuanQinle's Blog</p>
   </div>
 
   <div class="site-nav-right">
@@ -206,7 +205,7 @@
     <link itemprop="mainEntityOfPage" href="https://quanqinle.github.io/2021/03/16/file-templates-in-IDEA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/img/avatar.webp">
+      <meta itemprop="image" content="/images/avatar.webp">
       <meta itemprop="name" content="权芹乐">
       <meta itemprop="description" content="时间需要留下走过的痕迹">
     </span>
@@ -282,8 +281,8 @@
 </blockquote>
 <p>先演示一下最终实现的效果，也就是最初的需求</p>
 <ol>
-<li>在包根目录下，右键——&gt;<code>New</code>——&gt;选择新设置的模板，<br><img src="/img/in-post/file-templates-in-IDEA/right-click-new-entity.webp" alt="right click"></li>
-<li>输入entity名，如<code>User</code>，首字母大写<br><img src="/img/in-post/file-templates-in-IDEA/input-entity.webp" alt="input entity"></li>
+<li>在包根目录下，右键——&gt;<code>New</code>——&gt;选择新设置的模板，<br><img src="/images/in-post/file-templates-in-IDEA/right-click-new-entity.webp" alt="right click"></li>
+<li>输入entity名，如<code>User</code>，首字母大写<br><img src="/images/in-post/file-templates-in-IDEA/input-entity.webp" alt="input entity"></li>
 <li>生成的如下文件：<ul>
 <li>entity/po : <code>User.java</code></li>
 <li>dao : <code>UserRepository.java</code></li>
@@ -297,7 +296,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">src&#x2F;main&#x2F;java</span><br><span class="line">└── com.github.quanqinle</span><br><span class="line">        ├── Application.java</span><br><span class="line">        ├── entity</span><br><span class="line">        │   ├── po</span><br><span class="line">        │   │   └── User.java</span><br><span class="line">        │   └── vo</span><br><span class="line">        ├── dao</span><br><span class="line">        │   └── UserRepository.java</span><br><span class="line">        ├── service</span><br><span class="line">        │   ├── impl</span><br><span class="line">        │   │   └── UserServiceImpl.java</span><br><span class="line">        │   └── UserService.java</span><br><span class="line">        └── controller</span><br><span class="line">            └── UserController.java</span><br></pre></td></tr></table></figure>
 
 <h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><p>先放一张最终的配置，就像下图中的(1)所示：</p>
-<p><img src="/img/in-post/file-templates-in-IDEA/final-settings.webp" alt="final settings"></p>
+<p><img src="/images/in-post/file-templates-in-IDEA/final-settings.webp" alt="final settings"></p>
 <center style="color:#C0C0C0;">图1</center> 
 
 <h2 id="配置po模板"><a href="#配置po模板" class="headerlink" title="配置po模板"></a>配置po模板</h2><p>打开<code>Settings</code>窗口，找到<code>Editor</code>——&gt;<code>File and Code templates</code>，在<code>Files</code>分类下，点击<kbd>Create Template</kbd>，即图1的按钮(2)</p>
@@ -457,7 +456,7 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="权芹乐"
-      src="/img/avatar.webp">
+      src="/images/avatar.webp">
   <p class="site-author-name" itemprop="name">权芹乐</p>
   <div class="site-description" itemprop="description">时间需要留下走过的痕迹</div>
 </div>
@@ -506,16 +505,6 @@
   </div>
 
 
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://www.quanqinle.com/" title="https:&#x2F;&#x2F;www.quanqinle.com" rel="noopener" target="_blank">Title</a>
-        </li>
-    </ul>
-  </div>
 
       </div>
 
