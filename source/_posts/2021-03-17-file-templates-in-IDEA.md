@@ -31,9 +31,9 @@ tags:
 
 先演示一下最终实现的效果，也就是最初的需求
 1. 在包根目录下，右键——>`New`——>选择新设置的模板，
-   ![right click](/img/in-post/file-templates-in-IDEA/right-click-new-entity.webp)
+   ![right click](/images/in-post/file-templates-in-IDEA/right-click-new-entity.webp)
 2. 输入entity名，如`User`，首字母大写
-   ![input entity](/img/in-post/file-templates-in-IDEA/input-entity.webp)
+   ![input entity](/images/in-post/file-templates-in-IDEA/input-entity.webp)
 3. 生成的如下文件：
    + entity/po : `User.java`
    + dao : `UserRepository.java`
@@ -64,7 +64,7 @@ src/main/java
 
 先放一张最终的配置，就像下图中的(1)所示：
 
-![final settings](/img/in-post/file-templates-in-IDEA/final-settings.webp)
+![final settings](/images/in-post/file-templates-in-IDEA/final-settings.webp)
 <center style="color:#C0C0C0;">图1</center> 
 
 ## 配置po模板

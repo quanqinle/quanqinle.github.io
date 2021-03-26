@@ -163,7 +163,7 @@ sidebar:
 # Sidebar Avatar
 avatar:
   # Replace the default image and set the url here.
-  url: /img/avatar.webp
+  url: /images/avatar.webp
   # If true, the avatar will be dispalyed in circle.
   rounded: false
   # If true, the avatar will be rotated with the cursor.
@@ -201,7 +201,7 @@ links_settings:
   layout: block
 
 links:
-  Title: https://www.quanqinle.com
+  #Title: https://www.quanqinle.com
 
 # Table of Contents in the Sidebar
 # Front-matter variable (unsupport wrap expand_all).
