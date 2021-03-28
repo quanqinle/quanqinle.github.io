@@ -17,7 +17,7 @@ timezone: 'Asia/Shanghai'
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://quanqinle.github.io
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :lang/:year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -36,7 +36,7 @@ skip_render:
 # Writing
 ## File name of new posts
 ## default-> new_post_name: :title.md
-new_post_name: :year-:month-:day-:title.md
+new_post_name: :lang/:year-:month-:day-:title.md
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link:
@@ -64,6 +64,10 @@ index_generator:
   path: ''
   per_page: 10
   order_by: -date
+  # https://github.com/xcatliu/hexo-generator-index-i18n
+  ## single_language_index: Show only default language posts at home page. By default is false. 
+  ## This means that home page can contain posts written on any language.
+  single_language_index: true
 
 # Category & Tag
 default_category: uncategorized
