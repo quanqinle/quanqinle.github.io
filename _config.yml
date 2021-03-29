@@ -69,6 +69,11 @@ index_generator:
   ## This means that home page can contain posts written on any language.
   single_language_index: true
 
+# config hexo-generator-i18n option (optional, this is default option)
+i18n:
+  type: [page, post]
+  generator: [archive, category, tag, index]
+
 # Category & Tag
 default_category: uncategorized
 category_map:
