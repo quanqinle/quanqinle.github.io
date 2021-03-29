@@ -2,8 +2,8 @@
 layout:       post
 title:        "Java | 使用IDEA的文件模板功能简化Spring Boot的类创建"
 subtitle:     "在Spring Boot项目增加一个entity时，一般需要顺带创建多个类，使用IntelliJ的`File and Code Templates`一键创建所有类"
-date:         2021-03-17
-updated:      2021-03-17
+date:         2021-03-17 12:00:00
+updated:      2021-03-17 12:00:00
 author:       "权芹乐"
 header-img:   "img/home-bg.webp"
 catalog:      true

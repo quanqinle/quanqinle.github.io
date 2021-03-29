@@ -2,8 +2,8 @@
 layout:       post
 title:        "Java | Use IDEA's file template function to simplify Spring Boot class creation"
 subtitle:     "When adding an entity to a Spring Boot project, you generally need to create multiple classes by the way. Use IntelliJ's `File and Code Templates` to create all classes in one click"
-date:         2021-03-26
-updated:      2021-03-26
+date:         2021-03-17 12:00:00
+updated:      2021-03-26 12:00:00
 author:       "Quan Qinle"
 header-img:   "img/home-bg.webp"
 catalog:      true
