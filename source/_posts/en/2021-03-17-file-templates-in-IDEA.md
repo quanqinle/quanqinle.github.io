@@ -6,6 +6,7 @@ date:         2021-03-17 12:00:00
 updated:      2021-03-26 12:00:00
 author:       "Quan Qinle"
 header-img:   "img/home-bg.webp"
+lang:         en
 catalog:      true
 categories:
     - Code

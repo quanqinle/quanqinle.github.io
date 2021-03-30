@@ -71,13 +71,22 @@ index_generator:
 
 # config hexo-generator-i18n option (optional, this is default option)
 i18n:
+  ## the default of languages is `hexo.config.language`
+  # languages: [zh-CN, en]
   type: [page, post]
   generator: [archive, category, tag, index]
 
 # Category & Tag
 default_category: uncategorized
+## when category is chinese, the url will contain the chinese word, using the following to solve it
 category_map:
+  编程: programming
+  生活: life
+  其他: other
 tag_map:
+  编程: programming
+  生活: life
+  其他: other
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
