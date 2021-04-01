@@ -144,3 +144,12 @@ js_concator:
   bundle_path: '/js/bundle.js'
   front: false
   silent: false
+image_minifier:
+  ## fail to deploy, so exclude gif
+  enable: false
+  interlaced: false
+  multipass: false
+  optimizationLevel: 2
+  pngquant: false
+  progressive: false
+  silent: false
