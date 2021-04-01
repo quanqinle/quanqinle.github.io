@@ -23,6 +23,8 @@ tags:
 + MIUI版本 界面，连续点击中间“11”图标
 + 点击右上角【...】，手动选择安装包、重启到Recovery出现
 
+<!-- more -->
+
 # 刷第三方ROM
 
 第三方ROM，例如，[xda](https://forum.xda-developers.com/mi-6/development/rom-evolution-x-4-20-2-sagit-t4089445) 或 [eu](https://xiaomi.eu/community/threads/miui-11-0-stable-release.52628/)

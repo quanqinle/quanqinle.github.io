@@ -19,6 +19,8 @@ tags:
 + 网上搜索比较后，优先`namesilo`
 + 最终通过比价，选择`porkbun`。对于初级、低端域名玩家，*便宜*就是吸引力。
 
+<!-- more -->
+
 > 域名服务商价格比较工具：[www.domcomp.com](https://www.domcomp.com/)
 
 另外，到期后，我考虑转到`namesilo`。

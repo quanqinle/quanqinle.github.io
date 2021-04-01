@@ -16,6 +16,8 @@ catalog:    true
 
 blog模板试用Hux的，现在原模板中的很多东西还没删，先简单试用吧。
 
+<!-- more -->
+
 ## 试用markdown
 【简明版】有道云笔记Markdown指南 http://note.youdao.com/iyoudao/?p=2411
 

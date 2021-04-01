@@ -37,6 +37,8 @@ CSS Selector 使用CSS定位元素
 * .class
 * [attribute=value]
 
+<!-- more -->
+
 这4个的各种组合，可以出现丰富、强大的效果。
 
 举几个例子

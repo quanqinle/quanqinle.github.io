@@ -11,6 +11,8 @@ tags:
     - Automated Testing
 ---
 
+<!-- more -->
+
 # 什么是自动化测试？
 不想说话
 
