@@ -251,7 +251,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="什么是自动化测试？"><a href="#什么是自动化测试？" class="headerlink" title="什么是自动化测试？"></a>什么是自动化测试？</h1><p>不想说话</p>
+          <span id="more"></span>
+
+<h1 id="什么是自动化测试？"><a href="#什么是自动化测试？" class="headerlink" title="什么是自动化测试？"></a>什么是自动化测试？</h1><p>不想说话</p>
 <h1 id="为什么要进行自动化测试？自动化测试的好处"><a href="#为什么要进行自动化测试？自动化测试的好处" class="headerlink" title="为什么要进行自动化测试？自动化测试的好处"></a>为什么要进行自动化测试？自动化测试的好处</h1><p>不想说话</p>
 <h1 id="自动化测试的类型"><a href="#自动化测试的类型" class="headerlink" title="自动化测试的类型"></a>自动化测试的类型</h1><h2 id="常规分类"><a href="#常规分类" class="headerlink" title="常规分类"></a>常规分类</h2><p>通常我们听到最多的分类方式是：</p>
 <ul>
@@ -523,61 +525,14 @@
 <li>网上搜索比较后，优先<code>namesilo</code></li>
 <li>最终通过比价，选择<code>porkbun</code>。对于初级、低端域名玩家，<em>便宜</em>就是吸引力。</li>
 </ul>
-<blockquote>
-<p>域名服务商价格比较工具：<a target="_blank" rel="noopener" href="https://www.domcomp.com/">www.domcomp.com</a></p>
-</blockquote>
-<p>另外，到期后，我考虑转到<code>namesilo</code>。</p>
-<h1 id="在porkbun注册域名"><a href="#在porkbun注册域名" class="headerlink" title="在porkbun注册域名"></a>在<code>porkbun</code>注册域名</h1><p><a target="_blank" rel="noopener" href="https://porkbun.com/">porkbun</a>的特点：</p>
-<ol>
-<li>便宜</li>
-<li>Free WHOIS Privacy：免费的Whois隐私保护</li>
-<li>Free SSL Certificates：免费的SSL</li>
-</ol>
-<p>操作过程简单，不再赘述。</p>
-<h1 id="增改DNS-RECORDS"><a href="#增改DNS-RECORDS" class="headerlink" title="增改DNS RECORDS"></a>增改<code>DNS RECORDS</code></h1><p>点击<code>DNS RECORDS</code>，可以看到默认已经提供了一些记录，它们都指向<code>porkbun</code>的默认网址。</p>
-<p>因为我暂时只搭了博客，所以，添加一条DNS记录指向博客，其他的暂时保持原样。</p>
-<ul>
-<li>添加<code>CNAME类型</code>的记录</li>
-<li><code>Host</code>填写blog，这个域名已在git中配置</li>
-<li><code>Answer</code>填写我的github.io地址</li>
-</ul>
-<blockquote>
-<p>【Tip】网址DNS记录最常用的类型是CNAME与ALIAS，简单说明二者的区别：</p>
-<ul>
-<li>CNAME：解析到其他域名</li>
-<li>ALIAS：解析到ip</li>
-</ul>
-</blockquote>
-<p>至此，域名注册和绑定已经完成，可以正常使用了。</p>
-<p>如果想使用CDN，需要继续下面的步骤。</p>
-<h1 id="把nameservers转移到cloudflare"><a href="#把nameservers转移到cloudflare" class="headerlink" title="把nameservers转移到cloudflare"></a>把nameservers转移到<code>cloudflare</code></h1><p>先看<a target="_blank" rel="noopener" href="https://kb.porkbun.com/article/22-how-to-change-your-nameservers">porkbun官方操作指引</a></p>
-<blockquote>
-<p>tip: <a target="_blank" rel="noopener" href="https://dash.cloudflare.com/">cloudflare</a>提供免费的CDN服务</p>
-</blockquote>
-<ol>
-<li><p>登陆<code>cloudflare</code>，添加自己的域名</p>
-</li>
-<li><p><code>cloudflare</code>将自动扫描 DNS 记录</p>
-<ul>
-<li><strong>黄色云朵</strong>表示该解析通过 CDN 访问（隐藏网站真实 IP 地址，保护原站安全。）</li>
-<li><strong>灰色云朵</strong>表示不通过 CDN 访问（相当于只使用 cloudflare 的 DNS 功能）</li>
-<li>点击云朵可以切换状态。</li>
-<li>手工添加缺失的记录</li>
-</ul>
-</li>
-<li><p>在原域名供应商<code>porkbun</code>处，点击<code>AUTHORITATIVE NAMESERVERS</code>并修改</p>
-</li>
-</ol>
-<p>删除以下所有</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curitiba.porkbun.com</span><br><span class="line">fortaleza.porkbun.com</span><br><span class="line">maceio.porkbun.com</span><br><span class="line">salvador.porkbun.com</span><br></pre></td></tr></table></figure>
-
-<p>替换为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dalary.ns.cloudflare.com</span><br><span class="line">rohin.ns.cloudflare.com</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>剩下就是等待<code>cloudflare</code>变成激活状态：<code>Status: Activity</code></li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/zh-CN/2020/06/10/register-domain/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -838,138 +793,14 @@
       
           <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>开始试用Github io作为blog。</p>
 <p>blog模板试用Hux的，现在原模板中的很多东西还没删，先简单试用吧。</p>
-<h2 id="试用markdown"><a href="#试用markdown" class="headerlink" title="试用markdown"></a>试用markdown</h2><p>【简明版】有道云笔记Markdown指南 <a target="_blank" rel="noopener" href="http://note.youdao.com/iyoudao/?p=2411">http://note.youdao.com/iyoudao/?p=2411</a></p>
-<p>【进阶版】有道云笔记Markdown指南 <a target="_blank" rel="noopener" href="http://note.youdao.com/iyoudao/?p=2445">http://note.youdao.com/iyoudao/?p=2445</a></p>
-<p>有道md的底层^[我是一个注解]依赖讲解：<br><a target="_blank" rel="noopener" href="https://github.com/mermaid-js/mermaid">https://github.com/mermaid-js/mermaid</a></p>
-<p><kbd>Ctrl</kbd> + <kbd>T</kbd> : New tab dialog (maybe you want to open cmd as admin?)</p>
-<p>表格内换行用<code>&lt;br&gt;</code></p>
-<p>Latex数学公式（<a target="_blank" rel="noopener" href="http://mohu.org/info/symbols/symbols.htm%EF%BC%89">http://mohu.org/info/symbols/symbols.htm）</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">e^&#123;x^2&#125;\neq&#123;e^x&#125;^2</span><br><span class="line"></span><br><span class="line">H(D_2) &#x3D; -(\frac&#123;2&#125;&#123;4&#125;\ log_2 \frac&#123;2&#125;&#123;4&#125; + \frac&#123;2&#125;&#123;4&#125;\ log_2 \frac&#123;2&#125;&#123;4&#125;) &#x3D; 1</span><br><span class="line"></span><br><span class="line">        \begin&#123;pmatrix&#125;</span><br><span class="line">        1 &amp; a_1 &amp; a_1^2 &amp; \cdots &amp; a_1^n \\</span><br><span class="line">        1 &amp; a_2 &amp; a_2^2 &amp; \cdots &amp; a_2^n \\</span><br><span class="line">        \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\</span><br><span class="line">        1 &amp; a_m &amp; a_m^2 &amp; \cdots &amp; a_m^n \\</span><br><span class="line">        \end&#123;pmatrix&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A[&quot;点【小绿旗】开始&quot;]</span><br><span class="line"></span><br><span class="line">subgraph 循环</span><br><span class="line">    B(&quot;出现在舞台顶部&quot;)</span><br><span class="line">    C(&quot;向下移动&quot;)</span><br><span class="line">    D(&quot;碰到舞台底部&quot;)</span><br><span class="line">    E(&quot;消失&quot;)</span><br><span class="line">    F(&quot;碰到兔子&quot;)</span><br><span class="line">    G(&quot;加1分&quot;)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">Z[&quot;点【红点】结束&quot;]</span><br><span class="line"></span><br><span class="line">A--&gt;B</span><br><span class="line">B--&gt;C</span><br><span class="line">C--&gt;D</span><br><span class="line">D--&gt;E</span><br><span class="line">C--&gt;F</span><br><span class="line">F--&gt;G</span><br><span class="line">G--&gt;E</span><br><span class="line">E--&gt;B</span><br><span class="line">E--&gt;Z</span><br><span class="line"></span><br><span class="line">classDef directNode fill:#f00,stroke:#333,stroke-width:1px;</span><br><span class="line">class C directNode;</span><br><span class="line">classDef endPointNode fill:#f9f,stroke:#333,stroke-width:1px;</span><br><span class="line">class A,Z endPointNode;</span><br></pre></td></tr></table></figure>
-<hr>
-<h1 id="An-h1-header"><a href="#An-h1-header" class="headerlink" title="An h1 header"></a>An h1 header</h1><p>Paragraphs are separated by a blank line.</p>
-<p>2nd paragraph. <em>Italic</em>, <strong>bold</strong>, and <code>monospace</code>. Itemized lists<br>look like:</p>
-<ul>
-<li>this one</li>
-<li>that one</li>
-<li>the other one</li>
-</ul>
-<p>Note that — not considering the asterisk — the actual text<br>content starts at 4-columns in.</p>
-<blockquote>
-<p>Block quotes are<br>written like so.</p>
-<p>They can span multiple paragraphs,<br>if you like.</p>
-</blockquote>
-<p>Use 3 dashes for an em-dash. Use 2 dashes for ranges (ex., “it’s all<br>in chapters 12–14”). Three dots … will be converted to an ellipsis.<br>Unicode is supported. ☺</p>
-<h2 id="An-h2-header"><a href="#An-h2-header" class="headerlink" title="An h2 header"></a>An h2 header</h2><p>Here’s a numbered list:</p>
-<ol>
-<li>first item</li>
-<li>second item</li>
-<li>third item</li>
-</ol>
-<p>Note again how the actual text starts at 4 columns in (4 characters<br>from the left side). Here’s a code sample:</p>
-<pre><code># Let me re-iterate ...
-for i in 1 .. 10 &#123; do-something(i) &#125;
-</code></pre>
-<p>As you probably guessed, indented 4 spaces. By the way, instead of<br>indenting the block, you can use delimited blocks, if you like:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">define foobar() &#123;</span><br><span class="line">    print &quot;Welcome to flavor country!&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>(which makes copying &amp; pasting easier). You can optionally mark the<br>delimited block for Pandoc to syntax highlight it:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment"># Quick, count to ten!</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    <span class="comment"># (but not *too* quick)</span></span><br><span class="line">    time.sleep(<span class="number">0.5</span>)</span><br><span class="line">    <span class="built_in">print</span> i</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="An-h3-header"><a href="#An-h3-header" class="headerlink" title="An h3 header"></a>An h3 header</h3><p>Now a nested list:</p>
-<ol>
-<li><p>First, get these ingredients:</p>
-<ul>
-<li>carrots</li>
-<li>celery</li>
-<li>lentils</li>
-</ul>
-</li>
-<li><p>Boil some water.</p>
-</li>
-<li><p>Dump everything in the pot and follow<br>this algorithm:</p>
-<pre><code>find wooden spoon
-uncover pot
-stir
-cover pot
-balance wooden spoon precariously on pot handle
-wait 10 minutes
-goto first step (or shut off burner when done)
-</code></pre>
-<p>Do not bump wooden spoon or it will fall.</p>
-</li>
-</ol>
-<p>Notice again how text always lines up on 4-space indents (including<br>that last line which continues item 3 above).</p>
-<p>Here’s a link to <a target="_blank" rel="noopener" href="http://foo.bar/">a website</a>, to a <a href="local-doc.html">local<br>doc</a>, and to a <a href="#an-h2-header">section heading in the current<br>doc</a>. Here’s a footnote [^1].</p>
-<p>[^1]: Footnote text goes here.</p>
-<p>Tables can look like this:</p>
-<p>size  material      color</p>
-<hr>
-<p>9     leather       brown<br>10    hemp canvas   natural<br>11    glass         transparent</p>
-<p>Table: Shoes, their sizes, and what they’re made of</p>
-<p>(The above is the caption for the table.) Pandoc also supports<br>multi-line tables:</p>
-<hr>
-<p>keyword   text</p>
-<hr>
-<p>red       Sunsets, apples, and<br>          other red or reddish<br>          things.</p>
-<p>green     Leaves, grass, frogs<br>          and other things it’s<br>          not easy being.</p>
-<hr>
-<p>A horizontal rule follows.</p>
-<hr>
-<p>Here’s a definition list:</p>
-<p>apples<br>  : Good for making applesauce.</p>
-<p>oranges<br>  : Citrus!</p>
-<p>tomatoes<br>  : There’s no “e” in tomatoe.</p>
-<p>Again, text is indented 4 spaces. (Put a blank line between each<br>term/definition pair to spread things out more.)</p>
-<p>Here’s a “line block”:</p>
-<p>| Line one<br>|   Line too<br>| Line tree</p>
-<p>and images can be specified like so:</p>
-<p><img data-src="http://img3.duitang.com/uploads/item/201208/18/20120818150713_zarnG.thumb.700_0.jpeg" alt="Luffy" title="An exemplary image"></p>
-<p>Inline math equations go in like so: $\omega = d\phi / dt$. Display<br>math should get its own line and be put in in double-dollarsigns:</p>
-<p>$$I = \int \rho R^{2} dV$$</p>
-<p>And note that you can backslash-escape any punctuation characters<br>which you wish to be displayed literally, ex.: `foo`, *bar*, etc.</p>
-<hr>
-<h1 id="An-exhibit-of-Markdown"><a href="#An-exhibit-of-Markdown" class="headerlink" title="An exhibit of Markdown"></a>An exhibit of Markdown</h1><p>This note demonstrates some of what <a target="_blank" rel="noopener" href="http://daringfireball.net/projects/markdown/">Markdown</a> is capable of doing.</p>
-<p><em>Note: Feel free to play with this page. Unlike regular notes, this doesn’t automatically save itself.</em></p>
-<h2 id="Basic-formatting"><a href="#Basic-formatting" class="headerlink" title="Basic formatting"></a>Basic formatting</h2><p>Paragraphs can be written like so. A paragraph is the basic block of Markdown. A paragraph is what text will turn into when there is no reason it should become anything else.</p>
-<p>Paragraphs must be separated by a blank line. Basic formatting of <em>italics</em> and <strong>bold</strong> is supported. This <em>can be <strong>nested</strong> like</em> so.</p>
-<h2 id="Lists"><a href="#Lists" class="headerlink" title="Lists"></a>Lists</h2><h3 id="Ordered-list"><a href="#Ordered-list" class="headerlink" title="Ordered list"></a>Ordered list</h3><ol>
-<li>Item 1</li>
-<li>A second item</li>
-<li>Number 3</li>
-<li>Ⅳ</li>
-</ol>
-<p><em>Note: the fourth item uses the Unicode character for <a target="_blank" rel="noopener" href="http://www.fileformat.info/info/unicode/char/2163/index.htm">Roman numeral four</a>.</em></p>
-<h3 id="Unordered-list"><a href="#Unordered-list" class="headerlink" title="Unordered list"></a>Unordered list</h3><ul>
-<li>An item</li>
-<li>Another item</li>
-<li>Yet another item</li>
-<li>And there’s more…</li>
-</ul>
-<h2 id="Paragraph-modifiers"><a href="#Paragraph-modifiers" class="headerlink" title="Paragraph modifiers"></a>Paragraph modifiers</h2><h3 id="Code-block"><a href="#Code-block" class="headerlink" title="Code block"></a>Code block</h3><pre><code>Code blocks are very useful for developers and other people who look at code or other things that are written in plain text. As you can see, it uses a fixed-width font.
-</code></pre>
-<p>You can also make <code>inline code</code> to add code into other things.</p>
-<h3 id="Quote"><a href="#Quote" class="headerlink" title="Quote"></a>Quote</h3><blockquote>
-<p>Here is a quote. What this is should be self explanatory. Quotes are automatically indented when they are used.</p>
-</blockquote>
-<h2 id="Headings"><a href="#Headings" class="headerlink" title="Headings"></a>Headings</h2><p>There are six levels of headings. They correspond with the six levels of HTML headings. You’ve probably noticed them already in the page. Each level down uses one more hash character.</p>
-<h3 id="Headings-can-also-contain-formatting"><a href="#Headings-can-also-contain-formatting" class="headerlink" title="Headings can also contain formatting"></a>Headings <em>can</em> also contain <strong>formatting</strong></h3><h3 id="They-can-even-contain-inline-code"><a href="#They-can-even-contain-inline-code" class="headerlink" title="They can even contain inline code"></a>They can even contain <code>inline code</code></h3><p>Of course, demonstrating what headings look like messes up the structure of the page.</p>
-<p>I don’t recommend using more than three or four levels of headings here, because, when you’re smallest heading isn’t too small, and you’re largest heading isn’t too big, and you want each size up to look noticeably larger and more important, there there are only so many sizes that you can use.</p>
-<h2 id="URLs"><a href="#URLs" class="headerlink" title="URLs"></a>URLs</h2><p>URLs can be made in a handful of ways:</p>
-<ul>
-<li>A named link to <a target="_blank" rel="noopener" href="http://www.markitdown.net/">MarkItDown</a>. The easiest way to do these is to select what you want to make a link and hit <code>Ctrl+L</code>.</li>
-<li>Another named link to <a target="_blank" rel="noopener" href="http://www.markitdown.net/">MarkItDown</a></li>
-<li>Sometimes you just want a URL like <a target="_blank" rel="noopener" href="http://www.markitdown.net/">http://www.markitdown.net/</a>.</li>
-</ul>
-<h2 id="Horizontal-rule"><a href="#Horizontal-rule" class="headerlink" title="Horizontal rule"></a>Horizontal rule</h2><p>A horizontal rule is a line that goes across the middle of the page.</p>
-<hr>
-<p>It’s sometimes handy for breaking things up.</p>
-<h2 id="Images"><a href="#Images" class="headerlink" title="Images"></a>Images</h2><p>Markdown can also contain images. I’ll need to add something here sometime.</p>
-<h2 id="Finally"><a href="#Finally" class="headerlink" title="Finally"></a>Finally</h2><p>There’s actually a lot more to Markdown than this. See the official <a target="_blank" rel="noopener" href="http://daringfireball.net/projects/markdown/basics">introduction</a> and <a target="_blank" rel="noopener" href="http://daringfireball.net/projects/markdown/syntax">syntax</a> for more information. However, be aware that this is not using the official implementation, and this might work subtly differently in some of the little things.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/zh-CN/2020/05/27/build-my-github-blog/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
