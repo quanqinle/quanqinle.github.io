@@ -12,4 +12,4 @@ The plugins history:
 + remove: hexo-generator-index (The default plugin that comes with hexo)
 + add: [hexo-generator-i18n](https://github.com/Jamling/hexo-generator-i18n)
   > Make sure this plugin after other generators in dependencies of package.json
-+ 
++ add: [hexo-all-minifier](https://github.com/chenzhutian/hexo-all-minifier)

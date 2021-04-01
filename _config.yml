@@ -135,3 +135,12 @@ search:
   content: true
   format: html
   limit: 100
+
+# hexo-all-minifier
+## Dependencies: https://github.com/chenzhutian/hexo-all-minifier
+all_minifier: true
+js_concator:
+  enable: false
+  bundle_path: '/js/bundle.js'
+  front: false
+  silent: false
