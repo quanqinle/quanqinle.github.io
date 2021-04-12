@@ -66,7 +66,7 @@ src/main/java
 先放一张最终的配置，就像下图中的(1)所示：
 
 ![final settings](/images/in-post/file-templates-in-IDEA/final-settings.webp)
-<center style="color:#C0C0C0;">图1</center> 
+<div style="text-align:center">图1</div>
 
 ## 配置po模板
 打开`Settings`窗口，找到`Editor`——>`File and Code templates`，在`Files`分类下，点击<kbd>Create Template</kbd>，即图1的按钮(2)
