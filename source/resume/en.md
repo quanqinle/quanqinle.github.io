@@ -26,45 +26,36 @@ comments:     false
 <body>
 <div class="main-inner content post posts-expand">
 
-<div style="background-color: gainsboro">
-<div style="text-align=center">Qinle Quan
-(Peter, 权芹乐)
-</div>
+<div style="text-align: center; background-color: gainsboro">
+<div style="font-size: 1.5em; font-weight: 700">Qinle Quan (权芹乐, Peter)</div>
 (+86) 18058180154, 
 QuanQinle@gmail.com, 
 Hangzhou, China
 </div>
 
-# <div style="text-align:center">Professional Summary</div>
+# <div style="text-align:center">Professional Summary</div><hr>
 
 
-# <div style="text-align:center">Education</div>
+# <div style="text-align:center">Education</div><hr>
+
 Bachelor of Electrical and Automation Engineering / Nanjing University of Posts and Telecommunications / 2005 ~ 2009
 
 
-
-
-# <div style="text-align:center">Work Experience</div>
+# <div style="text-align:center">Work Experience</div><hr>
 
 ## <a href="http://www.zhcpa.cn/en">ZhongHui Certified Public Accountants LLP.</a> / Software R&D Dept. / 2017.04 ~ now
 
-The R&D Department of Zhonghui Software (established in 2016) is responsible for the research and development of new business systems and the secondary development of existing systems. The product form is mainly B/S, and Android/iPhone app, WeChat applet, etc.
+Software R&D department (established in 2016) is responsible for developing new business systems and maintaining the existing systems. The product forms are mainly B/S, and Android/iPhone app, WeChat mini program, etc.
 
-Zhonghui software r & d department (established in 2016) is responsible for the r & d of new business system and the secondary development of existing system. The product form is mainly B/S, and Android/iPhone app, WeChat miniprogram, etc.
+- Joined as the first test manager, in charge of the test management. Test planning, test design, test execution, tracking, and reporting.
+- Installed and maintained Test case Management Tool(Zentao), JIRA and Jenkins, etc.
+- Wrote unit tests for core modules of Spring Boot projects. Write API tests using [a self-developed framework (based on JMeter)](https://github.com/quanqinle/InterfaceTesting), verifying fields and JSON schema, customizing report output.
 
-1. 
-- Joined as the first test engineer, undertake the test management. Test planning, test design, test execution, tracking, and reporting.
-- Install and maintain Test case Management Tool(Zentao) and Jenkins
-
-2.
-
-3. Write unit tests for core modules of Spring Boot projects. Write API tests using [a self-developed framework (based on JMeter)](https://github.com/quanqinle/InterfaceTesting), verifying fields and JSON schema, customizing report output.
-
-(Spring Boot, Linux, Jenkins, JIRA, K8s, Docker, Postman, Charles, REST-Assured, JMeter, etc.)
+(Spring Boot, MySQL, Linux, Jenkins, JIRA, K8s, Docker, Postman, Charles, REST-Assured, JMeter, etc.)
 
 ##  2016.12 ~ 2017.04, <a href="https://www.huawei.com/en/">Huawei Technologies Co., Ltd.</a> / HUAWEI CLOUD Dept.
 
-Huawei Hangzhou Cloud Computing Product Department is mainly responsible for the development and testing of some components of the cloud computing IaaS layer.
+Huawei Cloud Computing Product Department is mainly responsible for the development and testing of some components of the cloud computing IaaS layer.
 
 - Test the essential underlying components of OpenStack, such as time management, log management, etc.
 - Execute the security testing of the underlying components, vulnerability scanning and result collection.
@@ -117,10 +108,10 @@ Our team produces an application software platform for the collection and sale b
 
 (Linux, Oracle, PL/SQL, tuxedo, Delphi, C, WebSphere, Bash, WinRunner, QC)
 
-# <div style="text-align:center">Skills Summary</div>
+# <div style="text-align:center">Skills Summary</div><hr>
 
 
-# <div style="text-align:center">Technology Skills</div>
+# <div style="text-align:center">Technology Skills</div><hr>
 
 
 </div>
