@@ -26,11 +26,13 @@ comments:     false
 <body>
 <div class="main-inner content post posts-expand">
 
-<div style="text-align: center; background-color: gainsboro">
-<div style="font-size: 1.5em; font-weight: 700">Qinle Quan (权芹乐, Peter)</div>
-(+86) 18058180154, 
-QuanQinle@gmail.com, 
-Hangzhou, China
+<div style="text-align: center; background-color: gray">
+  <div style="font-size: 1.5em; font-weight: 700">Qinle Quan (权芹乐, Peter)</div>
+  <div>
+    <span style="margin: 0 10px"> (+86) 18058180154</span>
+    <span style="margin: 0 10px"><a href="mailto:quanqinle@gmail.com" target="_blank">QuanQinle@gmail.com</a></span>
+    <span style="margin: 0 10px"> Hangzhou, China</span>
+  </div>
 </div>
 
 # <div style="text-align:center">Professional Summary</div><hr>
@@ -45,33 +47,34 @@ Bachelor of Electrical and Automation Engineering / Nanjing University of Posts 
 
 ## <a href="http://www.zhcpa.cn/en">ZhongHui Certified Public Accountants LLP.</a> / Software R&D Dept. / 2017.04 ~ now
 
-Software R&D department (established in 2016) is responsible for developing new business systems and maintaining the existing systems. The product forms are mainly B/S, and Android/iPhone app, WeChat mini program, etc.
+Software R&D Department (established in 2016) is responsible for developing new business systems and maintaining the existing systems. The product forms are mainly B/S, and Android/iPhone app, WeChat mini program, etc.
 
-- Joined as the first test manager, in charge of the test management. Test planning, test design, test execution, tracking, and reporting.
-- Installed and maintained Test case Management Tool(Zentao), JIRA and Jenkins, etc.
-- Wrote unit tests for core modules of Spring Boot projects. Write API tests using [a self-developed framework (based on JMeter)](https://github.com/quanqinle/InterfaceTesting), verifying fields and JSON schema, customizing report output.
+- Joined as the first test manager, in charge of the test management, including test planning, designing, test execution, issue management, and test report, etc.
+- Installed/maintain Test case Management Tool(Zentao), JIRA and Jenkins.
+- Write unit tests for core modules of Spring Boot projects. White box testing through code review.
+- Write API tests using [a self-developed framework (based on JMeter)](https://github.com/quanqinle/InterfaceTesting), verifying response's fields and JSON schema, customizing report output.
 
-(Spring Boot, MySQL, Linux, Jenkins, JIRA, K8s, Docker, Postman, Charles, REST-Assured, JMeter, etc.)
+(Spring, MySQL, Linux, Jenkins, JIRA, K8s, Docker, Postman, Charles, REST-Assured, JMeter, etc.)
 
 
 ##  2016.12 ~ 2017.04, <a href="https://www.huawei.com/en/">Huawei Technologies Co., Ltd.</a> / Huawei Cloud Dept.
 
-Huawei Cloud Computing Product Department is mainly responsible for the development and testing of some components of the cloud computing IaaS layer.
+Huawei Cloud Computing Product Department is mainly responsible for the development and testing of the cloud computing IaaS layer.
 
-- Test the essential underlying components of OpenStack, such as time management, log management, etc.
-- Execute the security testing of the underlying components, vulnerability scanning and result collection.
+- Tested the essential underlying components of OpenStack, such as time management, log management, etc.
+- Worked in a agile team using Scrum, found bugs, and fixed part of them in Python.
 
-(Openstack, Linux)
+(Openstack, Linux, Python)
 
 
 ##  2016.07 ~ 2016.11, <a href="https://www.beibei.com.cn/">Beibei Group</a> / E-commerce Dept.
 
-Beibei is an e-commerce platform focusing on the field of mother and baby, customers buy stuff using its apps.
+Beibei is an e-commerce company focusing on the field of mother and baby, only sells goods through its apps.
 
 - Responsible for Android/iPhone app performance testing, lead a team of 3 people. Promote activity of Android APP performance optimization, work with development team, reduce frame drops greatly which was well received by the company
 - In order to make the performance test steps stable and repeatable, I developed [a UI automation test framework for Web/Android/iOS/H5](https://github.com/quanqinle/WebAndAppUITesting), and used it to write automated test steps and complete performance data collection.
 
-(Spring Boot, Selenium, Appium, Jenkins)
+(Selenium, Appium, Jenkins)
 
 
 ## 2012.05 ~ 2016.06，<a href="http://ir.netease.com/">NetEase, Inc. (NASDAQ: NTES)</a> / Social Media Dept.
@@ -79,18 +82,10 @@ Beibei is an e-commerce platform focusing on the field of mother and baby, custo
 NetEase social media sites (such as NetEase blog, LOFTER) have website and Android/iPhone/iPad app.
 
 
-1.
 - Responsible for Android/iPhone app testing, including: reviewing requirements, making test plans, writing cases, reviewing cases, assigning test tasks, executing tests, tracking progress, evaluating quality, writing test reports, etc.
-
-2.
 - Responsible for automated testing of Android/iPhone apps, including: writing UI test (appium), static code checking (Lint and Clang), unit test (Robolectric), maintaining testing environment and CI/CD jobs (Jenkins).
 Participate in automated testing for web, including: web UI test (Selenium), API test (REST-assured), unit test (Spring / TestNG).
-
-
-4.
 - Test app in weak network condition by Charles proxy. For Android app, Check frame skipping and layout performance, find memory leak, select CPU/memory usage statistics, etc.
-
-5.
 - coach many colleagues for automated testing.
 As a major lecturer of [online courses on automated testing](http://mooc.study.163.com/course/NEU-1000112018) organized by the company 
 
