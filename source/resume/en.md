@@ -53,7 +53,8 @@ Software R&D department (established in 2016) is responsible for developing new 
 
 (Spring Boot, MySQL, Linux, Jenkins, JIRA, K8s, Docker, Postman, Charles, REST-Assured, JMeter, etc.)
 
-##  2016.12 ~ 2017.04, <a href="https://www.huawei.com/en/">Huawei Technologies Co., Ltd.</a> / HUAWEI CLOUD Dept.
+
+##  2016.12 ~ 2017.04, <a href="https://www.huawei.com/en/">Huawei Technologies Co., Ltd.</a> / Huawei Cloud Dept.
 
 Huawei Cloud Computing Product Department is mainly responsible for the development and testing of some components of the cloud computing IaaS layer.
 
@@ -63,12 +64,11 @@ Huawei Cloud Computing Product Department is mainly responsible for the developm
 (Openstack, Linux)
 
 
-##  2016.07 ~ 2016.11, <a href="https://www.beibei.com.cn/">Beibei Group</a> / e-commerce Dept.
+##  2016.07 ~ 2016.11, <a href="https://www.beibei.com.cn/">Beibei Group</a> / E-commerce Dept.
 
-Beibei is an e-commerce platform for mothers and babies in China, customers buy stuff using its apps.
+Beibei is an e-commerce platform focusing on the field of mother and baby, customers buy stuff using its apps.
 
 - Responsible for Android/iPhone app performance testing, lead a team of 3 people. Promote activity of Android APP performance optimization, work with development team, reduce frame drops greatly which was well received by the company
-
 - In order to make the performance test steps stable and repeatable, I developed [a UI automation test framework for Web/Android/iOS/H5](https://github.com/quanqinle/WebAndAppUITesting), and used it to write automated test steps and complete performance data collection.
 
 (Spring Boot, Selenium, Appium, Jenkins)
@@ -76,7 +76,7 @@ Beibei is an e-commerce platform for mothers and babies in China, customers buy 
 
 ## 2012.05 ~ 2016.06，<a href="http://ir.netease.com/">NetEase, Inc. (NASDAQ: NTES)</a> / Social Media Dept.
 
-NetEase social media sites (such as NetEase blog, LOFTER) have website, Android/iPhone/iPad app.
+NetEase social media sites (such as NetEase blog, LOFTER) have website and Android/iPhone/iPad app.
 
 
 1.
@@ -99,7 +99,7 @@ As a major lecturer of [online courses on automated testing](http://mooc.study.1
 
 ## 2009.02 ~ 2012.04， <a href="https://www.hundsun.com/en">Hundsun Technologies Inc.</a> /  Fund and Institutional Financial Management Department
 
-Hundsun is a top financial IT service provider in China. The Open-end Funds Sales System I worked for is for fund trading online or over-the-counter, fund liquidation, etc. It is a product of C/S and B/S architecture.
+Hundsun is a top financial IT service provider in China. The Open-end Funds Sales System I worked for is for fund trading online or over-the-counter, fund liquidation, etc. It is a system of C/S and B/S architecture.
 
 Our team produces an application software platform for the collection and sale business of fund management companies, including fund TA system, direct-selling system of fund, online fund trading system, fund liquidation system, real-time fund TA system and fund order management system.
 
