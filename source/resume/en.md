@@ -79,7 +79,7 @@ Beibei is an e-commerce company focusing on the field of mother and baby, only s
 
 ## 2012.05 ~ 2016.06，<a href="http://ir.netease.com/">NetEase, Inc. (NASDAQ: NTES)</a> / Social Media Dept.
 
-NetEase social media sites (such as NetEase blog, LOFTER) have website and Android/iPhone/iPad app.
+NetEase social media sites (such as [NetEase blog](http://blog.163.com/), [LOFTER](https://www.lofter.com/)) have website and Android/iPhone/iPad apps.
 
 
 - Responsible for Android/iPhone app testing, including: reviewing requirements, making test plans, writing cases, reviewing cases, assigning test tasks, executing tests, tracking progress, evaluating quality, writing test reports, etc.
