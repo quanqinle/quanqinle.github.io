@@ -20,14 +20,14 @@ comments:     false
     <link rel="mask-icon" href="/images/logo.svg" color="#222">
     <link rel="stylesheet" href="/css/main.css">
     <meta property="article:author" content="权芹乐">
-    <title>Peter Quan' resume</title>
+    <title>Peter Quan's resume</title>
 </head>
 
 <body>
 <div class="main-inner content post posts-expand">
 
 <div style="text-align: center; background-color: gray">
-  <div style="font-size: 1.5em; font-weight: 700">Qinle Quan (权芹乐, Peter)</div>
+  <div style="font-size: 1.5em; font-weight: 700">Qinle Quan (权芹乐 or Peter)</div>
   <div>
     <span style="margin: 0 10px"> (+86) 18058180154</span>
     <span style="margin: 0 10px"><a href="mailto:quanqinle@gmail.com" target="_blank">QuanQinle@gmail.com</a></span>
@@ -62,9 +62,9 @@ Software R&D Department (established in 2016) is responsible for developing new 
 Huawei Cloud Computing Product Department is mainly responsible for the development and testing of the cloud computing IaaS layer.
 
 - Tested the essential underlying components of OpenStack, such as time management, log management, etc.
-- Worked in a agile team using Scrum, found bugs, and fixed part of them in Python.
+- Worked in an agile team using Scrum. Found bugs and fixed part of bugs in Python.
 
-(Openstack, Linux, Python)
+(OpenStack, Linux, Python)
 
 
 ##  2016.07 ~ 2016.11, <a href="https://www.beibei.com.cn/">Beibei Group</a> / E-commerce Dept.
@@ -72,7 +72,7 @@ Huawei Cloud Computing Product Department is mainly responsible for the developm
 Beibei is an e-commerce company focusing on the field of mother and baby, only sells goods through its apps.
 
 - Responsible for Android/iPhone app performance testing, lead a team of 3 people. Promote activity of Android APP performance optimization, work with development team, reduce frame drops greatly which was well received by the company
-- In order to make the performance test steps stable and repeatable, I developed [a UI automation test framework for Web/Android/iOS/H5](https://github.com/quanqinle/WebAndAppUITesting), and used it to write automated test steps and complete performance data collection.
+- In order to make the performance test steps stable and repeatable, developed [a UI automation test framework for Web/Android/iOS/H5](https://github.com/quanqinle/WebAndAppUITesting), and used it to write automated test steps and complete performance data collection.
 
 (Selenium, Appium, Jenkins)
 
@@ -84,7 +84,7 @@ NetEase social media sites (such as [NetEase blog](http://blog.163.com/), [LOFTE
 
 - Responsible for Android/iPhone app testing, including: reviewing requirements, making test plans, writing cases, reviewing cases, assigning test tasks, executing tests, tracking progress, evaluating quality, writing test reports, etc.
 - Responsible for automated testing of Android/iPhone apps, including: writing UI test (appium), static code checking (Lint and Clang), unit test (Robolectric), maintaining testing environment and CI/CD jobs (Jenkins).
-Participate in automated testing for web, including: web UI test (Selenium), API test (REST-assured), unit test (Spring / TestNG).
+- Participate in automated testing for web, including: web UI test (Selenium), API test (REST-assured), unit test (Spring / TestNG).
 - Test app in weak network condition by Charles proxy. For Android app, Check frame skipping and layout performance, find memory leak, select CPU/memory usage statistics, etc.
 - coach many colleagues for automated testing.
 As a major lecturer of [online courses on automated testing](http://mooc.study.163.com/course/NEU-1000112018) organized by the company 
@@ -94,14 +94,13 @@ As a major lecturer of [online courses on automated testing](http://mooc.study.1
 
 ## 2009.02 ~ 2012.04， <a href="https://www.hundsun.com/en">Hundsun Technologies Inc.</a> /  Fund and Institutional Financial Management Department
 
-Hundsun is a top financial IT service provider in China. The Open-end Funds Sales System I worked for is for fund trading online or over-the-counter, fund liquidation, etc. It is a system of C/S and B/S architecture.
+Hundsun is a top financial IT service provider in China. The Open-end Funds Sales System I worked for is for fund trading online or over-the-counter, fund liquidation, etc. It is of C/S and B/S architecture.
 
-Our team produces an application software platform for the collection and sale business of fund management companies, including fund TA system, direct-selling system of fund, online fund trading system, fund liquidation system, real-time fund TA system and fund order management system.
-
-- Manual testing involved account management, fund trading, fund clearing, etc. Check fields of Oracle table, validate socket API. In the last year, wrote test plans and reports, summarized the problems encountered in the work process, and communicated with the development team.
+- Manual testing involved account management, fund trading, fund clearing, etc. Checked fields of Oracle table, validated socket API.
+- Wrote test plans and reports, summarized the problems encountered in the work process, and communicated with the development team.
 - Automated testing involved UI testing for Windows Desktop client using Winrunner, socket API testing using Self-developed tool.
 
-(Linux, Oracle, PL/SQL, tuxedo, Delphi, C, WebSphere, Bash, WinRunner, QC)
+(Linux, Oracle, PL/SQL, Tuxedo, Delphi, C, WebSphere, Bash, WinRunner, QC)
 
 # <div style="text-align:center">Skills Summary</div><hr>
 
