@@ -2,7 +2,7 @@
 layout:       false
 title:        "My resume"
 date:         2021-04-06 12:00:00
-updated:      2021-04-07 12:00:00
+updated:      2021-04-18 23:00:00
 author:       "Quan Qinle"
 lang:         en
 catalog:      false
@@ -37,10 +37,14 @@ comments:     false
 
 # <div style="text-align:center">Professional Summary</div><hr>
 
+> Be writing, not finished yet...
+
+Senior Software Engineer In Test
+
+You can talk about your years of experience, industry, or skills. People also talk about their achievements or previous job experiences
 
 # <div style="text-align:center">Education</div><hr>
-
-Bachelor of Electrical and Automation Engineering / Nanjing University of Posts and Telecommunications / 2005 ~ 2009
+Bachelor of Engineering / Nanjing University of Posts and Telecommunications / 2005.09 ~ 2009.07
 
 
 # <div style="text-align:center">Work Experience</div><hr>
