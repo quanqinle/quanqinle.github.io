@@ -26,7 +26,7 @@ comments:     false
 <body>
 <div class="main-inner content post posts-expand">
 
-<div style="text-align: center; background-color: gray">
+<div style="text-align: center; padding:10px; background-color: lightgray">
   <div style="font-size: 1.5em; font-weight: 700">Qinle Quan (权芹乐 or Peter)</div>
   <div>
     <span style="margin: 0 10px"> (+86) 18058180154</span>
@@ -44,6 +44,7 @@ Senior Software Engineer In Test
 You can talk about your years of experience, industry, or skills. People also talk about their achievements or previous job experiences
 
 # <div style="text-align:center">Education</div><hr>
+
 Bachelor of Engineering / Nanjing University of Posts and Telecommunications / 2005.09 ~ 2009.07
 
 
