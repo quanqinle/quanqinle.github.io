@@ -10,17 +10,22 @@ catalog:    true
 ---
 
 
-## 前言
+# 前言
 
 开始试用Github io作为blog。
 
 <!-- more -->
 
+这是一篇占位文章，没有有效信息！
+
 blog模板试用Hux的，现在原模板中的很多东西还没删，先简单试用吧。
 
 update 2021: 已改用hexo
 
-## markdown guide
+# markdown guide
+
+标准版指南 https://www.markdownguide.org/basic-syntax/
+
 【简明版】有道云笔记Markdown指南 http://note.youdao.com/iyoudao/?p=2411
 
 【进阶版】有道云笔记Markdown指南 http://note.youdao.com/iyoudao/?p=2445

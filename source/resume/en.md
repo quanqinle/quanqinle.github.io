@@ -43,6 +43,31 @@ Senior Software Engineer In Test
 
 You can talk about your years of experience, industry, or skills. People also talk about their achievements or previous job experiences
 
+demo from [livecareer.com](https://www.livecareer.com/resume-search/r/software-test-engineer-7523c370e7854e43b62bb195c6c2639f)
++ QA/QC Engineer with 10+ years of experience in mobile, web, back-end applications and network software testing. 
++ Quality-focused professional with extensive experience in manual software testing and solid knowledge in automated testing. 
++ In-depth knowledge of Software Testing Methodologies such as Functional testing, Grey/Black Box testing, Unit testing, Integration testing, Regression testing, Acceptance testing(UAT), User Experience Testing, System Testing. 
++ Knowledge of automation testing of web based applications using Selenium WebDriver.
++ Good work ethics, detail oriented, fast learner, team oriented, flexible and adaptable to all kinds of environments. Have excellent communication and interpersonal skills.
+
+<hr>
+
+demo from [monster.com](https://www.monster.com/career-advice/article/sample-resume-qa-software-tester-experienced)
++ Senior software QA tester with full system development lifecycle experience, including designing, developing and implementing test plans, test cases and test processes fueling swift corrective actions, significant cost savings and fault-free audits.
++ Hands-on technology professional accustomed to working in complex, project-based environments. Multifaceted experience in QA software testing, software development and user-acceptance testing.
++ Backed by strong credentials including a computer science degree, PMP certification, Six Sigma Green Belt and computer analytics certificate; advanced command of various testing suites, agile methodologies and monitoring tools; and cross-platform skills in Windows, Linux and Unix.
+
+Skills Summary
+SQA Testing & Methodologies
+Test Plans, Cases & Processes
+Functional Requirements
+Scripting & Documentation
+Regression & Negative Testing
+UI & Compatibility Testing
+Data Interface & Migration Testing
+Performance/Load/Stress Testing
+<hr>
+
 # <div style="text-align:center">Education</div><hr>
 
 Bachelor of Engineering / Nanjing University of Posts and Telecommunications / 2005.09 ~ 2009.07
