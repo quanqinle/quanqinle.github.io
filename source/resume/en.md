@@ -39,18 +39,17 @@ comments:     false
 
 > Be writing, not finished yet...
 
-+ Software Test Engineer with 10+ years of experience in web, mobile, back-end, desktop applications. 
-
 Senior Software Engineer In Test
 
-You can talk about your years of experience, industry, or skills. People also talk about their achievements or previous job experiences
++ Quality-focused professional with extensive experience in manual software testing and solid knowledge in automation testing.
++ Software QA tester with 10+ years of experience in various productions like web, mobile, back-end, desktop applications. 
++ In-depth knowledge of Software Testing Methodologies, such as Functional testing, Black/Grey/White Box testing, Unit testing, Integration testing, Regression testing, Acceptance testing(UAT), User Experience Testing, System Testing. 
++ Hands-on experience in automation testing, including UI automation testing (using Selenium WebDriver for web and Appium for mobile apps), unit testing (in Spring Boot projects with JUnit/TestNG), API testing (using REST-assured and JMeter).
++ Created automation framework for web and mobile applications.
++ Extensive experience in CI/CD using Jenkins.
++ Programming Languages known – Java, C, Python, Go.
++ Good work ethics, detail oriented, lifelong and fast learner, team oriented.
 
-demo from [livecareer.com](https://www.livecareer.com/resume-search/r/software-test-engineer-7523c370e7854e43b62bb195c6c2639f)
-
-+ Quality-focused professional with extensive experience in manual software testing and solid knowledge in automated testing. 
-+ In-depth knowledge of Software Testing Methodologies such as Functional testing, Grey/Black Box testing, Unit testing, Integration testing, Regression testing, Acceptance testing(UAT), User Experience Testing, System Testing. 
-+ Knowledge of automation testing of web based applications using Selenium WebDriver.
-+ Good work ethics, detail oriented, fast learner, team oriented, flexible and adaptable to all kinds of environments. Have excellent communication and interpersonal skills.
 
 <hr>
 
@@ -104,7 +103,7 @@ Huawei Cloud Computing Product Department is mainly responsible for the developm
 Beibei is an e-commerce company focusing on the field of mother and baby, only sells goods through its apps.
 
 - Initiated Android app performance testing, reduced the frame drop rate from average 30% to less than 10% with development team, guided 3 tester.
-- Created [a UI automation test framework for Web/Android/iOS/H5](https://github.com/quanqinle/WebAndAppUITesting) so as to make the performance test steps stable and repeatable, used it to write automated test steps and complete performance data collection.
+- Created [a UI automation test framework for Web/Android/iOS/H5](https://github.com/quanqinle/WebAndAppUITesting) so as to make the performance test steps stable and repeatable, used it to write automation test steps and complete performance data collection.
 
 (Selenium, Appium, Jenkins)
 
@@ -114,10 +113,10 @@ Beibei is an e-commerce company focusing on the field of mother and baby, only s
 NetEase social media sites (such as [NetEase blog](http://blog.163.com/), [LOFTER](https://www.lofter.com/)) have website and Android/iPhone/iPad apps.
 
 - Managed Android/iPhone app testing, including: reviewing requirements, making test plans, writing cases, reviewing cases, assigning test tasks, executing tests, tracking progress, evaluating quality, writing test reports, etc.
-- Undertook automated testing for Android/iPhone apps, including: app UI test (appium), static code analysis (Lint and Clang), unit test (Robolectric),  CI/CD jobs (Jenkins).
-- Participated in automated testing for web, including: web UI test (Selenium), API test (REST-assured), unit test (Spring JUnit).
+- Undertook automation testing for Android/iPhone apps, including: app UI test (appium), static code analysis (Lint and Clang), unit test (Robolectric),  CI/CD jobs (Jenkins).
+- Participated in automation testing for web, including: web UI test (Selenium), API test (REST-assured), unit test (Spring JUnit).
 - Tested apps in weak network condition by Charles proxy. For Android app, Checked frame skipping and layout performance, found memory leak, collected CPU/memory usage statistics, etc.
-- Coached many colleagues for automated testing. Acted as a major lecturer of [online courses on automated testing](http://mooc.study.163.com/course/NEU-1000112018) organized by the company.
+- Coached many colleagues for automation testing. Acted as a major lecturer of [online courses on automation testing](http://mooc.study.163.com/course/NEU-1000112018) organized by the company.
 
 (Spring, Java, MySQL, Android, iOS, Jenkins, JIRA, Selenium, Appium, REST-Assured, Charles, Scrum, etc.)
 
@@ -128,7 +127,7 @@ Hundsun is a top financial technology company in China. The Open-end Funds Sales
 
 - Performed manual testing, involving: account management, fund trading, fund clearing, etc. Checked fields of Oracle table, and validated socket API.
 - Wrote test plans and reports, summarized the problems encountered in the work process, and communicated with the development team.
-- Engaged In automated testing, involving: UI testing for Windows Desktop client using Winrunner, socket API testing using Self-developed tool.
+- Engaged In automation testing, involving: UI testing for Windows Desktop client using Winrunner, socket API testing using Self-developed tool.
 
 (Linux, Oracle, PL/SQL, Tuxedo, Delphi, C, WebSphere, Bash, WinRunner, QC, etc.)
 
