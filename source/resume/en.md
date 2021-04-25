@@ -39,12 +39,14 @@ comments:     false
 
 > Be writing, not finished yet...
 
++ Software Test Engineer with 10+ years of experience in web, mobile, back-end, desktop applications. 
+
 Senior Software Engineer In Test
 
 You can talk about your years of experience, industry, or skills. People also talk about their achievements or previous job experiences
 
 demo from [livecareer.com](https://www.livecareer.com/resume-search/r/software-test-engineer-7523c370e7854e43b62bb195c6c2639f)
-+ QA/QC Engineer with 10+ years of experience in mobile, web, back-end applications and network software testing. 
+
 + Quality-focused professional with extensive experience in manual software testing and solid knowledge in automated testing. 
 + In-depth knowledge of Software Testing Methodologies such as Functional testing, Grey/Black Box testing, Unit testing, Integration testing, Regression testing, Acceptance testing(UAT), User Experience Testing, System Testing. 
 + Knowledge of automation testing of web based applications using Selenium WebDriver.
