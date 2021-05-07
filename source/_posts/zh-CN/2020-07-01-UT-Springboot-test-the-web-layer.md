@@ -9,7 +9,7 @@ header-img:   "img/post-bg-beach2.webp"
 catalog:      true
 tags:
     - Automated Testing
-    - Junit
+    - JUnit
     - Spring Boot
     - Unit Testing
 ---
@@ -18,7 +18,7 @@ tags:
 + Java 8+
 + Maven 3
 + Spring Boot 2
-+ Junit 5
++ JUnit 5
 
 Controller的单元测试很多时候都不容易做到隔离，不得不依赖下层类的逻辑、数据库、网络、第三方服务等等，所以，有时人们又将它归为接口测试，类似于HTTP API测试。
 

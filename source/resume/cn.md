@@ -127,7 +127,7 @@ comments:     false
 - 测试理论：熟悉软件测试理论，包括测试流程、测试技术、测试工具等。熟悉软件开发生命周期
 - 编程语言：Java、C、Python、shell、windows bat 等
 - 数据库相关：SQL、MySQL、Oracle
-- 单元测试：Junit
+- 单元测试：JUnit
 - 接口测试和集成测试：REST-Assured、JMeter、Http Client、Postman、curl
 - UI测试：Selenium、Appium、Winrunner
 - 性能测试：JMeter
