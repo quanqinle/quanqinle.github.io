@@ -73,10 +73,10 @@ tags:
 
 上一步中得到的Cookie字符串还需要经过处理，因为它是很多Cookie以分号为分隔符拼接之后的内容，我们需要逆向操作：
 1. 先以“分号`;`”为分隔符获取Cookie列表，
-2. 列表中的元素都含有=号，=左侧是Cookie的name，=右侧是Cookie的value，用name和value构造Cookie，
+2. 列表中的元素都含有`=`号，`=`左侧是Cookie的name，`=`右侧是Cookie的value，用name和value构造Cookie，
 3. 最后传给WebDriver。
 
-为了验证我们分析的 **“Cookie字符串是以分号分隔、Cookie的name和value在=两侧”**，我们仍回到“开发者工具”，切换到Cookies卡片下，查看Cookie列表完整信息：
+为了验证我们分析的 **“Cookie字符串是以分号分隔、Cookie的name和value在`=`两侧”**，我们仍回到“开发者工具”，切换到Cookies卡片下，查看Cookie列表完整信息：
 
 ![imag](/images/in-post/selenium-login-cookie/04.webp)
 
