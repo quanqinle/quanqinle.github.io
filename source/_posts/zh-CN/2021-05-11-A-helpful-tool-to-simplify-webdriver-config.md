@@ -70,7 +70,7 @@ DriverManagerType driverType = DriverManagerType.CHROME;
 
 WebDriverManager.getInstance(driverType).setup();
 Class<?> driverTypeClass =  Class.forName(driverType.browserClass());
-driver = (WebDriver) driverTypeClass.newInstance();
+WebDriver driver = (WebDriver) driverTypeClass.getDeclaredConstructor().newInstance();
 ```
 
 # 更多功能
