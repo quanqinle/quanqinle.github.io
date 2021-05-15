@@ -3,7 +3,7 @@ layout:       post
 title:        "Java | 使用IDEA的文件模板功能简化Spring Boot的类创建"
 subtitle:     "在Spring Boot项目增加一个entity时，一般需要顺带创建多个类，使用IntelliJ的`File and Code Templates`一键创建所有类"
 date:         2021-03-17 12:00:00
-updated:      2021-03-17 12:00:00
+updated:      2021-05-15 15:00:00
 author:       "权芹乐"
 header-img:   "img/home-bg.webp"
 catalog:      true
@@ -20,21 +20,19 @@ tags:
 
 # 介绍
 
-在Spring Boot项目中，每当新增一个entity/module对象时，如`UserPO.java`，大多时候接下来还要创建对应的repository、service、service implement、controller等，并且最开始类的内容也是相似，一套模板类做下来，慢慢的重复劳动。
+在Spring Boot项目中，每当新增一个entity/module对象时，如`UserPO.java`，接下来通常还要创建对应的repository、service、service implement、controller等，并且这些文件初始的内容也都是相似的，一套模板类创建下来，真是又慢又重复的劳动。
 
-于是，想着是否存在根据类模板“一键”创建多个类文件的功能，在`Settings`中一番翻找，在`File and Code Templates`中找到了解决办法。本文就是介绍通过文件模板批量创建文件的步骤。
+于是，想着是否存在根据类模板“一键”创建多个类文件的功能，在`Settings`中一通翻找，在`File and Code Templates`中找到了解决办法。本文就是介绍通过文件模板批量创建类文件的步骤。
 
 <!-- more -->
 
 # 期望+最终效果演示
 
-> 结果即需求
-
-先演示一下最终实现的效果，也就是最初的需求
+先演示一下最终实现的效果，也是最初的需求：
 1. 在包根目录下，右键——>`New`——>选择新设置的模板，
-   ![right click](/images/in-post/file-templates-in-IDEA/right-click-new-entity.webp)
+   ![Right click](/images/in-post/file-templates-in-IDEA/right-click-new-entity.webp)
 2. 输入entity名，如`User`，首字母大写
-   ![input entity](/images/in-post/file-templates-in-IDEA/input-entity.webp)
+   ![Input entity](/images/in-post/file-templates-in-IDEA/input-entity.webp)
 3. 生成的如下文件：
    + entity/po : `User.java`
    + dao : `UserRepository.java`
@@ -65,10 +63,11 @@ src/main/java
 
 先放一张最终的配置，就像下图中的(1)所示：
 
-![final settings](/images/in-post/file-templates-in-IDEA/final-settings.webp)
+![Final settings](/images/in-post/file-templates-in-IDEA/final-settings.webp)
 <div style="text-align:center">图1</div>
 
-## 配置po模板
+## 配置PO模板
+
 打开`Settings`窗口，找到`Editor`——>`File and Code templates`，在`Files`分类下，点击<kbd>Create Template</kbd>，即图1的按钮(2)
 
 + Name：右键创建时看到的名字，例`Create whole classes in package root`
@@ -106,7 +105,8 @@ public class ${Subject} {
 }
 ```
 
-## 配置dao模板
+## 配置DAO模板
+
 选中第一步创建的<kbd>Create Template</kbd>前提下，点击<kbd>Create Child Template File</kbd>，即图1的按钮(3)
 
 + File Name：文件路径和文件名（不用加.java后缀），`./dao/${Subject}Repository`
@@ -127,7 +127,8 @@ public interface ${Subject}Repository extends JpaRepository<${Subject}, Long> {
 }
 ```
 
-## 配置service模板
+## 配置Service模板
+
 选中第一步创建的<kbd>Create Template</kbd>前提下，点击<kbd>Create Child Template File</kbd>，即图1的按钮(3)
 
 + File Name：文件路径和文件名（不用加.java后缀），`./service/${Subject}Service`
@@ -175,7 +176,8 @@ public interface ${Subject}Service {
 }
 ```
 
-## 配置service implement模板
+## 配置Service Implement模板
+
 选中第一步创建的<kbd>Create Template</kbd>前提下，点击<kbd>Create Child Template File</kbd>，即图1的按钮(3)
 
 + File Name：文件路径和文件名（不用加.java后缀），`./service/impl/${Subject}ServiceImpl`
@@ -238,7 +240,8 @@ public class ${Subject}ServiceImpl implements ${Subject}Service {
 }
 ```
 
-## 配置controller模板
+## 配置Controller模板
+
 选中第一步创建的<kbd>Create Template</kbd>前提下，点击<kbd>Create Child Template File</kbd>，即图1的按钮(3)
 
 + File Name：文件路径和文件名（不用加.java后缀），`./controller/${Subject}Controller`
