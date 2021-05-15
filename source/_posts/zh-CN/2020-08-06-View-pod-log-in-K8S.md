@@ -13,7 +13,7 @@ tags:
 
 自从应用的部署从tomcat转移到kubernetes之后，再也不能像下面这样一句命令查看日志了：
 ```
-tail -f /usr/local/tomcat6/logs/catalina.out
+tail -f /usr/local/tomcat7/logs/catalina.out
 ```
 
 在我记住k8s操作步骤之前，暂时记录下来以备忘。
@@ -58,4 +58,4 @@ kubectl logs -f my-app-7c8fb75b76-spm8n -c partner-kpi -n test --tail=500 --v=1
 * `--tail=500`: 显示最新500行。可以换成`--since=1h`，这个也很实用
 * `--v=1`: 日志级别1
 
-另外，k8s的命令中=号可以省略。
+另外，k8s的命令中`=`号可以省略。
