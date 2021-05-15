@@ -29,7 +29,7 @@ comments:     false
 
 <div style="text-align: center; padding:10px; background-color: lightgray">
   <div style="font-size: 1.5em; font-weight: 700">Qinle Quan (权芹乐)</div>
-  <div style="font-size: 1.2em; font-weight: 700">Senior Software Engineer In Test</div>
+  <div style="font-size: 1.2em">Senior Software Engineer In Test</div>
   <div>
     <span style="margin: 0 10px"> Phone/WeChat:+86 18058180154</span>
     <span style="margin: 0 10px"><a href="mailto:quanqinle@gmail.com" target="_blank">QuanQinle@gmail.com</a></span>
@@ -39,20 +39,16 @@ comments:     false
 
 # <div style="text-align:center">Professional Summary</div>
 
-+ I believe Manual Testing is only the basis of quality assurance, meanwhile Automation Testing is the way to improve quality and efficiency.
++ I BELIEVE: Manual Testing is only the basis of quality assurance, meanwhile Automation Testing is the way to improve quality and efficiency.
 + Quality-focused professional with extensive experience in manual software testing and solid knowledge in automation testing. In-depth knowledge of Software Testing Methodologies, such as Black/Grey/White Box testing, Functional testing, Regression testing, User Experience Testing, etc.
 + Software QA tester with 10+ years of experience in various productions like web, back-end, mobile apps, desktop applications.
-+ Hands-on experience in automation testing, including UI automation testing (using Selenium WebDriver for web and Appium for mobile apps), Unit testing (in Spring Boot projects with JUnit/TestNG), API testing (using REST-assured and [JMeter](https://github.com/quanqinle/InterfaceTesting)).
-+ Created [automation framework](https://github.com/quanqinle/WebAndAppUITesting) for web and mobile applications.
++ Hands-on experience in automation testing, including UI automation testing (using Selenium WebDriver for web and Appium for mobile apps), Unit testing (in Spring Boot projects with JUnit/TestNG), API testing (using REST-assured and [JMeter](https://github.com/quanqinle/InterfaceTesting)). Created [automation framework](https://github.com/quanqinle/WebAndAppUITesting) for web and mobile applications.
 + Work languages: Java, SQL, Bash/Shell. Also knew Python, C, HTML/CSS/JavaScript, etc. Extensive experience in CI/CD using Jenkins.
-
-
-# <div style="text-align:center">Skills Summary</div>
 
 
 # <div style="text-align:center">Education</div>
 
-Bachelor of Engineering / Nanjing University of Posts and Telecommunications / 2005.09 ~ 2009.07
+Bachelor of Engineering / [Nanjing University of Posts and Telecommunications](http://www.njupt.edu.cn/) / 2005.09 ~ 2009.07
 
 
 # <div style="text-align:center">Work Experience</div>
