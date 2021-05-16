@@ -32,7 +32,7 @@ comments:     false
 <body>
 <div class="main-inner">
 
-<div style="text-align: center; margin-top: 20px; padding:10px; background-color: #eee;">
+<div style="text-align: center; margin-top: 20px; padding:10px; background-color: #eee; line-height:1.5">
   <div style="font-size: 1.5em; font-weight: 700">Qinle Quan (权芹乐)</div>
   <div style="font-size: 1.4em">Software Test Development Engineer</div>
   <div>
@@ -48,7 +48,7 @@ comments:     false
 + Quality-focused professional with extensive experience in manual software testing and solid knowledge in automation testing. Software QA tester with 10+ years of experience in various productions like web, back-end, mobile apps, desktop applications. Familiar with system testing of B/S and C/S architecture. In-depth knowledge of Software Testing Methodologies, use appropriate technology/tool in different scenarios, such as Black/Grey/White Box testing, etc.
 + Hands-on experience in automation testing, including **UI automation testing** (using Selenium WebDriver for web and Appium for mobile apps), **Unit testing** (in Spring Boot projects with JUnit), **API testing** (using REST-assured and [JMeter](https://github.com/quanqinle/InterfaceTesting)). Created [automation framework](https://github.com/quanqinle/WebAndAppUITesting) for web and mobile applications.
 
-<div style="padding-left: 40px;">
+<div>
   <div class="skill-tags">SQA Testing & Methodologies</div>
   <div class="skill-tags">Software Development Lifecycle</div>
   <div class="skill-tags">Test Plans, Cases & Processes</div>
