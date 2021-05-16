@@ -30,6 +30,7 @@ comments:     false
 </head>
 
 <body>
+<!-- <page size="A4"></page> -->
 <div class="main-inner">
 
 <div style="text-align: center; margin-top: 20px; padding:10px; background-color: #eee; line-height:1.5">
@@ -68,6 +69,7 @@ comments:     false
   <div class="skill-tags">Python</div>
   <div class="skill-tags">HTML/CSS/JavaScript</div>
   <div class="skill-tags">JMeter</div>
+  <div class="skill-tags">Scrum/Sprint</div>
 </div>
 
 
@@ -99,6 +101,7 @@ Huawei Cloud Computing Product Department is mainly responsible for the developm
 
 (OpenStack, Linux, Python)
 
+> Why Left? : work content was all about the Infrastructure Layer, but I preferred the Application Layer.
 
 ## <a href="https://www.beibei.com.cn/">Beibei Group</a> / E-commerce Dept. / 2016.07 ~ 2016.11
 
@@ -123,7 +126,7 @@ NetEase social media sites (such as [NetEase blog](http://blog.163.com/), [LOFTE
 (Spring, Java, MySQL, Android, iOS, Jenkins, JIRA, Selenium, Appium, REST-Assured, Charles, Scrum, etc.)
 
 
-## <a href="https://www.hundsun.com/en">Hundsun Technologies Inc.</a> / Fund Management Dept. / 2009.02 ~ 2012.04
+## <a href="https://www.hundsun.com/en">Hundsun Technologies Inc. (SHA: 600570)</a> / Fund Management Dept. / 2009.02 ~ 2012.04
 
 Hundsun is a top financial technology company in China. The Open-end Funds Sales System I worked for is for fund trading online or over-the-counter, fund liquidation, etc. It is of C/S and B/S architecture.
 
@@ -136,12 +139,12 @@ Hundsun is a top financial technology company in China. The Open-end Funds Sales
 
 </div>
 
-<!--
-  <div style="position: absolute; bottom: 0; right: 0;">
-    <span><a href="https://blog.quanqinle.com/resume/en" target="_blank" style="margin-right: 20px;">English</a></span>
+<!-- Only for online version -->
+  <div style="position: fixed; bottom: 20px; right: 20px;">
+    <span style="margin-right: 10px;">Online:</span>
+    <span style="margin-right: 10px;"><a href="https://blog.quanqinle.com/resume/en" target="_blank">English</a></span>
     <span><a href="https://blog.quanqinle.com/resume/cn" target="_blank">Chinese</a></span>
   </div>
--->
 
 </body>
 </html>
