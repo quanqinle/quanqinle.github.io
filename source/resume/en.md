@@ -133,16 +133,12 @@ Hundsun is a top financial technology company in China. The Open-end Funds Sales
 
 (Linux, Oracle, PL/SQL, Tuxedo, Delphi, C, WebSphere, Bash/Shell, HP WinRunner, QC, etc.)
 
-  <div style="position: absolute; bottom: 20px; right: 40px;">
-    <span><a href="https://blog.quanqinle.com/resume/en" target="_blank" style="padding-right: 20px;">English</a></span>
-    <span><a href="https://blog.quanqinle.com/resume/cn" target="_blank">Chinese</a></span>
-  </div>
 
 </div>
 
 <!--
   <div style="position: absolute; bottom: 0; right: 0;">
-    <span><a href="https://blog.quanqinle.com/resume/en" target="_blank" style="padding-right: 20px;">English</a></span>
+    <span><a href="https://blog.quanqinle.com/resume/en" target="_blank" style="margin-right: 20px;">English</a></span>
     <span><a href="https://blog.quanqinle.com/resume/cn" target="_blank">Chinese</a></span>
   </div>
 -->
