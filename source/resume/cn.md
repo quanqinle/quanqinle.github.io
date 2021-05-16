@@ -24,7 +24,7 @@ comments:     false
 </head>
 
 <body>
-<div class="main-inner content post posts-expand">
+<div class="main-inner">
 
 
 # <div style="background-color: gainsboro">个人信息</div>
