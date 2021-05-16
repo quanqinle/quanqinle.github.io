@@ -67,8 +67,8 @@ comments:     false
   <div class="skill-tags">Spring Boot</div>
   <div class="skill-tags">Linux</div>
   <div class="skill-tags">Python</div>
-  <div class="skill-tags">HTML/CSS/JavaScript</div>
   <div class="skill-tags">JMeter</div>
+  <div class="skill-tags">HTML/CSS/JavaScript</div>
   <div class="skill-tags">Scrum/Sprint</div>
 </div>
 
@@ -99,9 +99,10 @@ Huawei Cloud Computing Product Department is mainly responsible for the developm
 - Tested the essential underlying components of OpenStack, such as time management, log management, etc.
 - Worked in an agile Scrum team. Found bugs and fixed part of bugs in Python.
 
+> Why Left? : work content was all about the Infrastructure Layer, but I preferred the Application Layer.
+
 (OpenStack, Linux, Python)
 
-> Why Left? : work content was all about the Infrastructure Layer, but I preferred the Application Layer.
 
 ## <a href="https://www.beibei.com.cn/">Beibei Group</a> / E-commerce Dept. / 2016.07 ~ 2016.11
 
