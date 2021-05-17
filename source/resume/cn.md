@@ -147,11 +147,22 @@ comments:     false
 </div>
 
 <!-- Only for online version -->
-  <div style="position: fixed; bottom: 20px; right: 20px;">
-    <span style="margin-right: 10px;">线上版：</span>
-    <span style="margin-right: 10px;"><a href="https://blog.quanqinle.com/resume/en" target="_blank">English</a></span>
-    <span><a href="https://blog.quanqinle.com/resume/cn" target="_blank">中文</a></span>
+  <div id="online" style="position: fixed; bottom: 20px; right: 20px;">
+    <div>
+      <span style="margin-right: 10px;">在线版：</span>
+      <span style="margin-right: 10px;"><a href="https://blog.quanqinle.com/resume/en" target="_blank">English</a></span>
+      <span><a href="https://blog.quanqinle.com/resume/cn" target="_blank">中文</a></span>
+    </div>
+    <div>TIP：打印前请点 <button onclick="hideDiv()">X</button></div>
   </div>
+  <script>
+    var x = document.getElementById("online");
+    
+    function hideDiv() {
+      x.style.display = "none";
+    }
+  </script>
+<!-- Only for online version -->
 
 </body>
 </html>

@@ -2,7 +2,7 @@
 layout:       false
 title:        "Qinle Quan's resume"
 date:         2021-04-06 12:00:00
-updated:      2021-04-18 23:00:00
+updated:      2021-05-17 11:00:00
 author:       "Quan Qinle"
 lang:         en
 catalog:      false
@@ -142,11 +142,21 @@ Hundsun is a top financial technology company in China. The Open-end Funds Sales
 </div>
 
 <!-- Only for online version -->
-  <div style="position: fixed; bottom: 20px; right: 20px;">
-    <span style="margin-right: 10px;">Online:</span>
-    <span style="margin-right: 10px;"><a href="https://blog.quanqinle.com/resume/en" target="_blank">English</a></span>
-    <span><a href="https://blog.quanqinle.com/resume/cn" target="_blank">Chinese</a></span>
+  <div id="online" style="position: fixed; bottom: 20px; right: 20px;">
+    <div>
+      <span style="margin-right: 10px;">Online:</span>
+      <span style="margin-right: 10px;"><a href="https://blog.quanqinle.com/resume/en" target="_blank">English</a></span>
+      <span><a href="https://blog.quanqinle.com/resume/cn" target="_blank">Chinese</a></span>
+    </div>
+    <div>TIP: click <button onclick="hideDiv()">X</button> before printing!</div>
   </div>
+  <script>
+    var x = document.getElementById("online");
+    function hideDiv() {
+      x.style.display = "none";
+    }
+  </script>
+<!-- Only for online version -->
 
 </body>
 </html>
