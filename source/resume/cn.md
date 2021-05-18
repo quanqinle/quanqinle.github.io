@@ -78,7 +78,7 @@ comments:     false
 
 - 负责公有云openstack系统底层基础组件的测试，如时间管理、log管理等。负责基础组件安全测试，问题扫描与收集。
 
-> 因工作内容太偏向系统底层，与面试沟通、个人发展方向存在较大不符，所以离职。
+> 因工作内容太偏向系统底层（Infrastructure层），与面试沟通、个人发展方向（Application层）存在较大不符，所以离职。
 
 ##  2016.07 ~ 2016.11，[贝贝网](https://www.beibei.com.cn/) / 电商研发部
 贝贝网是国内排名前列的母婴电商平台，app是其主要的用户入口。
@@ -147,13 +147,13 @@ comments:     false
 </div>
 
 <!-- Only for online version -->
-  <div id="online" style="position: fixed; bottom: 20px; right: 20px;">
+  <div id="online" style="position: fixed; bottom: 20px; right: 20px; background-color: #eee; padding: 10px;">
     <div>
       <span style="margin-right: 10px;">在线版：</span>
       <span style="margin-right: 10px;"><a href="https://blog.quanqinle.com/resume/en" target="_blank">English</a></span>
       <span><a href="https://blog.quanqinle.com/resume/cn" target="_blank">中文</a></span>
     </div>
-    <div>TIP：打印前请点 <button onclick="hideDiv()">X</button></div>
+    <div style="margin-top: 5px; font-size: 80%; text-align: right;">打印前请点击 <button onclick="hideDiv()">X</button></div>
   </div>
   <script>
     var x = document.getElementById("online");
