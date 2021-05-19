@@ -10,7 +10,7 @@ tags:
     - junit
 ---
 
-在JUnit5中，可以将`@Test`替换成`@ParameterizedTest`，这样就可以使用不同的参数、多次循环运行测试方法。
+在 JUnit5 中，可以将`@Test`替换成`@ParameterizedTest`，这样就可以使用不同的参数、多次循环运行测试方法。
 
 <!-- more -->
 
@@ -36,7 +36,7 @@ public void test_Demo2(String arg) {
 }
 ```
 
-在`@ValueSource`中，可以使用strings、ints等等。但是，我个人更**倾向于使用strings**，因为String可以隐式转换为很多格式，这样传参更灵活一些。
+在`@ValueSource`中，可以使用 strings、ints 等等。但是，我个人更**倾向于使用 strings**，因为 String 可以隐式转换为很多格式，这样传参更灵活一些。
 
 ```Java
 @ParameterizedTest
@@ -52,7 +52,7 @@ public void test_Demo4(BigDecimal arg) {
 }
 ```
 
-[String可以自动转换成哪些格式？](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests-argument-conversion-implicit)
+[String 可以自动转换成哪些格式？](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests-argument-conversion-implicit)
 
 
 # `@CsvSource`
@@ -90,7 +90,7 @@ public void test_Demo6(ArgumentsAccessor args) {
 
 # `@CsvFileSource`
 
-和`@CsvSource`的区别，从csv文件读取测试数据，传参等用法相同。
+和`@CsvSource`的区别，从 csv 文件读取测试数据，传参等用法相同。
 
 ```java
 @ParameterizedTest

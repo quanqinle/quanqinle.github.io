@@ -1,7 +1,7 @@
 ---
 layout:       post
-title:        "Selenium | 借助JavaScript实现一些不易处理的操作"
-subtitle:     "当无法按预期完成一些元素操作时，可以考虑执行JavaScript脚本"
+title:        "Selenium | 借助 JavaScript 实现一些不易处理的操作"
+subtitle:     "当无法按预期完成一些元素操作时，可以考虑执行 JavaScript 脚本"
 date:         2020-09-08
 updated:      2020-09-08
 author:       "权芹乐"
@@ -12,15 +12,15 @@ tags:
 ---
 
 # JavascriptExecutor
-Javascript脚本执行器。
+Javascript 脚本执行器。
 
-`arguments[i]`是js脚本传参的占位符，i从0开始。
+`arguments[i]`是 js 脚本传参的占位符，i 从 0 开始。
 
 <!-- more -->
 
 # 页面滚动
 
-jse方式滚动页面的几种方式：
+jse 方式滚动页面的几种方式：
 ```java
 JavascriptExecutor jse = (JavascriptExecutor)driver;
 
@@ -51,7 +51,7 @@ double f = 1.04*ImageHeight;
 </div>
 ```
 
-div可能有span也可能没有，但要不取出span中的文本，即，期望得到700 Yuan和400 Yuan
+div 可能有 span 也可能没有，但要不取出 span 中的文本，即，期望得到 700 Yuan 和 400 Yuan
 ```java
 WebElement element = driver.findElement(By.xpath("//div[contains(@class, 'item-price')]"));
 
@@ -60,7 +60,7 @@ jse.executeScript("return arguments[0].lastChild.textContent;", element);
 ```
 
 
-# list超长，点击其中“不可见”的选项
+# list 超长，点击其中“不可见”的选项
 ```java
 public void selectListByJS() {
     JavascriptExecutor js = (JavascriptExecutor) driver;

@@ -1,7 +1,7 @@
 ---
 layout:       post
-title:        "JUnit | 在Spring Boot2低版本中使用JUnit 5"
-subtitle:     "Spring Boot 2.2.0开始支持JUnit 5，之前的版本需要手动引入依赖"
+title:        "JUnit | 在 Spring Boot2 低版本中使用 JUnit 5"
+subtitle:     "Spring Boot 2.2.0 开始支持 JUnit 5，之前的版本需要手动引入依赖"
 date:         2020-06-12
 updated:      2020-06-12
 author:       "Quan Qinle"
@@ -26,10 +26,10 @@ tags:
 + Java 8+
 + Maven 3
 + Spring Boot 2.0.7.RELEASE
-+ 想使用JUnit 5，且没有JUnit 4的历史用例
++ 想使用 JUnit 5，且没有 JUnit 4 的历史用例
 
 配置步骤不复杂，简单来说，从`spring-boot-starter-test`中去掉`JUnit 4`，再引入`JUnit 5`。  
-pom.xml需要修改的部分如下：
+pom.xml 需要修改的部分如下：
 ```xml
 <dependency>
   <groupId>org.springframework.boot</groupId>

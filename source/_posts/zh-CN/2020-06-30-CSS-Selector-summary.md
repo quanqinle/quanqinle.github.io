@@ -1,7 +1,7 @@
 ---
 layout:       post
-title:        "Selenium | 元素定位By.cssSelector()"
-subtitle:     "CSS Selector最常用方法汇总"
+title:        "Selenium | 元素定位 By.cssSelector()"
+subtitle:     "CSS Selector 最常用方法汇总"
 date:         2020-06-30
 updated:      2020-06-30
 author:       "权芹乐"
@@ -14,7 +14,7 @@ tags:
 
 [toc]
 
-CSS Selector 使用CSS定位元素
+CSS Selector 使用 CSS 定位元素
 
 # `CSS Selector`是什么？
 
@@ -27,10 +27,10 @@ CSS Selector 使用CSS定位元素
 > In CSS, selectors are patterns used to select the element(s) you want to style.
 
 
-# CSS Selector语法
+# CSS Selector 语法
 
-## 4个基础选择器
-个人认为，`CSS Selector`最重要的选择器只有下面4个，分别是 tagname标签名称，标签id属性，class属性，以及其他属性：
+## 4 个基础选择器
+个人认为，`CSS Selector`最重要的选择器只有下面 4 个，分别是 tagname 标签名称，标签 id 属性，class 属性，以及其他属性：
 
 * tag
 * #id
@@ -39,7 +39,7 @@ CSS Selector 使用CSS定位元素
 
 <!-- more -->
 
-这4个的各种组合，可以出现丰富、强大的效果。
+这 4 个的各种组合，可以出现丰富、强大的效果。
 
 举几个例子
 
@@ -80,13 +80,13 @@ li#automation + li
 p~ul
 ```
 
-CSS Selector还有其他复杂的语法，但上面我们讲到的已经是精华，实用性最强。
+CSS Selector 还有其他复杂的语法，但上面我们讲到的已经是精华，实用性最强。
 
 更多的见资料 [^1]
 
 # `Selenium`中的`CSS Selector`
 
-```
+```java
 By by = By.cssSelector(String selector);
 //Find elements via the driver's underlying W3C Selector engine.
 ```
@@ -133,11 +133,11 @@ CSS: The CSS2 contains() function is not in CSS3; however, Selenium supports the
 contains() is not part of the current CSS3 specification so it will not work on all browsers, only ones that implemented it before it was pulled.
 
 遇到此种场景，可以使用`By by = By.ByXPath(String xpathExpression)`。  
-xpath见资料 [^2]
+xpath 见资料 [^2]
 
 
 # 资料
 
-[^1]: CSS Selector详解：https://www.w3schools.com/cssref/css_selectors.asp
+[^1]: CSS Selector 详解：https://www.w3schools.com/cssref/css_selectors.asp
 
-[^2]: CSS Selector与xpath语法比较：https://saucelabs.com/resources/articles/selenium-tips-css-selectors
+[^2]: CSS Selector 与 xpath 语法比较：https://saucelabs.com/resources/articles/selenium-tips-css-selectors

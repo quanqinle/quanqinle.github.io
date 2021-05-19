@@ -1,7 +1,7 @@
 ---
 layout:       post
-title:        "在porkbun注册域名"
-subtitle:     "注册域名，并使用cloudflare的免费CDN服务"
+title:        "在 porkbun 注册域名"
+subtitle:     "注册域名，并使用 cloudflare 的免费 CDN 服务"
 date:         2020-06-11
 updated:      2020-06-11
 author:       "Quan Qinle"
@@ -29,8 +29,8 @@ tags:
 
 [porkbun](https://porkbun.com/)的特点：
 1. 便宜
-2. Free WHOIS Privacy：免费的Whois隐私保护
-3. Free SSL Certificates：免费的SSL
+2. Free WHOIS Privacy：免费的 Whois 隐私保护
+3. Free SSL Certificates：免费的 SSL
 
 操作过程简单，不再赘述。
 
@@ -38,25 +38,25 @@ tags:
 
 点击`DNS RECORDS`，可以看到默认已经提供了一些记录，它们都指向`porkbun`的默认网址。
 
-因为我暂时只搭了博客，所以，添加一条DNS记录指向博客，其他的暂时保持原样。
+因为我暂时只搭了博客，所以，添加一条 DNS 记录指向博客，其他的暂时保持原样。
 
 + 添加`CNAME类型`的记录
-+ `Host`填写blog，这个域名已在git中配置
-+ `Answer`填写我的github.io地址
++ `Host`填写 blog，这个域名已在 git 中配置
++ `Answer`填写我的 github.io 地址
 
-> 【Tip】网址DNS记录最常用的类型是CNAME与ALIAS，简单说明二者的区别：
+> 【Tip】网址 DNS 记录最常用的类型是 CNAME 与 ALIAS，简单说明二者的区别：
 > + CNAME：解析到其他域名
-> + ALIAS：解析到ip
+> + ALIAS：解析到 ip
 
 至此，域名注册和绑定已经完成，可以正常使用了。
 
-如果想使用CDN，需要继续下面的步骤。
+如果想使用 CDN，需要继续下面的步骤。
 
-# 把nameservers转移到`cloudflare`
+# 把 nameservers 转移到`cloudflare`
 
-先看[porkbun官方操作指引](https://kb.porkbun.com/article/22-how-to-change-your-nameservers)
+先看[porkbun 官方操作指引](https://kb.porkbun.com/article/22-how-to-change-your-nameservers)
 
-> tip: [cloudflare](https://dash.cloudflare.com/)提供免费的CDN服务
+> tip: [cloudflare](https://dash.cloudflare.com/)提供免费的 CDN 服务
 
 1. 登陆`cloudflare`，添加自己的域名
 
@@ -69,7 +69,7 @@ tags:
 3. 在原域名供应商`porkbun`处，点击`AUTHORITATIVE NAMESERVERS`并修改
 
 删除以下所有
-```
+```text
 curitiba.porkbun.com
 fortaleza.porkbun.com
 maceio.porkbun.com
@@ -77,7 +77,7 @@ salvador.porkbun.com
 ```
 
 替换为
-```
+```text
 dalary.ns.cloudflare.com
 rohin.ns.cloudflare.com
 ```

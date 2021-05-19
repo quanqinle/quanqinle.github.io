@@ -25,25 +25,25 @@ tags:
 
 <!-- more -->
 
-# Python实现爬虫，第1版
+# Python 实现爬虫，第 1 版
 
-这段时间又重新把Python用起来了，想的是如果什么问题都用Java解决，方式太重了，而且手里常备一个熟练的动态语言也是极其必要的，所以，稍微简单的任务，比如，文本处理、批量修改文件等，都改用Python了。另外，我在github上维护了一个[pythong小工具工程](https://github.com/quanqinle/my-python)，专门存放日常用到的Python脚本，留档下来方便以后遇到类似问题可以拿来直接用。
+这段时间又重新把 Python 用起来了，想的是如果什么问题都用 Java 解决，方式太重了，而且手里常备一个熟练的动态语言也是极其必要的，所以，稍微简单的任务，比如，文本处理、批量修改文件等，都改用 Python 了。另外，我在 github 上维护了一个[pythong 小工具工程](https://github.com/quanqinle/my-python)，专门存放日常用到的 Python 脚本，留档下来方便以后遇到类似问题可以拿来直接用。
 
-所以，这次的漫画图片抓取，我计划用Python编码实现。
+所以，这次的漫画图片抓取，我计划用 Python 编码实现。
 
-此前已经编写过类似的网页文字和多媒体爬取脚本，见上面提到github工程中的`download_mp3_and_dialog.py`文件，它使用的是Lxml库。著名的网页抓取方式还有Beautiful Soup和正则等，当然，也可以用更强大了爬虫框架，只是，我的需求太简单，杀鸡焉用牛刀。
+此前已经编写过类似的网页文字和多媒体爬取脚本，见上面提到 github 工程中的`download_mp3_and_dialog.py`文件，它使用的是 Lxml 库。著名的网页抓取方式还有 Beautiful Soup 和正则等，当然，也可以用更强大了爬虫框架，只是，我的需求太简单，杀鸡焉用牛刀。
 
-Python编码部分不复杂，编程主要的工作其实在分析网页结构，找到图片下载链接这些工作上。
+Python 编码部分不复杂，编程主要的工作其实在分析网页结构，找到图片下载链接这些工作上。
 
-## 网页分析，CSS元素定位
+## 网页分析，CSS 元素定位
 
-为了下载漫画，我们分析网页需要搞清楚3部分有用的内容。
+为了下载漫画，我们分析网页需要搞清楚 3 部分有用的内容。
 
 ### 1.动漫每话的网页地址
 
-经过分析，我发现这个网站在组织每话的url时，规则非常简单且规整。比如，第1话是`www.fuckgfw.com/onepiece/0001`，那么，第188话就是`www.fuckgfw.com/onepiece/0188`，以此类推。
+经过分析，我发现这个网站在组织每话的 url 时，规则非常简单且规整。比如，第 1 话是`www.fuckgfw.com/onepiece/0001`，那么，第 188 话就是`www.fuckgfw.com/onepiece/0188`，以此类推。
 
-再找到《海贼王》当前的最后一话是917话，剩下的就是for循环和字符串拼接了。
+再找到《海贼王》当前的最后一话是 917 话，剩下的就是 for 循环和字符串拼接了。
 
 > 重要说明！！！
 > 
@@ -53,21 +53,21 @@ Python编码部分不复杂，编程主要的工作其实在分析网页结构�
 
 页面顶部就有漫画每话的题目，在页面源码中搜索后可以确认 `span标签的class属性值title-comicHeading` 在页面中是唯一的，我们就用它来定位元素，然后获取元素上的文本。
 
-标题的CSS Selector语法是 `span.title-comicHeading` 。
+标题的 CSS Selector 语法是 `span.title-comicHeading` 。
 
 ![imag](/images/in-post/selenium-lazyload/selenium-lazyload-02.webp)
 
 ### 3.每话中图片资源地址
 
-每话都有数量不等的漫画图片，页面识别后找到可以确保唯一性的图片元素定位方法，所有的图片都在标签 ul > li 列表中，所以，我们可以获取图片img列表，然后遍历img列表，逐个下载即可。
+每话都有数量不等的漫画图片，页面识别后找到可以确保唯一性的图片元素定位方法，所有的图片都在标签 ul > li 列表中，所以，我们可以获取图片 img 列表，然后遍历 img 列表，逐个下载即可。
 
-定位img列表的CSS Selector语法是 `ul#comicContain li img` 。
+定位 img 列表的 CSS Selector 语法是 `ul#comicContain li img` 。
 
 ![imag](/images/in-post/selenium-lazyload/selenium-lazyload-03.webp)
 
 ## 失败了……
 
-将以上的元素定位写入代码，修改后，先缩小话的for循化范围成从第1话开始到第2话结束，调试运行py。
+将以上的元素定位写入代码，修改后，先缩小话的 for 循化范围成从第 1 话开始到第 2 话结束，调试运行 py。
 
 有点小确幸，多谢佛祖保佑，脚本运行通过，没有报错。
 
@@ -82,25 +82,25 @@ Python编码部分不复杂，编程主要的工作其实在分析网页结构�
 
 ![imag](/images/in-post/selenium-lazyload/selenium-lazyload-07.webp)
 
-确实像猜想的那样，当我没有浏览到处于页面下方的图片时，那里只有占位图，当页面向下滚动快要到达占位图时，img标签的src会被替换成真实的资源url，然后页面才加载图片。
+确实像猜想的那样，当我没有浏览到处于页面下方的图片时，那里只有占位图，当页面向下滚动快要到达占位图时，img 标签的 src 会被替换成真实的资源 url，然后页面才加载图片。
 
 ## 如何处理懒加载页面？
 
 那么，问题就显而易见了，这个页面使用了“懒加载（lazy load）”，也叫做“延迟加载”。不过，想想又觉得理所应当，像这样包含大量大图的页面，不延迟加载才是怪事。
 
-> 惰性载入（英语：Lazy loading、Infinite Scroll，又称延迟载入、懒载入、无限卷动、瀑布流），是一种设计模式，被运用在软体设计和网页设计当中，对于网页界面，其特征为使用者透过滑鼠，卷动浏览页面，直到页面下方时，就会自动载入更多内容；有多数网站采用这项网页设计，例如Google图片搜索、Google+、Facebook、Twitter、Pinterest和维基百科的Flow讨论系统。也有结合无限卷动和多页，两著特性的网页设计。
+> 惰性载入（英语：Lazy loading、Infinite Scroll，又称延迟载入、懒载入、无限卷动、瀑布流），是一种设计模式，被运用在软体设计和网页设计当中，对于网页界面，其特征为使用者透过滑鼠，卷动浏览页面，直到页面下方时，就会自动载入更多内容；有多数网站采用这项网页设计，例如 Google 图片搜索、Google+、Facebook、Twitter、Pinterest 和维基百科的 Flow 讨论系统。也有结合无限卷动和多页，两著特性的网页设计。
 > 
 > -- Wikipedia
 
-使用关键字“python 页面抓取 懒加载”在Google搜索一番，又使用相似的英文搜索，结果都指向一种解决方式：**通过Selenium滚动页面触发js加载图片**。
+使用关键字“python 页面抓取 懒加载”在 Google 搜索一番，又使用相似的英文搜索，结果都指向一种解决方式：**通过 Selenium 滚动页面触发 js 加载图片**。
 
-既然要用Selenium，那么，我还是换回Java来实现这次的需求吧，谁让咱是 Java + Selenium老手呢（见历史文章），转而去整Python + Selenium的话，又要重新学习，我可不想重复造轮子。
+既然要用 Selenium，那么，我还是换回 Java 来实现这次的需求吧，谁让咱是 Java + Selenium 老手呢（见历史文章），转而去整 Python + Selenium 的话，又要重新学习，我可不想重复造轮子。
 
-# Java实现爬虫，第2版
+# Java 实现爬虫，第 2 版
 
-很久前，我就已经在github上开源了一个UITest框架，借助Selenium和Appium，地址是 [WebAndAppUITesting](https://github.com/quanqinle/WebAndAppUITesting) 。这么小的需求没必要使用这套框架，从工程里借鉴一些代码即可。
+很久前，我就已经在 github 上开源了一个 UITest 框架，借助 Selenium 和 Appium，地址是 [WebAndAppUITesting](https://github.com/quanqinle/WebAndAppUITesting) 。这么小的需求没必要使用这套框架，从工程里借鉴一些代码即可。
 
-第1版上我需要增加页面滚动的逻辑，按之前的经验需要加入JavaScript执行器的代码，可用的方式大致有以下几种：
+第 1 版上我需要增加页面滚动的逻辑，按之前的经验需要加入 JavaScript 执行器的代码，可用的方式大致有以下几种：
 
 ![imag](/images/in-post/selenium-lazyload/selenium-lazyload-08.webp)
 
@@ -264,12 +264,12 @@ public class DownloadOnePiece {
 
 调试的时候可以注释该行，在有界面的情况下，观察运行效果。
 
-另外提一句，我当前使用的chrome和driver在headless模式下出现了bug，变量chapterName总是空字符串，而有界面时，没有这个问题。
+另外提一句，我当前使用的 chrome 和 driver 在 headless 模式下出现了 bug，变量 chapterName 总是空字符串，而有界面时，没有这个问题。
 
 
 ## 再次运行代码
 
-再次运行代码，这次世界清静了，程序正常运行没报错，图片也正常下载了。只是代码执行比较慢，因为，为了保障页面加载、图片抓取的成功率，加了一些sleep等待。好在使用headless模式运行，把它收起在后台默默执行，也不影响我做别的事情。
+再次运行代码，这次世界清静了，程序正常运行没报错，图片也正常下载了。只是代码执行比较慢，因为，为了保障页面加载、图片抓取的成功率，加了一些 sleep 等待。好在使用 headless 模式运行，把它收起在后台默默执行，也不影响我做别的事情。
 
 一段时间后……
 

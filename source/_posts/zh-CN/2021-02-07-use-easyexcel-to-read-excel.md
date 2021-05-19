@@ -1,7 +1,7 @@
 ---
 layout:       post
-title:        "Java | 使用EasyExcel读取excel"
-subtitle:     "自定义监听、转换器等，完成常用的excel读取"
+title:        "Java | 使用 EasyExcel 读取 excel"
+subtitle:     "自定义监听、转换器等，完成常用的 excel 读取"
 date:         2021-02-07
 updated:      2021-02-18
 author:       "权芹乐"
@@ -14,19 +14,19 @@ tags:
     - Excel
 ---
 
-# EasyExcel ？
+# EasyExcel？
 
-以前我都是用`Apache poi`解析Excel，但我不喜欢自己处理模型转换、数值类型转换，而且poi处理大excel时内存高。后来听说了阿里开源的EasyExcel，决定试用下。
+以前我都是用`Apache poi`解析 Excel，但我不喜欢自己处理模型转换、数值类型转换，而且 poi 处理大 excel 时内存高。后来听说了阿里开源的 EasyExcel，决定试用下。
 
 官方如此自我介绍：
-> 快速、简单避免OOM的Java处理Excel工具
+> 快速、简单避免 OOM 的 Java 处理 Excel 工具
 > 
-> EasyExcel是一个基于Java的简单、省内存的读写Excel的开源项目。在尽可能节约内存的情况下支持读写百M的Excel。 github地址：https://github.com/alibaba/easyexcel
+> EasyExcel 是一个基于 Java 的简单、省内存的读写 Excel 的开源项目。在尽可能节约内存的情况下支持读写百 M 的 Excel。 github 地址：https://github.com/alibaba/easyexcel
 
 <!-- more -->
 
 # 引入依赖
-我的maven pom文件如下
+我的 maven pom 文件如下
 ```xml
 <properties>
     <jdk.version>11</jdk.version>
@@ -52,9 +52,9 @@ tags:
 </dependency>
 ```
 
-# 极简读Excel示例
+# 极简读 Excel 示例
 
-## 1. 数据类`DemoBizExcelRow.java`，存储excel一行的数据
+## 1. 数据类`DemoBizExcelRow.java`，存储 excel 一行的数据
 ```java
 @Data // 使用lombok，或自己实现get/set
 public class DemoBizExcelRow {
@@ -66,7 +66,7 @@ public class DemoBizExcelRow {
 
 ## 2. 自定义数据行监听类`DemoDataListener.java`，逐行解析数据
 
-如果想要获得解析结果集的话，可以像下面这样通过构造函数传参来接收。如果要在监听类里完成DB存储操作，可以参考官方示例`DemoDataListener.java`。
+如果想要获得解析结果集的话，可以像下面这样通过构造函数传参来接收。如果要在监听类里完成 DB 存储操作，可以参考官方示例`DemoDataListener.java`。
 ```java
 public class DemoDataListener extends AnalysisEventListener<DemoBizExcelRow> {
 
@@ -118,20 +118,20 @@ try {
 }
 ```
 
-使用起来不复杂，自己只要做两件事：1.定义数据类 2.自定义监听（用于获取excel内容，或者完成dao操作等等）
+使用起来不复杂，自己只要做两件事：1.定义数据类 2.自定义监听（用于获取 excel 内容，或者完成 dao 操作等等）
 
-# 自定义读取Excel
+# 自定义读取 Excel
 
 可是，在我自己的实际使用中，我还需要以下的功能：
-+ 表头有多行，每类业务表excel还互不相同
++ 表头有多行，每类业务表 excel 还互不相同
 + 获取表头数据，至少包括排序、列名
-+ 校验部分表头名，以确保excel符合要求，如不符，直接退出
-+ 解析时数据校验，比如，必填项不能为空，特定列的值不能超出某个范围，特定列值通过enum转换
++ 校验部分表头名，以确保 excel 符合要求，如不符，直接退出
++ 解析时数据校验，比如，必填项不能为空，特定列的值不能超出某个范围，特定列值通过 enum 转换
 + 获取每行中所有错误列集合，然而，官方默认行为是，遇到某个单元格有误的时候忽略剩余单元格，跳到下一行
 
 ## 1. 返回结果类
 
-上面的例子只返回了有效数据集合`List<DemoExcelRow>`，而现在想要a）有效数据 b）错误信息 c）表头信息，设计一个结果类处理起来更方便。
+上面的例子只返回了有效数据集合`List<DemoExcelRow>`，而现在想要 a）有效数据 b）错误信息 c）表头信息，设计一个结果类处理起来更方便。
 ```java
 @Data
 public class ReadExcelResult<T> {
@@ -226,13 +226,13 @@ public class DemoExcelRow {
 ```
 解读：
 + 变量`subject`一个转换器，下面会说
-+ 变量`doubleData`通过注解`@NumberFormat("#.##")`指定两位小数，通过`@ExcelProperty(index = 5)`设定它在第6列
-+ 默认所有字段都会和excel匹配，通过`@ExcelIgnore`说明某变量不是excel中的字段
++ 变量`doubleData`通过注解`@NumberFormat("#.##")`指定两位小数，通过`@ExcelProperty(index = 5)`设定它在第 6 列
++ 默认所有字段都会和 excel 匹配，通过`@ExcelIgnore`说明某变量不是 excel 中的字段
 + `HEAD_ROW_NUMBER`真正的表头所在行
 + `HEAD_CHECK_MAP`用于表头校验的map
 
 ## 3. 转换器
-转换器`SubjectConverter.java`将excel中的文本转成enum中的1、2、3，如本例中，读到"应收账款"转存为16。
+转换器`SubjectConverter.java`将 excel 中的文本转成 enum 中的 1、2、3，如本例中，读到"应收账款"转存为 16。
 
 下面的代码只有`convertToJavaData()`被修改了，其他都是继承来的，IDE会自动生成，所以这部分不写了。
 ```java
@@ -546,8 +546,8 @@ public class MyBizDemoListener<T> extends AnalysisEventListener<T> {
 }
 ```
 解读：
-+ 在`invokeHead()`中，借助构造函数传入的变量`headCheckMap`校验excel表头
-+ 在`onException()`中，仅当`throw exception`时才会终止excel解析，否则只是跳过到下一行
++ 在`invokeHead()`中，借助构造函数传入的变量`headCheckMap`校验 excel 表头
++ 在`onException()`中，仅当`throw exception`时才会终止 excel 解析，否则只是跳过到下一行
 + 在`invoke()`中，处理必填项、数值合法性校验等等
 
 ## 6. 使用
