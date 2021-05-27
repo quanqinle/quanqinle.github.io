@@ -31,7 +31,7 @@ comments:     false
 
 <table style="border-style: none; border-color: white; border-color: transparent;">
   <tr>
-    <td colspan=2 style="font-weight : 700; font-size : 1.4em;"><span>权芹乐</span><span style="font-size : 0.8em; margin-left:20px;">软件测试工程师<span></td>
+    <td colspan=2 style="font-weight: 700; font-size: 1.4em;"><span>权芹乐</span><span style="font-size: 0.8em; margin-left: 30px;">软件测试工程师<span></td>
   </tr>
   <tr>
     <td>手机/微信：</td>
