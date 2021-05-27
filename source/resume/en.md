@@ -90,7 +90,7 @@ Software R&D Department (established in 2016) is responsible for developing new 
 - Write unit tests in core modules of Spring Boot projects. Perform white-box testing by code review.
 - Write API tests using [a self-developed framework (based on JMeter)](https://github.com/quanqinle/InterfaceTesting), verifying response's fields and JSON schema, customizing report output.
 
-(Spring Boot, MySQL, Linux, Jenkins, JIRA, K8s, Docker, Postman, Charles, REST-Assured, JMeter, etc.)
+(Spring Boot, MySQL, Linux, Jenkins, JIRA, Kubernetes, Docker, Postman, Charles, REST-Assured, JMeter, etc.)
 
 
 ## <a href="https://www.huawei.com/en/">Huawei Technologies Co., Ltd.</a> / Huawei Cloud Dept. / 2016.12 ~ 2017.04
