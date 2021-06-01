@@ -120,7 +120,7 @@ Beibei is an e-commerce company focusing on the field of mother and baby, only s
 NetEase social media sites (such as [NetEase blog](http://blog.163.com/), [LOFTER](https://www.lofter.com/)) have websites and Android/iPhone/iPad apps.
 
 - Managed Android/iPhone app testing, including: reviewing requirements, making test plans, writing cases, reviewing cases, assigning test tasks, executing tests, tracking progress, evaluating quality, writing test reports, etc.
-- Undertook automation testing for Android/iPhone apps, including: app UI test (appium), static code analysis (Lint and Clang), unit test (Robolectric),  CI/CD jobs (Jenkins).
+- Undertook automation testing for Android/iPhone apps, including: app UI test (Appium), static code analysis (Lint and Clang), unit test (Robolectric),  CI/CD jobs (Jenkins).
 - Participated in automation testing for web, including: web UI test (Selenium), API test (REST-assured), unit test (Spring JUnit).
 - Tested apps in weak network condition by Charles proxy. For Android app, Checked frame skipping and layout performance, found memory leak, collected CPU/memory usage statistics, etc.
 - Coached many colleagues for automation testing. Acted as a major lecturer of [online courses on automation testing](http://mooc.study.163.com/course/NEU-1000112018) organized by the company.

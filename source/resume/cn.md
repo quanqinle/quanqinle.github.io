@@ -93,7 +93,7 @@ comments:     false
 网易博客组的系列产品（如，网易博客、LOFTER 轻博客）是典型的移动互联网社交产品，有服务器端、web 浏览器端、Android/iPhone/iPad app 客户端。
 
 - 负责 Android/iPhone app 的测试工作。负责测试流程各环节的管理，主要包括：需求评审、制定测试计划、编写测试用例、评审测试用例、分配任务、执行测试、跟踪进度、评估质量、编写测试报告等。
-- 负责 Android/iPhone app 的自动化测试，包括：UI 测试用例编写（appium）、静态代码检查（Lint 和 Clang）、单元测试（Robolectric），以及维护持续集成任务（Jenkins）和编译打包环境。
+- 负责 Android/iPhone app 的自动化测试，包括：UI 测试用例编写（Appium）、静态代码检查（Lint 和 Clang）、单元测试（Robolectric），以及维护持续集成任务（Jenkins）和编译打包环境。
 - 参与编写 web 端自动化测试用例，包括：web 页面 UI 测试（Selenium）、接口测试（HttpClient）、后端单元测试（Spring TestNG）。
 - 针对移动 app 进行弱网络测试、流量测试，借助工具对 Android 应用进行内存泄露检查、页面丢帧测试、控件布局层级检查、CPU/内存用量统计等。
 - 2015 年网易质量保障部发起“移动应用测试”网课的录制，课程发布于云课堂，是付费课程。我作为主要讲师，讲授了自动化课程的部分内容（见作品）。2016 年继续参与第二期课程的内容编排工作。
@@ -134,7 +134,7 @@ comments:     false
 - Web 开发：Spring Boot
 - 版本管理：Svn、Git
 - 持续集成和自动部署：Jenkins
-- 其他：Linux、docker、k8s、TestNG 等
+- 其他：Linux、Docker、k8s 等
 
 # <div style="background-color: gainsboro">证书奖励</div>
 - 2012.02	恒生产品质量贡献奖
