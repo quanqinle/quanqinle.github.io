@@ -36,6 +36,10 @@ page[size="A5"][layout="landscape"] {
   }
 }
 
+a,span.exturl {
+  border-bottom: 1.5px solid #ccc !important;
+}
+
 /* BEGIN-> https://github.com/CyC2018/Markdown-Resume/blob/master/resume.css */
 /* I've modified a bit */
 #write {

@@ -14,13 +14,14 @@ comments:     false
 
 <head>
     <meta charset="UTF-8">
+    <meta property="article:author" content="权芹乐">
+    <title>权芹乐的简历</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
     <link rel="mask-icon" href="/images/logo.svg" color="#222">
     <link rel="stylesheet" href="/css/main.css">
-    <meta property="article:author" content="权芹乐">
-    <title>权芹乐的简历</title>
+    <link rel="stylesheet" href="/css/resume.css">
 </head>
 
 <body>
@@ -70,7 +71,7 @@ comments:     false
 
 - 作为测试负责人，带领 2 人团队，承担产品的测试管理和实施工作。
 - 完成测试团队组建，制定测试流程、测试制度、测试职责、绩效考核等。搭建用例管理平台，制定 JIRA 缺陷管理规范，搭建 Jenkins 持续集成平台，维护 Kubernetes 部署脚本。
-- 独立编写[接口测试自动化框架（基于 JMeter）](https://github.com/quanqinle/InterfaceTesting)，具有功能：支持录制回放、校验字段、校验返回体 JSON 结构、数据准备和清理、测试报告输出等。培训团队掌握接口测试原理、用例编写方法。
+- 独立编写[接口测试自动化框架（基于 JMeter）](https://github.com/quanqinle/InterfaceTesting)，具有功能：支持录制回放、校验字段、校验返回体 JSON 结构、数据准备和清理、测试报告输出等。培训团队掌握接口测试用例编写方法。
 - 编写后端 Spring Boot 工程的单元测试、集成测试用例，针对强逻辑功能模块完成自动化测试。分析、阅读代码，扩大测试范围和深度，向开发提供缺陷根因分析，修复提交部分 bug。
 
 ##  2016.12 ~ 2017.04，[华为杭州研究所](https://www.huawei.com/) / 云计算产品部
