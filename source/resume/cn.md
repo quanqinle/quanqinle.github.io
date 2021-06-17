@@ -23,7 +23,7 @@ comments:     false
     <title>权芹乐的简历</title>
 </head>
 
-<body>
+<body id="main-body">
 <div class="main-inner">
 
 
@@ -152,14 +152,23 @@ comments:     false
       <span style="margin-right: 10px;"><a href="https://blog.quanqinle.com/resume/en" target="_blank">English</a></span>
       <span><a href="https://blog.quanqinle.com/resume/cn" target="_blank">中文</a></span>
     </div>
-    <div style="margin-top: 5px; font-size: 80%; text-align: right;">打印前请点击 <button onclick="hideDiv()">X</button></div>
+    <!-- <div style="margin-top: 5px; font-size: 80%; text-align: right;">打印前请点击 <button onclick="hideDiv()">X</button></div> -->
+    <div style="margin-top: 5px; font-size: 80%; text-align: right;"><button onclick="downloadPdf()">下载 PDF</button></div>
   </div>
+  
+  <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css">
+
   <script>
     var x = document.getElementById("online");
-    
     function hideDiv() {
       x.style.display = "none";
     }
+    function downloadPdf() {
+      x.style.display = "none";
+      printJS('main-body', 'html');
+      x.style.display = "inline";
+    };
   </script>
 <!-- Only for online version -->
 
