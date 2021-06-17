@@ -2,7 +2,7 @@
 layout:       false
 title:        "Qinle Quan's resume"
 date:         2021-04-06 12:00:00
-updated:      2021-06-17 11:00:00
+updated:      2021-06-17 21:00:00
 author:       "Quan Qinle"
 lang:         en
 catalog:      false
