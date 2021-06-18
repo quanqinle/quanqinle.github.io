@@ -12,6 +12,7 @@ categories:
     - Selenium
 tags:
     - Selenium
+
 ---
 
 在使用 Selenium 之前，需要确保已经有了和被测浏览器版本一致的 driver，如果没有，就要到官网下载所需的 driver。因为现代浏览器更新频繁，下载 driver 也就变得频繁。这个过程就变成了繁琐、无趣的事情。如果你以 hub-node 模式运行在很多浏览器的环境，这事儿就更让人难受了。
