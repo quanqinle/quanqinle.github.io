@@ -154,7 +154,10 @@ comments:     false
       <span><a href="https://blog.quanqinle.com/resume/cn" target="_blank">中文</a></span>
     </div>
     <!-- <div style="margin-top: 5px; font-size: 80%; text-align: right;">打印前请点击 <button onclick="hideDiv()">X</button></div> -->
-    <div style="margin-top: 5px; font-size: 80%; text-align: right;"><button onclick="downloadPdf()">下载 PDF</button></div>
+    <div style="margin-top: 5px; font-size: 80%">
+      <span><button onclick="downloadPdf()">下载 .pdf</button></span>
+      <span style="float:right"><button onclick="hideDiv()">关闭</button></span>
+    </div>
   </div>
   
   <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
