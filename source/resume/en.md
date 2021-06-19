@@ -163,7 +163,21 @@ Hundsun is a top financial technology company in China. The Open-end Funds Sales
     function downloadPdf() {
       x.style.display = "none";
       // printJS('main-body', 'html');
-      printJS({ printable: 'main-body', type: 'html', scanStyles: true, css: ['/css/main.css','/css/resume.css'], maxWidth: 2480, targetStyles: ['*'] });
+      printJS({
+        printable: 'main-body',
+        type: 'html',
+        scanStyles: true,
+        header: '<a href="https://blog.quanqinle.com/resume/en">https://blog.quanqinle.com/resume/en</a>',
+        css: [
+          '/css/main.css',
+          '/css/resume.css',
+          'https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css',
+          'https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css'
+        ],
+        maxWidth: 2480,
+    		style: '.skill-tags {background-color: #eee; padding: 1px 5px; margin: 0 5px 5px 0; display: inline-block;}',
+        targetStyles: ['*']
+      });
       x.style.display = "inline";
     };
   </script>
