@@ -137,7 +137,19 @@
     }
     function downloadPdf() {
       x.style.display = "none";
-      printJS('main-body', 'html');
+      // printJS('main-body', 'html');
+      printJS({
+        printable: 'main-body',
+        type: 'html',
+        scanStyles: true,
+        header: '<a href="https://blog.quanqinle.com/resume/cn">https://blog.quanqinle.com/resume/cn</a>',
+        css: [
+          '/css/main.css',
+          '/css/resume.css'
+        ],
+        maxWidth: 2480,
+        targetStyles: ['*']
+      });
       x.style.display = "inline";
     };
   </script>
