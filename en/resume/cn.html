@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="/css/resume.css">
 </head>
 
-<body id="main-body">
-<div class="main-inner">
+<body>
+<div id="main-body" class="main-inner">
 
 
 <h1 id="个人信息"><a href="#个人信息" class="headerlink" title="个人信息"></a><div style="background-color: gainsboro">个人信息</div></h1><table style="border-style: none; border-color: white; border-color: transparent;">
@@ -130,8 +130,9 @@
     </div>
   </div>
   
-  <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css">
+  <!-- https://github.com/crabbly/print.js v1.6.0  -->
+  <script src="/js/print.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/print.min.css">
 
   <script>
     var x = document.getElementById("online");
@@ -140,7 +141,6 @@
     }
     function downloadPdf() {
       x.style.display = "none";
-      // printJS('main-body', 'html');
       printJS({
         printable: 'main-body',
         type: 'html',
@@ -150,6 +150,7 @@
           '/css/main.css',
           '/css/resume.css'
         ],
+        style: '',
         maxWidth: 2480,
         targetStyles: ['*']
       });
