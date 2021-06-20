@@ -160,7 +160,8 @@ comments:     false
     </div>
   </div>
   
-  <!-- https://github.com/crabbly/print.js v1.6.0  -->
+  <!-- https://github.com/crabbly/print.js v1.5.0  -->
+  <!-- Do not use 1.6.0, something wrong with it (2021.6.20) -->
   <script src="/js/print.min.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/print.min.css">
 
