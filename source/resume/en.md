@@ -156,8 +156,10 @@ Hundsun is a top financial technology company in China. The Open-end Funds Sales
   </div>
 
   <!-- https://github.com/crabbly/print.js v1.6.0  -->
-  <script src="/js/print.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="/css/print.min.css">
+  <!-- <script src="/js/print.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/print.min.css"> -->
+  <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css">
 
   <script>
     var x = document.getElementById("online");
