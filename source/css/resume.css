@@ -104,7 +104,7 @@ a {
 }
 
 @include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
-
+/*
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
@@ -132,7 +132,7 @@ a {
   font-weight: bold;
   src: local('Open Sans Bold Italic'), url('./github/700i.woff') format('woff');
 }
-
+*/
 html {
   font-size: 16px;
 }
