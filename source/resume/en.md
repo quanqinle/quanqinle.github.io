@@ -29,9 +29,9 @@ comments:     false
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
 </head>
 
-<body id="main-body">
+<body>
 <!-- <page size="A4"></page> -->
-<div class="main-inner">
+<div id="main-body" class="main-inner">
 
 <div style="text-align: center; margin-top: 20px; padding:10px; background-color: #eee; line-height:1.5">
   <div style="font-size: 1.5em; font-weight: 700">Qinle Quan (权芹乐)</div>
@@ -155,8 +155,9 @@ Hundsun is a top financial technology company in China. The Open-end Funds Sales
     </div>
   </div>
 
-  <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css">
+  <!-- https://github.com/crabbly/print.js v1.6.0  -->
+  <script src="/js/print.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/print.min.css">
 
   <script>
     var x = document.getElementById("online");
@@ -165,7 +166,6 @@ Hundsun is a top financial technology company in China. The Open-end Funds Sales
     }
     function downloadPdf() {
       x.style.display = "none";
-      // printJS('main-body', 'html');
       printJS({
         printable: 'main-body',
         type: 'html',
@@ -177,8 +177,8 @@ Hundsun is a top financial technology company in China. The Open-end Funds Sales
           'https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css',
           'https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css'
         ],
+        style: '.skill-tags {background-color: #eee; padding: 1px 5px; margin: 0 5px 5px 0; display: inline-block;}',
         maxWidth: 2480,
-    		style: '.skill-tags {background-color: #eee; padding: 1px 5px; margin: 0 5px 5px 0; display: inline-block;}',
         targetStyles: ['*']
       });
       x.style.display = "inline";

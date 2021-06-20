@@ -24,8 +24,8 @@ comments:     false
     <link rel="stylesheet" href="/css/resume.css">
 </head>
 
-<body id="main-body">
-<div class="main-inner">
+<body>
+<div id="main-body" class="main-inner">
 
 
 # <div style="background-color: gainsboro">个人信息</div>
@@ -160,8 +160,9 @@ comments:     false
     </div>
   </div>
   
-  <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css">
+  <!-- https://github.com/crabbly/print.js v1.6.0  -->
+  <script src="/js/print.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/print.min.css">
 
   <script>
     var x = document.getElementById("online");
@@ -170,7 +171,6 @@ comments:     false
     }
     function downloadPdf() {
       x.style.display = "none";
-      // printJS('main-body', 'html');
       printJS({
         printable: 'main-body',
         type: 'html',
@@ -180,6 +180,7 @@ comments:     false
           '/css/main.css',
           '/css/resume.css'
         ],
+        style: '',
         maxWidth: 2480,
         targetStyles: ['*']
       });
