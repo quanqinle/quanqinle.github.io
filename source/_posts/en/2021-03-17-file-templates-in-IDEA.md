@@ -3,7 +3,7 @@ layout:       post
 title:        "Java | Use IDEA's file template function to simplify Spring Boot class creation"
 subtitle:     "When adding an entity to a Spring Boot project, you generally need to create multiple classes by the way. Use IntelliJ's `File and Code Templates` to create all classes in one click"
 date:         2021-03-17 12:00:00
-updated:      2021-03-26 12:00:00
+updated:      2021-06-21 17:07:00
 author:       "Quan Qinle"
 header-img:   "img/home-bg.webp"
 lang:         en
@@ -14,38 +14,39 @@ tags:
     - Java
     - IDEA
     - Spring Boot
+
 ---
 
-I am trying to writing english post.
+> I am trying to writing english post.
 
 # Environment
 + IntelliJ IDEA Community 2020.3.3
 
 # Introduction
 
-在Spring Boot项目中，每当新增一个entity/module对象时，如`UserPO.java`，大多时候接下来还要创建对应的repository、service、service implement、controller等，并且最开始类的内容也是相似，一套模板类做下来，慢慢的重复劳动。
+In the Spring Boot projects, whenever a new entity/module object is added, such as `UserPO.java`, the next step is usually to create the corresponding repository, service, service implement, controller, etc., and the initial contents of these files are all similar. It is real a slow and repetitive work to create the set of template classes.
 
-于是，想着是否存在根据类模板“一键”创建多个类文件的功能，在`Settings`中一番翻找，在`File and Code Templates`中找到了解决办法。本文就是介绍通过文件模板批量创建文件的步骤。
+So, I wondered if there was a way to create multiple class files at once with "one-click" from a class template or something. When I looked up `Settings`, I found the solution in `File and Code Templates`. This article describes how to create a batch class files from a file template step by step.
+
 <!-- more -->
 
 # Expectations and Results
 
-> 结果即需求
+Let's look at the effect of the final implementation first, that is, the initial requirement
 
-先演示一下最终实现的效果，也就是最初的需求
-1. 在包根目录下，右键——>`New`——>选择新设置的模板，
+1. On the root directory of the package, right click ——> `New` ——> select the new template,
    ![right click](/images/in-post/file-templates-in-IDEA/right-click-new-entity.webp)
-2. 输入entity名，如`User`，首字母大写
+2. Enter the `entity name`, such as `User`, with its first letter in uppercase
    ![input entity](/images/in-post/file-templates-in-IDEA/input-entity.webp)
-3. 生成的如下文件：
+3. Get the following new files:
    + entity/po : `User.java`
    + dao : `UserRepository.java`
    + service : `UserService.java`
    + service/impl : `UserServiceImpl.java`
    + controller : `UserController.java`
 
-对应的项目结构如下，下文的配置也是以这个结构为前提的。
-```
+The corresponding project structure is as follows, and the configuration below is based on this structure.
+```text
 src/main/java
 └── com.github.quanqinle
         ├── Application.java
@@ -65,18 +66,18 @@ src/main/java
 
 # Setting
 
-先放一张最终的配置，就像下图中的(1)所示：
+This is the final configuration, just as shown in (1) in the `Picture 1`:
 
 ![final settings](/images/in-post/file-templates-in-IDEA/final-settings.webp)
-<center style="color:#C0C0C0;">图1</center> 
+<center style="color:#C0C0C0;">Picture 1</center> 
 
-## 配置po模板
-打开`Settings`窗口，找到`Editor`——>`File and Code templates`，在`Files`分类下，点击<kbd>Create Template</kbd>，即图1的按钮(2)
+## Setting po template
+Open `Settings` dialog, find `Editor` ——> `File and Code templates`, then under the 'Files' category, click <kbd>Create Template</kbd>, that is, button (2) in `Picture 1`.
 
-+ Name：右键创建时看到的名字，例`Create whole classes in package root`
-+ Extension：默认的java
-+ File Name：文件路径和文件名（不用加.java后缀），`./entity/po/${Subject}`
-+ 输入模板内容，如下：
++ Name: template name, which will be used when right-clicking, such as `Create whole classes in package root`
++ Extension: java default
++ File Name: file path and file name (Don't add .java), `./entity/po/${Subject}`
++ Enter the content of the template as below:
 
 ```java
 #set($SubjectOfLowerFirst = ${Subject.substring(0,1).toLowerCase()} + $Subject.substring(1))
@@ -108,12 +109,12 @@ public class ${Subject} {
 }
 ```
 
-## 配置dao模板
-选中第一步创建的<kbd>Create Template</kbd>前提下，点击<kbd>Create Child Template File</kbd>，即图1的按钮(3)
+## Setting dao template
+Select `po Template` first which was created in the step 1, then click <kbd>Create Child Template File</kbd>，that is, button (3) in `Picture 1`.
 
-+ File Name：文件路径和文件名（不用加.java后缀），`./dao/${Subject}Repository`
-+ Extension：默认的java
-+ 输入模板内容，如下：
++ Extension: java default
++ File Name: file path and file name (Don't add .java), `./dao/${Subject}Repository`
++ Enter the content of the template as below:
 
 ```java
 #set($SubjectOfLowerFirst = ${Subject.substring(0,1).toLowerCase()} + $Subject.substring(1))
@@ -129,12 +130,13 @@ public interface ${Subject}Repository extends JpaRepository<${Subject}, Long> {
 }
 ```
 
-## 配置service模板
-选中第一步创建的<kbd>Create Template</kbd>前提下，点击<kbd>Create Child Template File</kbd>，即图1的按钮(3)
+## Setting service template
 
-+ File Name：文件路径和文件名（不用加.java后缀），`./service/${Subject}Service`
-+ Extension：默认的java
-+ 输入模板内容，如下：
+Select `po Template` first which was created in the step 1, then click <kbd>Create Child Template File</kbd>，that is, button (3) in `Picture 1`.
+
++ Extension: java default
++ File Name: file path and file name (Don't add .java), `./service/${Subject}Service`
++ Enter the content of the template as below:
 
 ```java
 #set($SubjectOfLowerFirst = ${Subject.substring(0,1).toLowerCase()} + $Subject.substring(1))
@@ -177,14 +179,14 @@ public interface ${Subject}Service {
 }
 ```
 
-## 配置service implement模板
-选中第一步创建的<kbd>Create Template</kbd>前提下，点击<kbd>Create Child Template File</kbd>，即图1的按钮(3)
+## Setting service implement template
+Select `po Template` first which was created in the step 1, then click <kbd>Create Child Template File</kbd>，that is, button (3) in `Picture 1`.
 
-+ File Name：文件路径和文件名（不用加.java后缀），`./service/impl/${Subject}ServiceImpl`
-+ Extension：默认的java
-+ 输入模板内容，如下：
++ Extension: java default
++ File Name: file path and file name (Don't add .java), `./service/impl/${Subject}ServiceImpl`
++ Enter the content of the template as below:
 
-```
+```java
 #set($SubjectOfLowerFirst = ${Subject.substring(0,1).toLowerCase()} + $Subject.substring(1))
 #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME}.service.impl;#end
 
@@ -240,14 +242,14 @@ public class ${Subject}ServiceImpl implements ${Subject}Service {
 }
 ```
 
-## 配置controller模板
-选中第一步创建的<kbd>Create Template</kbd>前提下，点击<kbd>Create Child Template File</kbd>，即图1的按钮(3)
+## Setting controller template
+Select `po Template` first which was created in the step 1, then click <kbd>Create Child Template File</kbd>，that is, button (3) in `Picture 1`.
 
-+ File Name：文件路径和文件名（不用加.java后缀），`./controller/${Subject}Controller`
-+ Extension：默认的java
-+ 输入模板内容，如下：
++ Extension: java default
++ File Name: file path and file name (Don't add .java), `./controller/${Subject}Controller`
++ Enter the content of the template as below:
 
-```
+```java
 #set($SubjectOfLowerFirst = ${Subject.substring(0,1).toLowerCase()} + $Subject.substring(1))
 #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME}.controller;#end
 
@@ -296,4 +298,4 @@ public class ${Subject}Controller {
 }
 ```
 
-保存配置。
+Save the configuration.
