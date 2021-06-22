@@ -96,7 +96,7 @@ https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
 在热点管理 or 路由器管理界面，查找树莓派的 IP。
 
 `ssh`访问树莓派：
-```cmd
+```sh
 ssh pi@IP-of-raspberry
 ```
 树莓派官方系统的默认登录名和密码是`pi / raspberry`。
@@ -107,7 +107,7 @@ ssh pi@IP-of-raspberry
 
 # pip/pip3 改国内源
 
-```cmd
+```sh
 mkdir ~/.pip
 vi ~/.pip/pip.conf
 
@@ -123,7 +123,7 @@ trusted-host=
 
 # 配置：开启 VNC、设置分辨率，等
 
-```cmd
+```sh
 sudo raspi-config
 ```
 使用方向键控制光标，Enter 键选择：

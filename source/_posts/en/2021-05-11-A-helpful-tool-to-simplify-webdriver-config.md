@@ -1,7 +1,7 @@
 ---
 layout:      post
-title:       "Selenium | webdrivermanager helps to manange and set driver"
-subtitle:    "automate the management of the drivers, such as chromedriver, geckodriver etc."
+title:       "Selenium | Webdrivermanager helps to manange and set driver"
+subtitle:    "Automate the management of the drivers, such as chromedriver, geckodriver etc."
 date:         2021-05-11 12:00:00
 updated:      2021-06-18 15:00:00
 author:      "Quan Qinle"

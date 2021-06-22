@@ -4,7 +4,7 @@ title:        "Java | Use IDEA's file template function to simplify Spring Boot 
 subtitle:     "When adding an entity to a Spring Boot project, you generally need to create multiple classes by the way. Use IntelliJ's `File and Code Templates` to create all classes in one click"
 date:         2021-03-17 12:00:00
 updated:      2021-06-21 17:07:00
-author:       "Quan Qinle"
+author:       "Qinle Quan"
 header-img:   "img/home-bg.webp"
 lang:         en
 catalog:      true
@@ -22,7 +22,7 @@ tags:
 
 # Introduction
 
-In the Spring Boot projects, whenever a new entity/module object is added, such as `UserPO.java`, the next step is usually to create the corresponding repository, service, service implement, controller, etc., and the initial contents of these files are all similar. It is real a slow and repetitive work to create the set of template classes.
+In the Spring Boot projects, whenever a new entity/module object is added, such as `UserPO.java`, the next step is usually to create the corresponding repository, service, service implement, controller, etc., and the initial contents of these files are all similar. It is real a waste of time and a repetitive work to create the set of template classes.
 
 So, I wondered if there was a way to create multiple class files at once with "one-click" from a class template or something. When I looked up `Settings`, I found the solution in `File and Code Templates`. This article describes how to create a batch class files from a file template step by step.
 
@@ -32,11 +32,11 @@ So, I wondered if there was a way to create multiple class files at once with "o
 
 Let's look at the effect of the final implementation first, that is, the initial requirement
 
-1. On the root directory of the package, right click ——> `New` ——> select the new template,
+1. On the root directory of the package, right click -> `New` -> select the new template,
    ![right click](/images/in-post/file-templates-in-IDEA/right-click-new-entity.webp)
 2. Enter the `entity name`, such as `User`, with its first letter in uppercase
    ![input entity](/images/in-post/file-templates-in-IDEA/input-entity.webp)
-3. Get the following new files:
+3. Generate the following new files:
    + entity/po : `User.java`
    + dao : `UserRepository.java`
    + service : `UserService.java`
@@ -70,7 +70,7 @@ This is the final configuration, just as shown in (1) in the `Picture 1`:
 <center style="color:#C0C0C0;">Picture 1</center> 
 
 ## Setting po template
-Open `Settings` dialog, find `Editor` ——> `File and Code templates`, then under the 'Files' category, click <kbd>Create Template</kbd>, that is, button (2) in `Picture 1`.
+Open `Settings` dialog, find `Editor` -> `File and Code templates`, then under the 'Files' category, click <kbd>Create Template</kbd>, that is, button (2) in `Picture 1`.
 
 + Name: template name, which will be used when right-clicking, such as `Create whole classes in package root`
 + Extension: java default

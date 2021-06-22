@@ -12,7 +12,7 @@ tags:
 ---
 
 自从应用的部署从 tomcat 转移到 kubernetes 之后，再也不能像下面这样一句命令查看日志了：
-```cmd
+```sh
 tail -f /usr/local/tomcat7/logs/catalina.out
 ```
 
@@ -21,7 +21,7 @@ tail -f /usr/local/tomcat7/logs/catalina.out
 <!-- more -->
 
 ## 1. 找到 pod
-```cmd
+```sh
 kubectl get pods -n=test -o wide
 // or
 kubectl get pods --namespace=test -o wide
@@ -40,18 +40,18 @@ my-app-7c8fb75b76-spm8n    2/2     Running   0          45m   a.b.c.d   k8s-node
 查找 container 的方式有两个，
 1. 在应用部署的对应 yaml 文件中找到 containers->name
 2. 在 pod 详情中找 Container:
-```cmd
+```sh
 kubectl describe pod my-app-7c8fb75b76-spm8n -n=test
 ```
 
 如果缺省这步的话，查看日志可能会遇到下面的提示：
-```cmd
+```sh
 [root@k8s-master ~]# kubectl logs -f my-app-7c8fb75b76-spm8n -n test --tail=500 --v=1
 Error from server (BadRequest): a container name must be specified for pod my-app-7c8fb75b76-spm8n, choose one of: [my-app filebeat]
 ```
 
 ## 3. 查看日志
-```cmd
+```sh
 kubectl logs -f my-app-7c8fb75b76-spm8n -c partner-kpi -n test --tail=500 --v=1
 ```
 * `-c partner-kpi`: container 容器

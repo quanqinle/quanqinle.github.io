@@ -55,12 +55,12 @@ http://www.miui.com/unlock/download.html
 https://twrp.me/xiaomi/xiaomimi6.html
 
 + 刷 twrp.img
-```cmd
+```sh
 fastboot flash recovery twrp.img
 ```
 
 + 进入 Recovery TWRP
-```cmd
+```sh
 fastboot boot twrp.img
 // OR
 fastboot reboot
@@ -86,7 +86,7 @@ Tip: 刷机前，应在老系统中退出 Google 账号登陆，否则就会遇�
 1. 进入 Recovery TWRP
 2. 在菜单中完成/system 分区。以防万一，adb 中再次挂载`adb remount /system`
 3. 进入 shell，关闭引导
-```cmd
+```sh
 adb shell
 echo "ro.setupwizard.mode=DISABLED" >> /system/build.prop
 ```
