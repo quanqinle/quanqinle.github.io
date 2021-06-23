@@ -9,9 +9,9 @@ catalog:      true
 tags:
     - 刷机
     - Android
+
 ---
 
-[toc]
 
 # 刷官方 ROM
 

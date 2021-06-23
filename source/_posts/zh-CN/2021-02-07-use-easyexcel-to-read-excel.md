@@ -12,9 +12,10 @@ categories:
 tags:
     - Java
     - Excel
+
 ---
 
-# EasyExcel？
+# 什么是 EasyExcel
 
 以前我都是用`Apache poi`解析 Excel，但我不喜欢自己处理模型转换、数值类型转换，而且 poi 处理大 excel 时内存高。后来听说了阿里开源的 EasyExcel，决定试用下。
 
@@ -229,12 +230,12 @@ public class DemoExcelRow {
 + 变量`doubleData`通过注解`@NumberFormat("#.##")`指定两位小数，通过`@ExcelProperty(index = 5)`设定它在第 6 列
 + 默认所有字段都会和 excel 匹配，通过`@ExcelIgnore`说明某变量不是 excel 中的字段
 + `HEAD_ROW_NUMBER`真正的表头所在行
-+ `HEAD_CHECK_MAP`用于表头校验的map
++ `HEAD_CHECK_MAP`用于表头校验的 map
 
 ## 3. 转换器
 转换器`SubjectConverter.java`将 excel 中的文本转成 enum 中的 1、2、3，如本例中，读到"应收账款"转存为 16。
 
-下面的代码只有`convertToJavaData()`被修改了，其他都是继承来的，IDE会自动生成，所以这部分不写了。
+下面的代码只有`convertToJavaData()`被修改了，其他都是继承来的，IDE 会自动生成，所以这部分不写了。
 ```java
 public class SubjectConverter implements Converter<String> {
 

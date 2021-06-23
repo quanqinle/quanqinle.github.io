@@ -9,6 +9,7 @@ header-img:   "img/post-bg-beach2.webp"
 catalog:      true
 tags:
     - Automated Testing
+
 ---
 
 # 什么是自动化测试？

@@ -10,6 +10,7 @@ catalog:      true
 tags:
     - Raspberry 4b
     - 树莓派
+
 ---
 
 # 购买树莓派的原因

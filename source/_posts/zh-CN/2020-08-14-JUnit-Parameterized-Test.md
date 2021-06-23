@@ -8,6 +8,7 @@ author:       "权芹乐"
 catalog:      true
 tags:
     - junit
+
 ---
 
 在 JUnit5 中，可以将`@Test`替换成`@ParameterizedTest`，这样就可以使用不同的参数、多次循环运行测试方法。

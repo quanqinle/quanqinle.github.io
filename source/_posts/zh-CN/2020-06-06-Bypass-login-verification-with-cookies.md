@@ -15,6 +15,7 @@ tags:
     - Automated Testing
     - Interface Testing
     - API Testing
+
 ---
 
 做 Web UI 自动化测试的朋友，基本上都会遇到用户登录操作，然而基于安全性考虑，登录过程除了要求输入用户名和密码，往往还会存在为了防止自动化登陆而设置的更加复杂的校验。比如，

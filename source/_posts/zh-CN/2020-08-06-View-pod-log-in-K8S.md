@@ -9,6 +9,7 @@ catalog:      true
 tags:
     - k8s
     - kubernetes
+
 ---
 
 自从应用的部署从 tomcat 转移到 kubernetes 之后，再也不能像下面这样一句命令查看日志了：
