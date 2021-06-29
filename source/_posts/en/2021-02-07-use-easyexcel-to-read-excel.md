@@ -3,7 +3,7 @@ layout:       post
 title:        "Java | Read Excel using EasyExcel"
 subtitle:     "The most common use for reading Excel, and custom listener, converter, etc."
 date:         2021-02-07
-updated:      2021-02-18
+updated:      2021-06-29
 author:       "Qinle Quan"
 header-img:   "img/home-bg.webp"
 lang:         en
@@ -18,7 +18,7 @@ tags:
 
 # What is EasyExcel
 
-In the past, I used `Apache POI` to parse Excel, but I don't like dealing with model conversions and numeric type conversions by myself, and the POI uses too much memory when the Excel is large. Later I heared about the EasyExcel which is open source by Alibaba, so I decided to try it out.
+In the past, I used `Apache POI` to parse Excel, but I don't like dealing with the model conversions and numeric type conversions by myself, and the POI uses too much memory when the Excel file is large. Later I heared about the EasyExcel which is an open source project created by Alibaba, so I decided to try it out.
 
 Introduction from offical website:
 > A quick, easy and avoiding OOM Excel tool written in Java
@@ -54,11 +54,11 @@ A maven pom demo as below:
 </dependency>
 ```
 
-# The minimalist demo for reading Excel
+# The mɪnɪməm demo for reading Excel
 
-## 1. Data class `DemoBizExcelRow.java`, storing one line data of Excel
+## 1. Data class `DemoBizExcelRow.java`, storing one row data of Excel
 ```java
-@Data // use lombok, or add get()/set()
+@Data // use Lombok, or add get()/set()
 public class DemoBizExcelRow {
     private String string;
     private Date date;
@@ -66,10 +66,10 @@ public class DemoBizExcelRow {
 }
 ```
 
-## 2. Custom data row listener class `DemoDataListener.java`, parsing data line by line
+## 2. Custom data row listener class `DemoDataListener.java`, parsing data row by row
 
-If you need the parsing results, you can receive them by passing them as arguments to the constructor as follows.
-If you want to finish saving something into the DB in this listener class, please see the official example `DemoDataListener.java`。
+If you need the parsed results, you can receive them by passing them as arguments to the constructor as follows.
+If you want to save something into the DB in this listener class, please see the official example `DemoDataListener.java`
 ```java
 public class DemoDataListener extends AnalysisEventListener<DemoBizExcelRow> {
 
@@ -86,10 +86,10 @@ public class DemoDataListener extends AnalysisEventListener<DemoBizExcelRow> {
     }
 
     /**
-     * This function is called every time while the every line data is parsed.
+     * This function is called every time while the every row data is parsed.
      *
      * @param data
-     *            one row value. Is is same as {@link AnalysisContext#readRowHolder()}
+     *            one row value. It is same as {@link AnalysisContext#readRowHolder()}
      * @param context
      */
     @Override
@@ -122,16 +122,16 @@ try {
 }
 ```
 
-It is easy to use, there are only two things you need to do: 1. define data class 2. custom listener class (for getting Excel data or operating dao, or whatever)
+It is easy to use, there are only two things you need to do: 1. define data class 2. custom listener class (for getting Excel data or operating dao, or whatever else)
 
 # Custom reading Excel
 
 The above is good enough, but in my own actual usage, I still need other functions:
-+ A table header may has multiple lines, and the headers are different in many bussiness Excel
++ A table header may has multiple rows, and headers are different in many bussiness Excel files
 + Get the header info, including at least colume name, column order
 + Verify the colume name, so as to ensure the Excel meets the requirements, if not, return directly
-+ Verify the data after it is parsed, e.g. required field cannot be blank, value for some column cannot exceed a range, and value for a particular column is converted by ENUM
-+ Get the sets of error colume in each lines, however, it is default to ignore the remaining cells and skip to the next line when it encounters a certain cell error
++ Verify the cell data after it is parsed, e.g. required field can't be blank, value for some column can't exceed a range, and value for a particular column has to be converted based on ENUM
++ Get the sets of error colume in each row, however, it is default to ignore the remaining cells and skip to the next row when it encounters a certain error cell
 
 ## 1. The result class for returning
 
@@ -142,13 +142,13 @@ public class ReadExcelResult<T> {
 
     /**
      * table header map.
-     * row index -> header data of one line
+     * row index -> header data of one row
      */
     Map<Integer, Map<Integer, CellData>> rowIdx2HeadMap;
 
     /**
      * valid data map.
-     * row index -> content data of one line
+     * row index -> content data of one row
      */
     Map<Integer, T> rowIdx2RowDataMap;
 
@@ -175,7 +175,7 @@ public class ReadExcelResult<T> {
 public class DemoExcelRow {
 
     /**
-     * The number of header line.
+     * The number of header row.
      * row index starts from 1
      */
     @ExcelIgnore
@@ -189,8 +189,8 @@ public class DemoExcelRow {
     private final static int COLUMN_LAST_NUMBER = 37;
     /**
      * The expected header.
-     * <p>主要用于表格合法性校验。这里可以只校验必要的字段，即，配置实际Excel的表头字段的子集。</p>
-     * <p>当为null时，不校验表头</p>
+     * <p>Mainly used for table legality checks. Only the necessary fields have to be verified, i.e., a subset of the actual header </p>
+     * <p>If it is null, do not verify the header.</p>
      * <p>key是表头排序，即columnIndex，从0开始；</p>
      * <p>value是表头名，可以忽略前后空格，但必须包含中间空格和换行</p>
      */
@@ -203,7 +203,7 @@ public class DemoExcelRow {
         }
     };
 
-    /* ---- The following correspond to each field in the DB table ---- */
+    /*---- The following correspond to each field in the DB table ----*/
 
     @ExcelProperty({"索引号"})
     private String string;
@@ -232,13 +232,13 @@ Code explanation:
 + Field `subject` is a converter, we'll talk about it in the next section
 + Field `doubleData` is limited to two decimal points by the annotation `@NumberFormat("#.##")`, specified at the 6th column by the annotation `@ExcelProperty(index = 5)`
 + Default all fields can find a matched column in Excel, but `@ExcelIgnore` shows the field is not in Excel
-+ `HEAD_ROW_NUMBER` shows the table header is on this line
++ `HEAD_ROW_NUMBER` shows that the table header is on this row
 + Put any fields of header in `HEAD_CHECK_MAP` to check if the Excel is valid
 
 ## 3. Converter
 Converter `SubjectConverter.java` will turn the text of some column into number through the enum, Eg. in this demo, convert "应收账款" to 16.
 
-I only changed the content of `convertToJavaData()` in the following, The rest is inherited, and generated by the IDE automatically, so let's ignore them for brevity.
+I only changed the content of `convertToJavaData()` in the following class, the rest is inherited and generated by the IDE automatically, so let's ignore them for brevity.
 ```java
 public class SubjectConverter implements Converter<String> {
 
@@ -259,9 +259,9 @@ public class SubjectConverter implements Converter<String> {
     /**
      * Convert Excel objects to Java objects
      *
-     * @param cellData            Excel cell data.NotNull.
-     * @param contentProperty     Content property.Nullable.
-     * @param globalConfiguration Global configuration.NotNull.
+     * @param cellData             Excel cell data.NotNull.
+     * @param contentProperty      Content property.Nullable.
+     * @param globalConfiguration  Global configuration.NotNull.
      * @return Data to put into a Java object
      * @throws Exception Exception.
      */
@@ -280,7 +280,7 @@ public class SubjectConverter implements Converter<String> {
 
 ## 4. Custom listener for parsing cell
 
-`ReadAllCellDataThrowExceptionLastListener.java` is copied from the offical class `ModelBuildEventListener.java`, I just changed the code that stops parsing the rest of the current line when an error cell is encountered to read the rest of the line.
+`ReadAllCellDataThrowExceptionLastListener.java` is copied from the offical class `ModelBuildEventListener.java`, I just changed the code that stops parsing the rest of the current row when an error cell is encountered to read the rest of the row.
 
 Only the modified codes are showed here, go ahead to `ModelBuildEventListener.java` to see the rest which is ignored.
 ```java
@@ -366,7 +366,7 @@ public class ReadAllCellDataThrowExceptionLastListener extends
 public class MyBizDemoListener<T> extends AnalysisEventListener<T> {
 
     /**
-     * 期望的表头
+     * The expected header.
      * <p>用于表格合法性校验。这里可以只校验必要的字段，即，配置实际Excel的表头字段的子集。</p>
      * <p>当为null时，不校验表头</p>
      * <p>key是表头排序，即columnIndex，从0开始；</p>
@@ -377,7 +377,6 @@ public class MyBizDemoListener<T> extends AnalysisEventListener<T> {
      * 读取Excel后，存入该对象
      */
     protected ReadExcelResult<T> readExcelResult;
-
     /**
      * 表头行/列
      */
@@ -401,7 +400,7 @@ public class MyBizDemoListener<T> extends AnalysisEventListener<T> {
 
     /**
      * @param readExcelResult 读取Excel后，存入该对象
-     * @param headCheckMap    表格头校验map。A map contains columnIndex<->表头名. If null, do not check head
+     * @param headCheckMap    表格头校验map。A map contains columnIndex->header column name. If null, do not check header
      */
     public MyBizDemoListener(ReadExcelResult<T> readExcelResult, Map<Integer, String> headCheckMap) {
         this.readExcelResult = readExcelResult;
@@ -550,11 +549,11 @@ public class MyBizDemoListener<T> extends AnalysisEventListener<T> {
 }
 ```
 Code explanation: 
-+ 在`invokeHead()`中，借助构造函数传入的变量`headCheckMap`校验 Excel 表头
-+ 在`onException()`中，仅当`throw exception`时才会终止 Excel 解析，否则只是跳过到下一行
-+ 在`invoke()`中，处理必填项、数值合法性校验等等
++ In `invokeHead()`, verify the Excel header by checking `headCheckMap` which is passed in through the constructor method
++ In `onException()`, parsing Excel is aborted only when `throw exception`, else continue to the next row
++ In `invoke()`, deal with the required values, validity check and so on
 
-## 6. Use
+## 6. Use the above to read Excel
 
 ```java
 String file = "D:\\Demo.xlsx";
@@ -585,8 +584,8 @@ try {
 // print readExcelResult
 ```
 Code explanation: 
-+ `EasyExcel`默认提供了解析单元格的监听, that is `ModelBuildEventListener.java` above mentioned, 如果要使用自定义的单元格解析监听，要先去掉默认`useDefaultListener(false)`，再注册自己的`registerReadListener(new ReadAllCellDataThrowExceptionLastListener())`
-+ 在使用自定义单元格解析监听情况下，不能通过`EasyExcel.read()`传入自定义的行解析监听，只能通过`registerReadListener()`注册，并且，（这一点很重要）**要放在注册自定义单元格监听之后**。
++ `EasyExcel` supports the listener for parsing cell by default, that is `ModelBuildEventListener.java` above mentioned, but if you need to use your custom listener, you should comment out the default `useDefaultListener(false)` first, then register your own `registerReadListener(new ReadAllCellDataThrowExceptionLastListener())`
++ In the case of the custom cell listener is used, we can't pass in your custom listener for parsing row through `EasyExcel.read()`, only can do it through registering `registerReadListener()`, and there is an important point we have to **register the custom cell listener first then regiser the custom row listener**
 
 # Supplement
 
