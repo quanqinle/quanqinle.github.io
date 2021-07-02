@@ -2,7 +2,7 @@
 layout:       post
 title:        "JavaScript | Export HTML webpage as a PDF"
 subtitle:     "Add a button [Export PDF], and save a webpage to PDF file, only implement with pure JavaScript"
-date:         2021-07-01 10:00:00
+date:         2021-06-30 10:00:00
 updated:      2021-07-01 10:00:00
 author:       "Quan Qinle"
 header-img:   "img/home-bg.webp"
