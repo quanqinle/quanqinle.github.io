@@ -15,9 +15,9 @@ tags:
 
 ---
 
-一个静态网页需要增加在线导出为 PDF 的功能，纯 JavaScript 方式比较适合这个使用场景。本文记录下我尝试的几种方法。
+我的一个静态网页需要增加在线导出为 PDF 的功能，纯 JavaScript 方式比较适合这个使用场景。本文记录下来我尝试的几种方法。
 
-先说下结论，方法一是我采用的方法；方法二最简单，但是需要使用者自己切换成「另存为 PDF」，对小白用户不友好；方法三应该对保持复杂样式最有效的，但它是以图片的方式保存网页。
+先说下结论，方法一是我最终采用的；方法二最简单，但是有一步操作需要使用者自己切换成「另存为 PDF」，对小白用户不友好；方法三应该对保持复杂样式是最有效的，但它是以图片的方式保存网页，失去了 PDF 可编辑的特性。
 
 <!-- more -->
 
@@ -70,7 +70,7 @@ https://www.w3schools.com/jsref/met_win_print.asp
 
 默认页面没有样式，有多种方法可以给打印的页面设置样式：
 1. 引入方式表 print.css，标记 media="print"
-配置一份打印样式表print.css，引入到HTML文档，在 <link> 上加上一个 media="print" 来标识这是打印机才会应用的样式表，这样打印的时候，就会默认将该样式表应用到文档中
+配置一份打印样式表 print.css，引入到 HTML 文档，在 <link> 上加上一个 media="print" 来标识这是打印机才会应用的样式表，这样打印的时候，就会默认将该样式表应用到文档中
 ```html
 <link href="/path/print.css" media="print" rel="stylesheet" />
 ```
@@ -91,4 +91,3 @@ https://github.com/MrRio/jsPDF
 
 另外，下面是基于 jsPDF 的二次封装，使用起来稍微简单一些：
 https://github.com/eKoopmans/html2pdf.js
-
