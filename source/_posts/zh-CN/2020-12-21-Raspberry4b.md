@@ -29,7 +29,7 @@ tags:
 * 安装系统、配置过程中，树莓派不外接 键盘、鼠标、显示器
 * 存储卡插入笔记本
 * 树莓派连接笔记本提供的无线热点
-* 在笔记本上，ssh 连接树莓派完成安装配置操作
+* 在笔记本上，SSH 连接树莓派完成安装配置操作
 
 # 选择系统
 
@@ -58,7 +58,7 @@ tags:
 # 预配置
 
 在笔记本上打开存储卡，在 boot 目录下
-* 开启 ssh 访问：新建空文件`ssh`
+* 开启 SSH 访问：新建空文件`ssh`
 * 配置热点连接：新建`wpa_supplicant.conf`文件，内容如下
 
 ```txt
@@ -86,7 +86,7 @@ network={
 https://www.raspberrypi.org/documentation/configuration/wireless/headless.md
 https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
 
-注意：psk 加双引号直接写明文密码，不加双引号则需要转换成 32 位预加密`wpa_passphrase "your pasword"`
+注意：psk 加双引号直接写明文密码，不加双引号则需要转换成 32 位的加密密码。通过 `wpa_passphrase "your pasword"` 获得加密密码。
 
 # 启动 Pi
 
@@ -94,9 +94,9 @@ https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
 
 # 登录 Pi
 
-在热点管理 or 路由器管理界面，查找树莓派的 IP。
+在笔记本上的热点管理界面 or 路由器上的 IP 管理界面，查找树莓派的 IP。
 
-`ssh`访问树莓派：
+通过`ssh`访问树莓派：
 ```sh
 ssh pi@IP-of-raspberry
 ```
@@ -144,7 +144,7 @@ sudo raspi-config
 
 开始时，使用`sudo apt install aria2`，自己修改配置，可惜下载速度不理想。然后，改用了 git 上的一个热门项目[“Aria2 一键安装管理脚本（增强版）”](https://github.com/P3TERX/aria2.sh)
 
-安装成功后，重现运行脚本，完成如下配置：
+安装成功后，重新运行脚本，完成如下配置：
 + 选择`修改 配置`，再`修改 Aria2 下载目录`
 + 开启`自动更新 BT-Tracker`
 
