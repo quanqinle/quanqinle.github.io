@@ -100,7 +100,7 @@ Huawei Cloud Computing Product Department is mainly responsible for the developm
 - Tested the essential underlying components of OpenStack, such as time management, log management, etc.
 - Worked in an agile Scrum team. Found bugs and fixed part of bugs in Python.
 
-> Why Left? : work content was all about the Infrastructure Layer, but I preferred the Application Layer.
+> Why Left? : The work content was all about the services in OS Layer, but I preferred the Application Layer.
 
 (OpenStack, Linux, Python)
 

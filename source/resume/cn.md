@@ -80,7 +80,7 @@ comments:     false
 - 负责公有云 OpenStack 系统底层基础组件的测试，如时间管理、log 管理等。
 - 在 Scrum 敏捷团队中工作，完成测试，并使用 Python 修复部分 bug。
 
-> 为何离开？：工作内容偏向系统底层（Infrastructure 层），与个人发展方向（Application 层）、面试沟通存在较大不符，所以离职。
+> 为何离开？：工作内容偏向操作系统底层（Infrastructure 层），与个人发展方向（Application 层）、面试沟通存在较大不符，所以离职。
 
 ##  2016.07 ~ 2016.11，[贝贝网](https://www.beibei.com.cn/) / 电商研发部
 贝贝网是国内排名前列的母婴电商平台，app 是其主要的用户入口。
