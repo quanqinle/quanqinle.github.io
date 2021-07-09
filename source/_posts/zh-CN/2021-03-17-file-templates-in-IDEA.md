@@ -224,7 +224,7 @@ public class ${Subject}ServiceImpl implements ${Subject}Service {
 
     @Override
     public boolean deleteById(Long id) {
-        Boolean result = true;
+        boolean result = true;
         try {
             repository.deleteById(id);
         } catch (Exception e) {
