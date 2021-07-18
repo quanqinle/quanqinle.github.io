@@ -139,6 +139,18 @@ Hundsun is a top financial technology company in China. The Open-end Funds Sales
 (Linux, Oracle, PL/SQL, Tuxedo, Delphi, C, WebSphere, Bash/Shell, HP WinRunner, QC, etc.)
 
 
+# <div style="text-align:center">Open Sources And Works</div>
+
+- UI automation test framework (for Web/Android/iOS/H5 all in one):
+[https://github.com/quanqinle/WebAndAppUITesting](https://github.com/quanqinle/WebAndAppUITesting)
+- API automation test framework (based on JMeter):
+[https://github.com/quanqinle/InterfaceTesting](https://github.com/quanqinle/InterfaceTesting)
+- Online courses on mobile app test (Initiated by the NetEase), I am responsible for parts of app automation test:
+[http://mooc.study.163.com/course/NEU-1000112018](http://mooc.study.163.com/course/NEU-1000112018)
+- Online courses on Selenium (Created by myself):
+[https://study.163.com/course/introduction/1004926010.htm](https://study.163.com/course/introduction/1004926010.htm)
+
+
 </div>
 
 <!-- Only for online version -->

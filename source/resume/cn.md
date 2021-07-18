@@ -47,7 +47,7 @@ comments:     false
     <td>546659066</td>
   </tr>
   <tr>
-    <td>Github：</td>
+    <td>GitHub：</td>
     <td><a href="https://github.com/quanqinle">https://github.com/quanqinle</a></td>
   </tr>
   <tr>
@@ -80,7 +80,7 @@ comments:     false
 - 负责公有云 OpenStack 系统底层基础组件的测试，如时间管理、log 管理等。
 - 在 Scrum 敏捷团队中工作，完成测试，并使用 Python 修复部分 bug。
 
-> 为何离开？：工作内容偏向操作系统底层（Infrastructure 层），与个人发展方向（Application 层）、面试沟通存在较大不符，所以离职。
+> 为何离开？：工作内容偏向操作系统底层（Infrastructure 层），与个人发展方向（Application 层）不符，所以离职。
 
 ##  2016.07 ~ 2016.11，[贝贝网](https://www.beibei.com.cn/) / 电商研发部
 贝贝网是国内排名前列的母婴电商平台，app 是其主要的用户入口。
@@ -114,12 +114,12 @@ comments:     false
 [https://github.com/quanqinle/WebAndAppUITesting](https://github.com/quanqinle/WebAndAppUITesting)
 - 接口测试框架（基于 JMeter）：
 [https://github.com/quanqinle/InterfaceTesting](https://github.com/quanqinle/InterfaceTesting)
-- 个人的 Python 项目，日常脚本：
-[https://github.com/quanqinle/my-python](https://github.com/quanqinle/my-python)
 - 网易杭研院组织的“移动 APP 测试线上课堂”，我负责 APP 自动化测试的多门课程：
 [http://mooc.study.163.com/course/NEU-1000112018](http://mooc.study.163.com/course/NEU-1000112018)
 - 个人开设的 Selenium 网页自动化测试课程：
 [https://study.163.com/course/introduction/1004926010.htm](https://study.163.com/course/introduction/1004926010.htm)
+- 个人的 Python 项目，日常脚本：
+[https://github.com/quanqinle/my-python](https://github.com/quanqinle/my-python)
 
 
 # <div style="background-color: gainsboro">技能清单</div>
@@ -135,7 +135,7 @@ comments:     false
 - Web 开发：Spring Boot
 - 版本管理：Svn、Git
 - 持续集成和自动部署：Jenkins
-- 其他：Linux、Docker、k8s 等
+- 其他：Linux、Docker、Kubernetes 等
 
 # <div style="background-color: gainsboro">证书奖励</div>
 - 2012.02	恒生产品质量贡献奖
