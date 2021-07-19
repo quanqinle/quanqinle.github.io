@@ -81,7 +81,7 @@ Bachelor of Engineering / [Nanjing University of Posts and Telecommunications](h
 
 # <div style="text-align:center">Work Experience</div>
 
-## <a href="http://www.zhcpa.cn/en">ZhongHui Certified Public Accountants LLP.</a> / Software R&D Dept. / 2017.04 ~ now
+## <a href="http://www.zhcpa.cn/en">ZhongHui Certified Public Accountants LLP.</a> / Software R&D Dept. / 2017.04 ~ Present
 
 Software R&D Department (established in 2016) is responsible for developing new business systems and maintaining the existing systems. The product forms are mainly B/S, and Android/iPhone app, WeChat mini program.
 
@@ -145,7 +145,7 @@ Hundsun is a top financial technology company in China. The Open-end Funds Sales
 [https://github.com/quanqinle/WebAndAppUITesting](https://github.com/quanqinle/WebAndAppUITesting)
 - API automation test framework (based on JMeter):
 [https://github.com/quanqinle/InterfaceTesting](https://github.com/quanqinle/InterfaceTesting)
-- Online courses on mobile app test (Initiated by the NetEase), I am responsible for parts of app automation test:
+- Online courses on mobile app test (Initiated by the NetEase), I was responsible for parts of app automation test:
 [http://mooc.study.163.com/course/NEU-1000112018](http://mooc.study.163.com/course/NEU-1000112018)
 - Online courses on Selenium (Created by myself):
 [https://study.163.com/course/introduction/1004926010.htm](https://study.163.com/course/introduction/1004926010.htm)
