@@ -24,7 +24,7 @@ comments:     false
     <link rel="stylesheet" href="/css/resume.css">
 </head>
 
-<body>
+<body id="resume">
 <div id="main-body" class="main-inner">
 
 
