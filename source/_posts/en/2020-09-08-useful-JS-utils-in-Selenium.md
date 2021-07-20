@@ -1,10 +1,11 @@
 ---
 layout:       post
-title:        "Selenium | 借助 JavaScript 实现一些不易处理的操作"
-subtitle:     "当无法按预期完成一些元素操作时，可以考虑执行 JavaScript 脚本"
+title:        "Selenium | Use JavaScript to solve the difficult page operations"
+subtitle:     "When element operations don't work as expected, consider using JavaScript"
 date:         2020-09-08
-updated:      2020-09-08
-author:       "权芹乐"
+updated:      2021-07-20
+author:       "Quan Qinle"
+lang:         en
 catalog:      true
 tags:
     - Selenium
@@ -13,36 +14,36 @@ tags:
 ---
 
 # JavascriptExecutor
-Javascript 脚本执行器。
+It is Javascript executor.
 
-`arguments[i]`是 js 脚本传参的占位符，i 从 0 开始。
+`arguments[i]` is a placeholder for JS script to pass arguments, and `i` starts from 0.
 
 <!-- more -->
 
-# 页面滚动
+# Scroll webpage
 
-jse 方式滚动页面的几种方式：
+Several ways of scrolling pages:
 ```java
 JavascriptExecutor jse = (JavascriptExecutor)driver;
 
-// 滚动到某元素（tips：适用于元素不可见或被遮挡）
+// Scroll to a element (tips: especially useful when elements are invisible or blocked)
 jse.executeScript("arguments[0].scrollIntoView();", element);
 
-// 向下滚动
+// Scroll down
 jse.executeScript("window.scrollBy(0, 500)", "");
 jse.executeScript("scroll(0, 500);");
 
-// 滚动到底部
+// Scroll to buttom
 jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
-// 动态元素的高度
+// height of dynamic element
 double ImageHeight = eachtile.getSize().getHeight();
 double f = 1.04*ImageHeight;
 ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,arguments[0]);", -f);
 ```
 
 
-# 元素内取值
+# Get text inside elements
 ```HTLM
 <div class="item-price">100 Yuan</div>
 
@@ -52,7 +53,7 @@ double f = 1.04*ImageHeight;
 </div>
 ```
 
-div 可能有 span 也可能没有，但要不取出 span 中的文本，即，期望得到 100 Yuan 和 200 Yuan
+div may or may not have span, anyway I don't want the text inside span, that is, it is expected to get `100 Yuan` and `300 Yuan`.
 ```java
 WebElement element = driver.findElement(By.xpath("//div[contains(@class, 'item-price')]"));
 
@@ -61,7 +62,7 @@ jse.executeScript("return arguments[0].lastChild.textContent;", element);
 ```
 
 
-# list 超长，点击其中“不可见”的选项
+# Click invisible item from a very long list
 ```java
 public void selectListByJS() {
     JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -71,16 +72,16 @@ public void selectListByJS() {
 }
 
 
-// 修改属性，使可见。
-// tip：还没验证过
+// Another Solution:
+// modify attribute to make it visible
+// tip: I haven't check this solution out yet :)
 String strJs = "document.getElementsByClassName('arguments[0]').style.height='auto'; document.getElementsByClassName('arguments[0]').style.visibility='visible';";
 ```
 
-# 点击元素
+# Click element
 ```java
 /**
- * 通过JavaScript实现点击元素。
- * tips：适用于click()失效时
+ * tips: Suitable for Click () failure
  *
  * @param element
  */
@@ -90,5 +91,5 @@ public void clickByJS(WebElement element) {
 }
 ```
 
-# 资料
+# Reference
 https://www.guru99.com/execute-javascript-selenium-webdriver.html
