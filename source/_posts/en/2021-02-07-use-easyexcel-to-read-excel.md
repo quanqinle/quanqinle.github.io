@@ -54,7 +54,7 @@ A maven pom demo as below:
 </dependency>
 ```
 
-# The mɪnɪməm demo for reading Excel
+# The mininum demo for reading Excel
 
 ## 1. Data class `DemoBizExcelRow.java`, storing one row data of Excel
 ```java

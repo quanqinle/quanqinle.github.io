@@ -1,16 +1,15 @@
 ---
 layout:       post
-title:        "前端 | 使用 DataTables 创建 HTML 表格"
-subtitle:     "DataTables 提供了相对简单的方式创建强大、灵活的 HTTP Table 互动控件"
+title:        "Front-end | Use DataTables to create HTML table"
+subtitle:     "DataTables provide easy and strong way to create HTTP Table component"
 date:         2021-07-21 14:00:00
-updated:      2021-07-21 14:00:00
+updated:      2021-07-29 17:00:00
 author:       "Quan Qinle"
 header-img:   "img/home-bg.webp"
-multilingual: false
+lang:         en
 catalog:      true
 categories:
     - Front-end
-    - 前端
     - JavaScript
 tags:
     - Front-end
@@ -18,44 +17,45 @@ tags:
 
 ---
 
-一个完整的 HTML Table 应该具有翻页、搜索、导出等功能，借助第三方库可以简化实现步骤。
+A complete HTML Table should at least have pagination, sorting, filtering, exporting and other functions, a third-party library can help simplify the implementation steps.
 
+So let's look at this kind of library, Datatables.
 <!-- more -->
 
-# Datatables 简介
+# Datatables Introduction
 https://datatables.net/
 
-官方自我介绍：
+Introduction from offical website:
 > Add advanced interaction controls to your HTML tables the free & easy way
 
-# 安装
-在 HTML 中添加`DataTables`的 js 和 css。我使用的是当前最新版本 1.10.25。
+# Installment
+In HTML, add js and css of `DataTables`. I used the latest version 1.10.25.
 ```html
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 ```
 
-如需`DataTables`提供的其他功能，请查阅：
+If you need other functions provided by `DataTables`, check these links:
 - https://datatables.net/extensions/index
 - https://datatables.net/download/index
 
-# HTML 中添加 `<table>`
-在 HTML 中添加表格标签，并指定 id 以便后续的 JS 可以定位到它并完成表格创建。
+# Add `<table>` in HTML
+In HTML, add the `<table>` tag, and give it an id so that the subsequent JS can locate it and complete the table creation.
 
 ```html
 <table id="myTable">
 </table>
 ```
 
-# 两种处理模式
-`DataTables`有两种操作模式（`serverSide='boolean'`）：客户端处理（`false`）和服务端处理（`true`）。
-- 客户端处理：适用于数据量小的场景，一次性获取所有数据，在浏览器中执行分页、过滤、排序等操作。这是默认模式。
-- 服务端处理：适用于数据量大的场景，分次调用 API 获取部分数据，由服务端执行分页、过滤、排序。官方推荐数据量大于 50000 时使用该模式，但仁者见仁，个人认为这个值太高了，也许参考值可以调整到 1000。
+# Two mode
+`DataTables` has two processing mode (`serverSide='boolean'`): Client-side processing(`false`) and Server-side processing(`true`).
+- Client-side processing: useful when working with small data sets, obtain all the data at once, and page, filter, sort and so on in the browser. This is the default mode.
+- Server-side processing: useful when working with large data sets, obtain part of the data everytime the API is called, and page, filter, sort and so on in the server. The official recommendation is to use this mode when the data is greater than 50000, but personally, I think this value is too high, maybe the reference value can be 1000.
 
-注意：客户端模式时，除了上面描述的从服务器获取数据之外，数据源还可以直接写死在 HTML 中，也可以从本地静态文件中读取，但这些和我的应用场景不符，所有本文不会记述。
+Note: When we use client-side mode, in addition to getting data from the server as above, the data source can also be written directly in HTML or read from a local static file, but these doesn't fit my scenario, so will not be mentioned in this article.
 
-## serverSide='false' 客户端处理
+## serverSide='false' Client-side processing
 ```html
 <script>
 $(function () {
@@ -78,13 +78,13 @@ $(function () {
 } );
 ```
 
-代码解读：
-- `$("#myTable")` 找到 id 是 myTable 元素
-- `serverSide: false` 客户端处理模式
-- `ajax` 页面加载后，自动发起 GET 请求，得到 JSON 格式的响应，从 JSON 中获取元素 data 的值作为表格数据
-- `columns` 表头取自 title，而 data 对应响应 JSON 中 data 元素的属性名
+Code explanation: 
+- `$("#myTable")`: query the element whose id is myTable
+- `serverSide: false`: Client-side processing mode
+- `ajax`: after the page is loaded, send GET request automatically, and gain the response with JSON format, parse the JSON and get `data` from it, then fill them in table body
+- `columns`: table header comes from the `title`, and `data` corresponds to the attribute name of the `data` in response JSON
 
-以下是响应 JSON 示例：
+Response JSON demo:
 ```json
 {
   "data":[
@@ -94,7 +94,7 @@ $(function () {
 }
 ```
 
-## serverSide='true' 服务端处理
+## serverSide='true' Server-side processing
 ```html
 <script>
 //
@@ -236,15 +236,15 @@ $(document).ready(function() {
 </script>
 ```
 
-代码解读：
-- `serverSide: true` 服务端处理模式
-- `ajax` 页面加载后，自动发起 POST 请求，得到 JSON 格式的响应，从 JSON 中获取元素 data 的值作为表格数据
-- `pages: 3` 一次获取 N 页数据（缓存），用以减少请求的次数
-- 实际使用中，只需要修改最后一部分的 columns 和 Ajax 的三个参数
+Code explanation: 
+- `serverSide: true`: Server-side processing mode
+- `ajax`: after the page is loaded, send POST request automatically, and gain the response with JSON format, parse the JSON and get `data` from it, then fill them in table body
+- `pages: 3`: gain more than one page at once to cache, to reduce the times of sending requests
+- In practice, need only to change the columns in the last part and the three parameters of Ajax
 
-关于 API 的 request 和 response 参数，可以查阅：https://datatables.net/manual/server-side
+About API's Request and Response parameters, you can check: https://datatables.net/manual/server-side
 
-以下是响应 JSON 示例：
+Response JSON demo:
 ```json
 {
   "draw":1,
@@ -257,10 +257,10 @@ $(document).ready(function() {
 }
 ```
 
-另外需要注意的是，此模式下 API 请求的参数是 Form Data 形式，服务端处理时不是接收 json。例如 Spring Boot 可以通过 `@RequestParam` 接收参数：
+It is also important to note that the parameters of the API request in this mode are `Form Data` form, so what the server receives is not JSON. For example, Spring Boot can receive parameters via `@ RequestParam`
 ```java
 /**
- * 分页获取数据
+ * Gain paged data
  *
  * @param draw Draw counter.
  * @param start Paging first record indicator. This is the start point in the current data set (0 index based - i.e. 0 is the first record).
@@ -269,7 +269,7 @@ $(document).ready(function() {
  */
 @PostMapping("/post/list.json")
 @ResponseBody
-@ApiOperation(value = "分页获取数据")
+@ApiOperation(value = "Gain paged data")
 public DatatablesResult getList(@RequestParam int draw, @RequestParam int start, @RequestParam int length) {
     int pageNum = start / length;
     Page<EnglishWord> data = englishService.getList(pageNum, length);
@@ -280,9 +280,9 @@ public DatatablesResult getList(@RequestParam int draw, @RequestParam int start,
 }
 ```
 
-# 表格的样式与功能
+# Table's style and function
 
-开启搜索与排序
+Enable filtering and sorting
 ```html
 $("#myTable").DataTable ({
   searching: true,
@@ -290,7 +290,7 @@ $("#myTable").DataTable ({
 } );
 ```
 
-开启分页功能，设置分页样式
+Enable paging, set paging type
 ```html
 $("#myTable").DataTable ({
   paging: true,
@@ -298,7 +298,7 @@ $("#myTable").DataTable ({
 } );
 ```
 
-开启调整每页数量
+Enable length of one page
 ```html
 $("#myTable").DataTable ({
   lengthChange: true,
@@ -309,14 +309,14 @@ $("#myTable").DataTable ({
 } );
 ```
 
-开启保存状态（分页位置，每页数量，搜索，排序等）。当用户刷新浏览器时，仍使用之前的状态
+Enable state save (pagination position, display length, filtering and sorting). When the end user reloads the page the table's state will be altered to match what they had previously set up.
 ```html
 $("#myTable").DataTable ({
   stateSave: true
 } );
 ```
 
-开启操作按钮，如，保存、导出 excel、导出 pdf、打印、调整可见列、调整每页数量
+Enable option buttons, such as save, export excel/pdf, print, adjust columns visible, adjust the length of one page
 ```html
 $("#myTable").DataTable ({
   buttons: ["copy", "excel", "pdf", "print", "colvis", "pageLength"],
@@ -327,7 +327,7 @@ $("#myTable").DataTable ({
 } );
 ```
 
-最后一列显示「编辑」按钮
+Add a `Edit` button at the last column
 ```html
 <script>
 $(function () {
