@@ -258,8 +258,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 #parse("File Header.java")
+// @Controller
 @RestController
-@RequestMapping("api/${SubjectOfLowerFirst}")
+@RequestMapping("/api/${SubjectOfLowerFirst}")
 public class ${Subject}Controller {
 
     @Resource
@@ -277,13 +278,13 @@ public class ${Subject}Controller {
         return Result.success(${SubjectOfLowerFirst});
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public Result<Void> deleteById(@PathVariable Long id) {
         boolean success = ${SubjectOfLowerFirst}Service.deleteById(id);
         return success ? Result.success() : Result.fail();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Result<${Subject}> queryById(@PathVariable Long id) {
         var optional = ${SubjectOfLowerFirst}Service.queryById(id);
         if (optional.isPresent()) {
