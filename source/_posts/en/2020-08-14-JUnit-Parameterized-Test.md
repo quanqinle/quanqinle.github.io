@@ -12,7 +12,7 @@ tags:
 
 ---
 
-In JUnit5, we can replace `@Test` with `@ParameterizedTest`, so that the test case can use different parameters and be executed several times in a loop.
+In JUnit5, we can replace `@Test` with `@ParameterizedTest`, so that test cases can use different parameters and be executed several times in a loop.
 
 <!-- more -->
 
