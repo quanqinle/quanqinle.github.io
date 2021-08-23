@@ -1,17 +1,18 @@
 ---
 layout:       post
-title:        "JUnit | 参数化测试用例"
-subtitle:     "使用`@ParameterizedTest`接收不同参数，循环多次执行测试方法"
+title:        "JUnit | Parameterized test in JUnit5"
+subtitle:     "`@ParameterizedTest` can use different parameters and run test case multiple times in a loop"
 date:         2020-08-14
-updated:      2020-08-14
-author:       "权芹乐"
+updated:      2021-08-23
+author:       "Quan Qinle"
+lang:         en
 catalog:      true
 tags:
     - junit
 
 ---
 
-在 JUnit5 中，可以将`@Test`替换成`@ParameterizedTest`，这样就可以使用不同的参数、多次循环运行测试方法。
+In JUnit5, we can replace `@Test` with `@ParameterizedTest`, so that the test case can use different parameters and be executed several times in a loop.
 
 <!-- more -->
 
@@ -30,14 +31,14 @@ public void test_Demo1(int arg) {
 @ParameterizedTest(name = "{index} ==> the testcase is running")
 @ValueSource(strings = {"1", "2", "3,4"})
 public void test_Demo2(String arg) {
-    assertNull(arg, "不应空虚");
+    assertNull(arg, "Can NOT be NULL");
 
     String expected = "2";
     assertEquals(expected, arg, "You are not such 2");
 }
 ```
 
-在`@ValueSource`中，可以使用 strings、ints 等等。但是，我个人更**倾向于使用 `strings`**，因为 String 可以隐式转换为很多格式，这样传参更灵活一些。
+In `@ValueSource`, the parameter name can be strings, ints, etc. However, I personally prefer to use `strings`, because the String type can be implicitly converted to many other types which makes passing arguments more flexible.
 
 ```Java
 @ParameterizedTest
@@ -53,7 +54,7 @@ public void test_Demo4(BigDecimal arg) {
 }
 ```
 
-[String 可以自动转换成哪些格式？](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests-argument-conversion-implicit)
+[Which types can a String be converted to automatically?](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests-argument-conversion-implicit)
 
 
 # `@CsvSource`
@@ -61,7 +62,7 @@ public void test_Demo4(BigDecimal arg) {
 ```Java
 @ParameterizedTest
 @CsvSource({
-    "  85,  体育,         true",
+    "  85,        体育,   true",
     "99.5,  '语,数,外',   false",
     })
 public void test_Demo5(BigDecimal score, String subject, boolean isWin) {
@@ -69,14 +70,14 @@ public void test_Demo5(BigDecimal score, String subject, boolean isWin) {
 }
 ```
 
-## ArgumentsAccessor 参数聚合器
+## `ArgumentsAccessor`, the parameter aggregator
 
-通过`ArgumentsAccessor`一次接收多个参数。
+By `ArgumentsAccessor`, multiple parameters can be received at once.
 
 ```java
 @ParameterizedTest
 @CsvSource({
-    "  85,  体育,         true",
+    "  85,        体育,   true",
     "99.5,  '语,数,外',   false",
     })
 public void test_Demo6(ArgumentsAccessor args) {
@@ -91,7 +92,7 @@ public void test_Demo6(ArgumentsAccessor args) {
 
 # `@CsvFileSource`
 
-和`@CsvSource`的区别，从 csv 文件读取测试数据，传参等用法相同。
+The difference with '@csvsource' is reading test data from CSV file, however, the same is how to pass parameters and others.
 
 ```java
 @ParameterizedTest
