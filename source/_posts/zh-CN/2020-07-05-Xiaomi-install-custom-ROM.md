@@ -69,9 +69,9 @@ fastboot reboot
 
 清数据，FORMAT /data partition (NEVER wipe System or Persist!)
 
-+ 刷 ROOM 镜像
++ 刷 ROM 镜像
 
-把 ROOM 镜像放到手机存储
+把 ROM 镜像放到手机存储
 
 + 完成
 
@@ -84,7 +84,7 @@ Tip: 刷机前，应在老系统中退出 Google 账号登陆，否则就会遇�
 
 解决办法：关闭新系统新机引导界面
 1. 进入 Recovery TWRP
-2. 在菜单中完成/system 分区。以防万一，adb 中再次挂载`adb remount /system`
+2. 在菜单中完成 /system 分区。以防万一，adb 中再次挂载`adb remount /system`
 3. 进入 shell，关闭引导
 ```sh
 adb shell
