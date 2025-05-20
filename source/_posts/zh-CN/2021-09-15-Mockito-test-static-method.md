@@ -32,6 +32,7 @@ When using the inline mock maker, it is possible to mock static method invocatio
  
 Due to the defined scope of the static mock, it returns to its original behavior once the scope is released. To define mock behavior and to verify static method invocations, use the MockedStatic that is returned.
 
+以下未完成
 
 
 <!-- more -->
